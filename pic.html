@@ -88,16 +88,34 @@
                     function onClick() {
                         pic2.destroy();
                         // create a video texture from a path
-                        const texture = PIXI.Texture.from('Normal start.mp4');
+                        /*  const texture = PIXI.Texture.from('Normal start.mp4');
 
-                        // create a new Sprite using the video texture (yes it's that easy)
-                        const videoSprite = new PIXI.Sprite(texture);
+                          // create a new Sprite using the video texture (yes it's that easy)
+                          const videoSprite = new PIXI.Sprite(texture);
 
-                        // Stetch the fullscreen
-                        videoSprite.width = app.screen.width;
-                        videoSprite.height = app.screen.height;
+                          // Stetch the fullscreen
+                          videoSprite.width = app.screen.width;
+                          videoSprite.height = app.screen.height;
 
-                        app.stage.addChild(videoSprite);
+                          app.stage.addChild(videoSprite);*/
+
+                        const movframes = ["img/spritesheet-0.png", "img/spritesheet-1.png", "img/spritesheet-2.png", "img/spritesheet-3.png", "img/spritesheet-4.png", "img/spritesheet-5.png", "img/spritesheet-6.png", "img/spritesheet-7.png", "img/spritesheet-8.png", "img/spritesheet-9.png","img/spritesheet-10.png","img/spritesheet-11.png","img/spritesheet-12.png","img/spritesheet-13.png","img/spritesheet-14.png","img/spritesheet-15.png","img/spritesheet-16.png","img/spritesheet-17.png","img/spritesheet-18.png","img/spritesheet-19.png","img/spritesheet-20.png","img/spritesheet-21.png","img/spritesheet-22.png","img/spritesheet-23.png","img/spritesheet-24.png","img/spritesheet-25.png","img/spritesheet-26.png","img/spritesheet-27.png","img/spritesheet-28.png","img/spritesheet-29.png","img/spritesheet-30.png","img/spritesheet-31.png","img/spritesheet-32.png","img/spritesheet-33.png","img/spritesheet-34.png","img/spritesheet-35.png","img/spritesheet-36.png","img/spritesheet-37.png","img/spritesheet-38.png","img/spritesheet-39.png","img/spritesheet-40.png","img/spritesheet-41.png","img/spritesheet-42.png","img/spritesheet-43.png","img/spritesheet-44.png","img/spritesheet-45.png","img/spritesheet-46.png","img/spritesheet-47.png" ];
+                        
+                      /*  const movframes = ["img/spritesheet-0.png", "img/spritesheet-1.png", "img/spritesheet-2.png", "img/spritesheet-3.png", "img/spritesheet-4.png", "img/spritesheet-5.png", "img/spritesheet-6.png", "img/spritesheet-7.png", "img/spritesheet-8.png", "img/spritesheet-9.png","img/spritesheet-10.png"];*/
+                        PIXI.loader.add(movframes).load(setup);
+
+                        function setup() {
+                            let resources = PIXI.loader.resources;
+                            let animatedmov = PIXI.extras.AnimatedSprite.fromFrames(movframes);
+                            app.stage.addChild(animatedmov);
+                            animatedmov.position.set(300);
+                            animatedmov.anchor.set(0.5);
+                            animatedmov.scale.x=0.65;
+                            animatedmov.scale.y=0.65;
+                            animatedmov.animationSpeed=0.25;
+                            animatedmov.onLoop=true;
+                            animatedmov.play();
+                        }
 
                     }
 
