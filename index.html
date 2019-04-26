@@ -1,80 +1,65 @@
 <html>
 
 <head>
-<script src="pixi.min.js"></script>
-   
-
+    <script src="pixi.min.js"></script>
+    <h1>First test</h1>
 </head>
 <style>
     body {
-        position: absolute;
+        position: fixed;
         margin: 0 25%;
-
     }
 
-    div {
-        position: absolute;
-        margin: 0 auto;
+    h1 {
+        margin: 0 50px;
     }
 
 </style>
 
 <body>
-    <div>
-        <script>
-            const app = new PIXI.Application({
-                width: 800,
-                height: 600,
-                backgroundColor: 0xD8BFD8
-            });
-            document.body.appendChild(app.view);
-            const container = new PIXI.Container();
-            app.stage.addChild(container);
-            // Create a new texture
-            const texture = PIXI.Texture.from('umbrella.png');
-            const texture2 = PIXI.Texture.from('sun.png')
-            const pic = new PIXI.Sprite(texture);
-
-            pic.anchor.set(0.5); //設置圖片在中間
-
-            container.addChild(pic);
-            // Move container to the center
-            container.x = app.screen.width / 2;
-            container.y = app.screen.height / 2;
-            // Center bunny sprite in local container coordinates
-            container.pivot.x = container.width / 2;
-            container.pivot.y = container.height / 2;
-            //計時器動畫旋轉
-            app.ticker.add((delta) => {
-                pic.rotation += 0.01 * delta;
-                pic.scale.x-=0.01*delta;
-                pic.scale.y-=0.01*delta;
-                if(pic.scale.x<0||pic.scale.y<0)
-                {
-                    pic.texture=texture2;
-                   
-                }
-                   
-            });
-         
-            
-          
-
-        </script>
+    <script>
+        var app = new PIXI.Application({width:800, height:600,backgroundColor:0x1099bb}); //設定圖層
+        document.body.appendChild(app.view); //顯示
 
 
-    </div>
+        var container = new PIXI.Container();
+        app.stage.addChild(container);
 
 
+        var circle = new PIXI.Graphics();
+        circle.beginFill(0xFFE599);
+        circle.drawCircle(100, 100, 100);
+
+        // Opt-in to interactivity
+        circle.interactive = true;
+        // Shows hand cursor
+        circle.buttonMode = true;
+        // Pointers normalize touch and mouse
+        circle.on('pointerdown', onClick);
+        container.addChild(circle);
+        // app.stage.addChild(circle);
+        // Move container to the center
+        container.x = app.screen.width / 2;
+        container.y = app.screen.height / 2;
+
+        // Center circle sprite in local container coordinates
+        container.pivot.x = container.width / 2;
+        container.pivot.y = container.height / 2;
+
+        function onClick() {
+            location.href = "pic.html";
+        }
+
+
+        if (window.orientation === 90 || window.orientation === -90) {
+            container.rotation = -Math.PI / 2;
+            container.y = screen.width;
+        } else {
+            container.rotation = -Math.PI / 2;
+            container.y = screenRect.height;
+        }
+
+    </script>
 </body>
-
-
-
-
-
-
-
-
-
 
 </html>

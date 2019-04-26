@@ -1,0 +1,23 @@
+{"frames": {
+
+"正常兒室內0046.png":
+{
+	"frame": {"x":0,"y":0,"w":1920,"h":1080},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1920,"h":1080},
+	"sourceSize": {"w":1920,"h":1080}
+}},
+"animations": {
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "spritesheet-45.png",
+	"format": "RGBA8888",
+	"size": {"w":1920,"h":1080},
+	"scale": "1",
+	"related_multi_packs": [ "spritesheet-0.json", "spritesheet-1.json", "spritesheet-2.json", "spritesheet-3.json", "spritesheet-4.json", "spritesheet-5.json", "spritesheet-6.json", "spritesheet-7.json", "spritesheet-8.json", "spritesheet-9.json", "spritesheet-10.json", "spritesheet-11.json", "spritesheet-12.json", "spritesheet-13.json", "spritesheet-14.json", "spritesheet-15.json", "spritesheet-16.json", "spritesheet-17.json", "spritesheet-18.json", "spritesheet-19.json", "spritesheet-20.json", "spritesheet-21.json", "spritesheet-22.json", "spritesheet-23.json", "spritesheet-24.json", "spritesheet-25.json", "spritesheet-26.json", "spritesheet-27.json", "spritesheet-28.json", "spritesheet-29.json", "spritesheet-30.json", "spritesheet-31.json", "spritesheet-32.json", "spritesheet-33.json", "spritesheet-34.json", "spritesheet-35.json", "spritesheet-36.json", "spritesheet-37.json", "spritesheet-38.json", "spritesheet-39.json", "spritesheet-40.json", "spritesheet-41.json", "spritesheet-42.json", "spritesheet-43.json", "spritesheet-44.json", "spritesheet-46.json", "spritesheet-47.json" ],
+	"smartupdate": "$TexturePacker:SmartUpdate:1ec0b708217d74c165fdc73881d4e3f4:b543c6d9c79a416b4d53c43d35fddf25:9238ab29eedba2e9d60e492a9e6c7f90$"
+}
+}
