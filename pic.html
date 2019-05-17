@@ -82,19 +82,26 @@
                         PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
                         pic2.destroy();
                         // create a video texture from a path
-                        const texture = PIXI.Texture.from('Normal start.mp4');
+                        var texture = PIXI.Texture.fromVideo('Normal start.mp4');
 
                         // create a new Sprite using the video texture (yes it's that easy)
-                        const videoSprite = new PIXI.Sprite(texture);
+                        var videoSprite = new PIXI.Sprite(texture);
 
                         // Stetch the fullscreen
                         videoSprite.width = app.screen.width;
                         videoSprite.height = app.screen.height;
 
                         app.stage.addChild(videoSprite);
+                        animate();
+                        
+                        function animate()
+                        {
+                            app.render(container);
+                            requestAnimationFrame(animate);
+                        }
 
 
-                        /*  const movframes = ["img/spritesheet-0.png", "img/spritesheet-1.png", "img/spritesheet-2.png", "img/spritesheet-3.png", "img/spritesheet-4.png", "img/spritesheet-5.png", "img/spritesheet-6.png", "img/spritesheet-7.png", "img/spritesheet-8.png", "img/spritesheet-9.png","img/spritesheet-10.png"];*/
+                        /*  const movframes = ["img/spritesheet-0.png", "img/spritesheet-1.png", "img/spritesheet-2.png", "img/spritesheet-3.png", "img/spritesheet-4.png", "img/spritesheet-5.png", "img/spritesheet-6.png", "img/spritesheet-7.png", "img/spritesheet-8.png", "img/spritesheet-9.png","img/spritesheet-10.png"];
                         PIXI.loader.add(movframes).load(setup);
 
                         function setup() {
@@ -108,7 +115,7 @@
                             animatedmov.animationSpeed = 0.25;
                             // animatedmov.onLoop=true;
                             animatedmov.play();
-                        }
+                        }*/
 
                     }
 
