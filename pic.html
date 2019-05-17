@@ -2,7 +2,7 @@
 
 <head>
     <script src="pixi.min.js"></script>
-   
+
 </head>
 <style>
     body {
@@ -11,6 +11,7 @@
         overflow: hidden;
 
     }
+
     div {
         position: absolute;
         margin: 0, auto;
@@ -54,8 +55,8 @@
             pic2.visible = false;
             container.addChild(pic);
             container.addChild(pic2);
-            
-      
+
+
 
             //計時器動畫旋轉
             app.ticker.add((delta) => {
@@ -78,21 +79,22 @@
                     pic2.on('pointerdown', onClick);
 
                     function onClick() {
+                        PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
                         pic2.destroy();
                         // create a video texture from a path
-                          const texture = PIXI.Texture.from('Normal start.mp4');
+                        const texture = PIXI.Texture.from('Normal start.mp4');
 
-                          // create a new Sprite using the video texture (yes it's that easy)
-                          const videoSprite = new PIXI.Sprite(texture);
+                        // create a new Sprite using the video texture (yes it's that easy)
+                        const videoSprite = new PIXI.Sprite(texture);
 
-                          // Stetch the fullscreen
-                          videoSprite.width = app.screen.width;
-                          videoSprite.height = app.screen.height;
+                        // Stetch the fullscreen
+                        videoSprite.width = app.screen.width;
+                        videoSprite.height = app.screen.height;
 
-                          app.stage.addChild(videoSprite);
+                        app.stage.addChild(videoSprite);
 
-                       
-                      /*  const movframes = ["img/spritesheet-0.png", "img/spritesheet-1.png", "img/spritesheet-2.png", "img/spritesheet-3.png", "img/spritesheet-4.png", "img/spritesheet-5.png", "img/spritesheet-6.png", "img/spritesheet-7.png", "img/spritesheet-8.png", "img/spritesheet-9.png","img/spritesheet-10.png"];*/
+
+                        /*  const movframes = ["img/spritesheet-0.png", "img/spritesheet-1.png", "img/spritesheet-2.png", "img/spritesheet-3.png", "img/spritesheet-4.png", "img/spritesheet-5.png", "img/spritesheet-6.png", "img/spritesheet-7.png", "img/spritesheet-8.png", "img/spritesheet-9.png","img/spritesheet-10.png"];*/
                         PIXI.loader.add(movframes).load(setup);
 
                         function setup() {
@@ -101,10 +103,10 @@
                             app.stage.addChild(animatedmov);
                             animatedmov.position.set(300);
                             animatedmov.anchor.set(0.5);
-                            animatedmov.scale.x=0.5;
-                            animatedmov.scale.y=0.5;
-                            animatedmov.animationSpeed=0.25;
-                           // animatedmov.onLoop=true;
+                            animatedmov.scale.x = 0.5;
+                            animatedmov.scale.y = 0.5;
+                            animatedmov.animationSpeed = 0.25;
+                            // animatedmov.onLoop=true;
                             animatedmov.play();
                         }
 
