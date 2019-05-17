@@ -2,17 +2,15 @@
 
 <head>
     <script src="pixi.min.js"></script>
-
-
+   
 </head>
 <style>
     body {
         position: absolute;
-        margin: 0, auto;
+        margin: 0 25%;
         overflow: hidden;
 
     }
-
     div {
         position: absolute;
         margin: 0, auto;
@@ -56,17 +54,11 @@
             pic2.visible = false;
             container.addChild(pic);
             container.addChild(pic2);
-
-
-
-
-
-
+            
+      
 
             //計時器動畫旋轉
             app.ticker.add((delta) => {
-
-
 
                 pic.rotation += 0.01 * delta;
                 pic.scale.x -= 0.01 * delta;
@@ -110,10 +102,10 @@
                             app.stage.addChild(animatedmov);
                             animatedmov.position.set(300);
                             animatedmov.anchor.set(0.5);
-                            animatedmov.scale.x=0.65;
-                            animatedmov.scale.y=0.65;
+                            animatedmov.scale.x=0.5;
+                            animatedmov.scale.y=0.5;
                             animatedmov.animationSpeed=0.25;
-                            animatedmov.onLoop=true;
+                           // animatedmov.onLoop=true;
                             animatedmov.play();
                         }
 

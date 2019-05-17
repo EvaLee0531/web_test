@@ -2,34 +2,122 @@
 
 <head>
     <script src="pixi.min.js"></script>
-    <h1>First test</h1>
+    <script src="PIXI.TextInput-master/PIXI.TextInput-master/dist/PIXI.TextInput.js">
+    </script>
+    <script src="PIXI.TextInput-master/PIXI.TextInput-master/src/PIXI.TextInput.js"></script>
+    <script src="PIXI.Input-master/PIXI.Input-master/source/pixi.input.js"></script>
+    <script src="PIXI.Input-master/PIXI.Input-master/bin/pixi.input.js"></script>
+    <script src="PIXI.Input-master/PIXI.Input-master/bin/pixi.input.min.js"></script>
+
+    <h1>First Test</h1>
 </head>
 <style>
     body {
         position: absolute;
-        margin: 0 auto;
+        margin: 0 25%;
+        overflow: hidden;
     }
 
     h1 {
-        margin: 0 50px;
+        margin: 0 auto;
+    }
+
+    #chooseid {
+        background-color: #F0BBFF;
+        width: 800;
+        height: 200;
+    }
+    #showtxt
+    {
+        background-color: #F0BBFF;
     }
 
 </style>
 
 <body>
-    <script>
-        var app = new PIXI.Application({width:800, height:600,backgroundColor:0x1099bb}); //設定圖層
-        document.body.appendChild(app.view); //顯示
 
+    <div id="chooseid">
+
+        Please type your name:<br>
+        <form>
+            <input type="text" id="name" placeholder="Your name"><br>
+            Please select your living place:<br>
+            <select id="place">
+                <option value="Taoyuan">Taoyuan</option>
+                <option value="Taipei">Taipei</option>
+                <option value="Hsinchue">Hsinchue</option>
+                <option value="Tainan">Tainan</option>
+            </select>
+            <button type="button" onclick="showtext()">submit</button>
+            
+        </form>
+<p id="showtxt"></p>
+        <script>
+            function showtext() {
+                const n = document.getElementById('name').value;
+                const place=document.getElementById('place').value;
+                document.getElementById('showtxt').innerHTML = "Your name is:" + n+",and your living place is:"+place;
+            }
+
+
+        </script>
+     
+    </div>
+    <script>
+        var app = new PIXI.Application({
+            width: 800,
+            height: 600,
+            backgroundColor: 0xF0BBFF,
+            antialias: true,
+            forceCanvas: false
+        }); //設定圖層
+        document.body.appendChild(app.view); //顯示
 
         var container = new PIXI.Container();
         app.stage.addChild(container);
 
 
+        /* //輸入框
+         var input = new PIXI.TextInput({
+             fontSize: '25pt',
+             padding: '14px',
+             width: '500px',
+             color: '#E38EFF'
+         }, {
+
+             focused: {
+                 fill: 0xBBFFEE,
+                 rounded: 16,
+                 stroke: {
+                     color: 0xABAFC6,
+                     width: 4
+                 }
+             },
+
+         });
+         input.placeholder = 'Enter your name...';
+         container.addChild(input);
+         input.focus();
+
+         input.pivot.x = input.width / 2;
+         input.pivot.y = input.height / 2;
+
+         // 將container移動至中間
+         container.x = app.screen.width / 2;
+         container.y = app.screen.height / 2;
+         /* // Center circle sprite in local container coordinates
+          container.pivot.x = container.width / 2;
+          container.pivot.y = container.height / 2;*/
         var circle = new PIXI.Graphics();
         circle.beginFill(0xFFE599);
-        circle.drawCircle(100, 100, 100);
+        circle.drawCircle(200, 100, 50);
 
+        var text = new PIXI.Text("next");
+        text.x = 225;
+        text.y = 135;
+        text.pivot.x = circle.width / 2;
+        text.pivot.y = circle.height / 2;
+        circle.addChild(text);
         // Opt-in to interactivity
         circle.interactive = true;
         // Shows hand cursor
@@ -37,29 +125,15 @@
         // Pointers normalize touch and mouse
         circle.on('pointerdown', onClick);
         container.addChild(circle);
-        // app.stage.addChild(circle);
-        // Move container to the center
-        container.x = app.screen.width / 2;
-        container.y = app.screen.height / 2;
 
-        // Center circle sprite in local container coordinates
-        container.pivot.x = container.width / 2;
-        container.pivot.y = container.height / 2;
 
         function onClick() {
+
             location.href = "pic.html";
-        }
-
-
-        if (window.orientation === 90 || window.orientation === -90) {
-            container.rotation = -Math.PI / 2;
-            container.y = screen.width;
-        } else {
-            container.rotation = -Math.PI / 2;
-            container.y = screenRect.height;
         }
 
     </script>
 </body>
+
 
 </html>
