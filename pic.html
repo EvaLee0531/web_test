@@ -61,8 +61,8 @@
             videoplay.scale.y = 0.25;
             videoplay.interactive = true;
             videoplay.buttonMode = true;
-            
-            
+
+
             container.addChild(videoplay);
             container.addChild(charactor);
             charactor.visible = false;
@@ -93,51 +93,46 @@
 
             //粒子系統
 
-app.ticker.add((delta) => {
-    videoplay.on('pointerdown', onClick);
+            app.ticker.add((delta) => {
+                videoplay.on('pointerdown', onClick);
 
-   function onClick() {
-                /*  PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
-                  pic2.destroy();
-                  // create a video texture from a path
-                  var texture = PIXI.Texture.fromVideo('Normal start.mp4');
+                function onClick() {
+                    /*  PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
+                      pic2.destroy();
+                      // create a video texture from a path
+                      var texture = PIXI.Texture.fromVideo('Normal start.mp4');
 
-                  // create a new Sprite using the video texture (yes it's that easy)
-                  var videoSprite = new PIXI.Sprite(texture);
+                      // create a new Sprite using the video texture (yes it's that easy)
+                      var videoSprite = new PIXI.Sprite(texture);
 
-                  // Stetch the fullscreen
-                  videoSprite.width = app.screen.width;
-                  videoSprite.height = app.screen.height;
+                      // Stetch the fullscreen
+                      videoSprite.width = app.screen.width;
+                      videoSprite.height = app.screen.height;
 
-                  app.stage.addChild(videoSprite);
-                  animate();
-                  
-                  function animate()
-                  {
-                      app.render(container);
-                      requestAnimationFrame(animate);
-                  }*/
-                x.play();
-                videoplay.visible = false;
-                mov.visible = true;
-                mov.loop = false;
-                mov.animationSpeed = 0.2;
-                mov.play();
-                  charactor.visible = true;
-                text.visible = true;
-            }
-       if (mov.playing==false) {
-             
+                      app.stage.addChild(videoSprite);
+                      animate();
+                      
+                      function animate()
+                      {
+                          app.render(container);
+                          requestAnimationFrame(animate);
+                      }*/
+                    x.play();
+                    videoplay.visible = false;
+                    mov.visible = true;
+                    mov.loop = false;
+                    mov.animationSpeed = 0.2;
                 
-                      mov.visible=false;
-                      console.log("shit");
-                        console.log(mov.visible);
- 
-            }
+                    mov.play();
+                    charactor.visible = true;
+                    text.visible = true;
 
-});
-            
-               
+
+                }
+
+
+            });
+
 
             charactor.on('pointerdown', onclick2);
 
