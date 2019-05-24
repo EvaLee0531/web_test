@@ -1,0 +1,8 @@
+node_modules
+/dist
+/docs
+/coverage
+.docs
+.rpt2_cache
+.DS_Store
+.nyc_output

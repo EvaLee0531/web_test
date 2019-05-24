@@ -1,8 +1,10 @@
+<!DOCTYPE html>
+
 <html>
 
 <head>
+    <meta charset="utf-8">
     <script src="pixi.min.js"></script>
-
 </head>
 <style>
     body {
@@ -22,6 +24,8 @@
 
 <body>
     <div>
+        <audio id="movmusic" src="MAX%20-%20Lights%20Down%20Low%20feat.%20gnash%20(Official%20Video).mp3">
+        </audio>
         <script>
             const app = new PIXI.Application({
                 autoResize: true,
@@ -40,88 +44,106 @@
 
             // Create a new texture
             const texture = PIXI.Texture.from('umbrella.png');
-            const texture2 = PIXI.Texture.from('sun.png');
+
             const texture3 = PIXI.Texture.from('play.png');
-            const pic = new PIXI.Sprite(texture);
-            const pic2 = new PIXI.Sprite(texture3);
-            pic.anchor.set(0.5); //設置圖片在中間
-            pic2.anchor.set(0.5);
-            pic2.scale.x = 0.25;
-            pic2.scale.y = 0.25;
-
-
-            pic2.interactive = true;
-            pic2.buttonMode = true;
-            pic2.visible = false;
-            container.addChild(pic);
-            container.addChild(pic2);
+            const charactor = new PIXI.Sprite(texture);
+            const videoplay = new PIXI.Sprite(texture3);
+            charactor.anchor.set(0.5); //設置圖片在中間
+            charactor.scale.x = 0.25;
+            charactor.scale.y = 0.25;
+            charactor.interactive = true;
+            charactor.buttonMode = true;
 
 
 
-            //計時器動畫旋轉
-            app.ticker.add((delta) => {
+            videoplay.anchor.set(0.5);
+            videoplay.scale.x = 0.25;
+            videoplay.scale.y = 0.25;
+            videoplay.interactive = true;
+            videoplay.buttonMode = true;
+            
+            
+            container.addChild(videoplay);
+            container.addChild(charactor);
+            charactor.visible = false;
 
-                pic.rotation += 0.01 * delta;
-                pic.scale.x -= 0.01 * delta;
-                pic.scale.y -= 0.01 * delta;
-                if (pic.scale.x < 0 || pic.scale.y < 0) {
-                    pic.texture = texture2;
-
-                }
-                if (pic.scale.x < -0.5 || pic.scale.y < -0.5) {
-                    pic.alpha -= .01;
-
-                }
-                if (pic.alpha <= 0) {
-
-                    pic.visible = false;
-                    pic2.visible = true;
-                    pic2.on('pointerdown', onClick);
-
-                    function onClick() {
-                        PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
-                        pic2.destroy();
-                        // create a video texture from a path
-                        var texture = PIXI.Texture.fromVideo('Normal start.mp4');
-
-                        // create a new Sprite using the video texture (yes it's that easy)
-                        var videoSprite = new PIXI.Sprite(texture);
-
-                        // Stetch the fullscreen
-                        videoSprite.width = app.screen.width;
-                        videoSprite.height = app.screen.height;
-
-                        app.stage.addChild(videoSprite);
-                        animate();
-                        
-                        function animate()
-                        {
-                            app.render(container);
-                            requestAnimationFrame(animate);
-                        }
+            const text = new PIXI.Text('Welcome!This is Fire Boss' + '\n' + 'choose one place to play!');
+            text.x = -150;
+            text.y = 100;
+            container.addChild(text);
+            text.visible = false;
 
 
-                        /*  const movframes = ["img/spritesheet-0.png", "img/spritesheet-1.png", "img/spritesheet-2.png", "img/spritesheet-3.png", "img/spritesheet-4.png", "img/spritesheet-5.png", "img/spritesheet-6.png", "img/spritesheet-7.png", "img/spritesheet-8.png", "img/spritesheet-9.png","img/spritesheet-10.png"];
-                        PIXI.loader.add(movframes).load(setup);
+            //movie
+            const movframes = ["img/spritesheet-0.png", "img/spritesheet-1.png", "img/spritesheet-2.png", "img/spritesheet-3.png", "img/spritesheet-4.png", "img/spritesheet-5.png", "img/spritesheet-6.png", "img/spritesheet-7.png", "img/spritesheet-8.png", "img/spritesheet-9.png", "img/spritesheet-10.png", "img/spritesheet-11.png", "img/spritesheet-12.png", "img/spritesheet-13.png", "img/spritesheet-14.png", "img/spritesheet-15.png", "img/spritesheet-16.png", "img/spritesheet-17.png", "img/spritesheet-18.png", "img/spritesheet-19.png", "img/spritesheet-20.png", "img/spritesheet-21.png", "img/spritesheet-22.png", "img/spritesheet-23.png", "img/spritesheet-24.png", "img/spritesheet-25.png", "img/spritesheet-26.png", "img/spritesheet-27.png", "img/spritesheet-28.png", "img/spritesheet-29.png", "img/spritesheet-30.png", "img/spritesheet-31.png", "img/spritesheet-32.png", "img/spritesheet-33.png", "img/spritesheet-34.png", "img/spritesheet-35.png", "img/spritesheet-36.png", "img/spritesheet-37.png", "img/spritesheet-38.png", "img/spritesheet-39.png", "img/spritesheet-40.png", "img/spritesheet-41.png", "img/spritesheet-42.png", "img/spritesheet-43.png", "img/spritesheet-44.png", "img/spritesheet-45.png", "img/spritesheet-46.png", "img/spritesheet-47.png"];
+            let texturearray = [];
+            for (let i = 0; i < 48; i++) {
+                let texture = PIXI.Texture.fromImage(movframes[i]);
+                texturearray.push(texture);
+            };
+            let mov = new PIXI.AnimatedSprite(texturearray);
+            mov.anchor.set(0.5);
+            mov.scale.x = 0.4;
+            mov.scale.y = 0.5;
+            mov.visible = false;
+            container.addChild(mov);
 
-                        function setup() {
-                            let resources = PIXI.loader.resources;
-                            let animatedmov = PIXI.extras.AnimatedSprite.fromFrames(movframes);
-                            app.stage.addChild(animatedmov);
-                            animatedmov.position.set(300);
-                            animatedmov.anchor.set(0.5);
-                            animatedmov.scale.x = 0.5;
-                            animatedmov.scale.y = 0.5;
-                            animatedmov.animationSpeed = 0.25;
-                            // animatedmov.onLoop=true;
-                            animatedmov.play();
-                        }*/
+            //movie_audio
+            var x = document.getElementById("movmusic");
 
-                    }
+            //粒子系統
 
+app.ticker.add((delta) => {
+    videoplay.on('pointerdown', onClick);
 
-                }
-            });
+   function onClick() {
+                /*  PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
+                  pic2.destroy();
+                  // create a video texture from a path
+                  var texture = PIXI.Texture.fromVideo('Normal start.mp4');
+
+                  // create a new Sprite using the video texture (yes it's that easy)
+                  var videoSprite = new PIXI.Sprite(texture);
+
+                  // Stetch the fullscreen
+                  videoSprite.width = app.screen.width;
+                  videoSprite.height = app.screen.height;
+
+                  app.stage.addChild(videoSprite);
+                  animate();
+                  
+                  function animate()
+                  {
+                      app.render(container);
+                      requestAnimationFrame(animate);
+                  }*/
+                x.play();
+                videoplay.visible = false;
+                mov.visible = true;
+                mov.loop = false;
+                mov.animationSpeed = 0.2;
+                mov.play();
+                  charactor.visible = true;
+                text.visible = true;
+            }
+       if (mov.playing==false) {
+             
+                
+                      mov.visible=false;
+                      console.log("shit");
+                        console.log(mov.visible);
+ 
+            }
+
+});
+            
+               
+
+            charactor.on('pointerdown', onclick2);
+
+            function onclick2() {
+                location.href = "stage1.html";
+            };
 
         </script>
 

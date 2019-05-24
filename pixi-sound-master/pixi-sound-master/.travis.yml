@@ -1,0 +1,35 @@
+language: node_js
+node_js:
+    - "10"
+
+dist: trusty
+
+env:
+  - CXX=g++-4.8
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+
+install:
+    - npm install xvfb-maybe
+    - npm install
+
+cache:
+  directories:
+    - node_modules
+
+addons:
+  chrome: stable
+
+before_script:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 -extension RANDR &
+
+script:
+  - npm run build:prod
+  - xvfb-maybe npm run coverage
+  - npm run docs
