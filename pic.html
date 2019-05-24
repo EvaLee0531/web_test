@@ -19,13 +19,14 @@
         margin: 0, auto;
         overflow: hidden;
     }
+
 </style>
 <title>intro</title>
 
 <body>
     <div>
-        <audio id="movmusic" src="MAX%20-%20Lights%20Down%20Low%20feat.%20gnash%20(Official%20Video).mp3">
-        </audio>
+        <!-- <audio id="movmusic" src="MAX%20-%20Lights%20Down%20Low%20feat.%20gnash%20(Official%20Video).mp3">
+        </audio>-->
         <script>
             const app = new PIXI.Application({
                 autoResize: true,
@@ -35,7 +36,7 @@
             document.body.appendChild(app.view);
             const container = new PIXI.Container();
             app.stage.addChild(container);
-         
+
 
             // Create a new texture
             const texture = PIXI.Texture.from('umbrella.png');
@@ -68,63 +69,69 @@
             container.addChild(text);
             text.visible = false;
             //movie
-            const movframes = ["img/spritesheet-0.png", "img/spritesheet-1.png", "img/spritesheet-2.png", "img/spritesheet-3.png", "img/spritesheet-4.png", "img/spritesheet-5.png", "img/spritesheet-6.png", "img/spritesheet-7.png", "img/spritesheet-8.png", "img/spritesheet-9.png", "img/spritesheet-10.png", "img/spritesheet-11.png", "img/spritesheet-12.png", "img/spritesheet-13.png", "img/spritesheet-14.png", "img/spritesheet-15.png", "img/spritesheet-16.png", "img/spritesheet-17.png", "img/spritesheet-18.png", "img/spritesheet-19.png", "img/spritesheet-20.png", "img/spritesheet-21.png", "img/spritesheet-22.png", "img/spritesheet-23.png", "img/spritesheet-24.png", "img/spritesheet-25.png", "img/spritesheet-26.png", "img/spritesheet-27.png", "img/spritesheet-28.png", "img/spritesheet-29.png", "img/spritesheet-30.png", "img/spritesheet-31.png", "img/spritesheet-32.png", "img/spritesheet-33.png", "img/spritesheet-34.png", "img/spritesheet-35.png", "img/spritesheet-36.png", "img/spritesheet-37.png", "img/spritesheet-38.png", "img/spritesheet-39.png", "img/spritesheet-40.png", "img/spritesheet-41.png", "img/spritesheet-42.png", "img/spritesheet-43.png", "img/spritesheet-44.png", "img/spritesheet-45.png", "img/spritesheet-46.png", "img/spritesheet-47.png"];
-            let texturearray = [];
-            for (let i = 0; i < 48; i++) {
-                let texture = PIXI.Texture.from(movframes[i]);
-                texturearray.push(texture);
-            };
-            let mov = new PIXI.AnimatedSprite(texturearray);
-            mov.anchor.set(0.5);
-            mov.scale.x = 0.4;
-            mov.scale.y = 0.5;
-            mov.visible = false;
-            container.addChild(mov);
+
+            /*  const movframes = ["img/spritesheet-0.png", "img/spritesheet-1.png", "img/spritesheet-2.png", "img/spritesheet-3.png", "img/spritesheet-4.png", "img/spritesheet-5.png", "img/spritesheet-6.png", "img/spritesheet-7.png", "img/spritesheet-8.png", "img/spritesheet-9.png", "img/spritesheet-10.png", "img/spritesheet-11.png", "img/spritesheet-12.png", "img/spritesheet-13.png", "img/spritesheet-14.png", "img/spritesheet-15.png", "img/spritesheet-16.png", "img/spritesheet-17.png", "img/spritesheet-18.png", "img/spritesheet-19.png", "img/spritesheet-20.png", "img/spritesheet-21.png", "img/spritesheet-22.png", "img/spritesheet-23.png", "img/spritesheet-24.png", "img/spritesheet-25.png", "img/spritesheet-26.png", "img/spritesheet-27.png", "img/spritesheet-28.png", "img/spritesheet-29.png", "img/spritesheet-30.png", "img/spritesheet-31.png", "img/spritesheet-32.png", "img/spritesheet-33.png", "img/spritesheet-34.png", "img/spritesheet-35.png", "img/spritesheet-36.png", "img/spritesheet-37.png", "img/spritesheet-38.png", "img/spritesheet-39.png", "img/spritesheet-40.png", "img/spritesheet-41.png", "img/spritesheet-42.png", "img/spritesheet-43.png", "img/spritesheet-44.png", "img/spritesheet-45.png", "img/spritesheet-46.png", "img/spritesheet-47.png"];
+              let texturearray = [];
+              for (let i = 0; i < 48; i++) {
+                  let texture = PIXI.Texture.from(movframes[i]);
+                  texturearray.push(texture);
+              };
+              let mov = new PIXI.AnimatedSprite(texturearray);
+              mov.anchor.set(0.5);
+              mov.scale.x = 0.4;
+              mov.scale.y = 0.5;
+              mov.visible = false;
+              container.addChild(mov);*/
 
             //movie_audio
-            var x = document.getElementById("movmusic");
+            // var x = document.getElementById("movmusic");
 
 
             app.ticker.add((delta) => {
                 videoplay.on('pointerdown', onClick);
+                // create a video texture from a path
 
                 function onClick() {
-                    /*  PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
-                      
-                      // create a video texture from a path
-                      var texture = PIXI.Texture.fromVideo('Normal start.mp4');
+                     PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
+                    // x.play();
+                    var movtexture = PIXI.Texture.fromVideo('Normal start.mp4');
+                    // create a new Sprite using the video texture (yes it's that easy)
+                    var videoSprite = new PIXI.Sprite(movtexture);
+                    // Stetch the fullscreen
+                    videoSprite.width = app.screen.width;
+                    videoSprite.height = app.screen.height;
+                    videoSprite.anchor.set(0.5);
+                    container.addChild(videoSprite);
+                    //videoSprite.visible = false;
 
-                      // create a new Sprite using the video texture (yes it's that easy)
-                      var videoSprite = new PIXI.Sprite(texture);
+                    animate();
 
-                      // Stetch the fullscreen
-                      videoSprite.width = app.screen.width;
-                      videoSprite.height = app.screen.height;
+                    function animate() {
+                        app.render(container);
+                        requestAnimationFrame(animate);
+                    };
+                   // videoSprite.visible = true;
 
-                      app.stage.addChild(videoSprite);
-                      animate();
-                      
-                      function animate()
-                      {
-                          app.render(container);
-                          requestAnimationFrame(animate);
-                      }*/
-                    x.play();
                     videoplay.visible = false;
-                    mov.visible = true;
-                    mov.loop = false;
-                    mov.animationSpeed = 0.2;
+                   setTimeout(function() {
+                        charactor.visible = true;
+                        text.visible = true;
+                        videoSprite.visible = false;
+                    }, 5000);
+                    // mov.visible = true;
+                    //mov.loop = false;
+                    // mov.animationSpeed = 0.2;
 
 
-                    mov.play();
-                    charactor.visible = true;
-                    text.visible = true;
+                    // mov.play();
+                    // charactor.visible = true;
+                    // text.visible = true;
 
 
                 }
-                if (mov.playing == false && videoplay.visible == false) {
-                    mov.visible = false;
-                }
+                /* if (mov.playing == false && videoplay.visible == false) {
+                     mov.visible = false;
+                 }*/
 
             });
 
@@ -134,7 +141,7 @@
             function onclick2() {
                 location.href = "stage1.html";
             };
-
+            //保持遊戲全螢幕
             function resize() {
                 app.renderer.resize(window.innerWidth, window.innerHeight);
             }
@@ -143,10 +150,13 @@
             container.y = app.screen.height / 2;
             container.pivot.x = container.width / 2;
             container.pivot.y = container.height / 2;
+
         </script>
 
 
     </div>
 
 
-</body></html>
+</body>
+
+</html>

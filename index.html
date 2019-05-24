@@ -28,7 +28,7 @@
         background-color: #F0BBFF;
         position: absolute;
         left: 50%;
-        margin: 0 0 0 -100;
+        margin: 100 0 0 -100;
         text-align: center;
         
     }
@@ -82,11 +82,11 @@
 
         var circle = new PIXI.Graphics();
         circle.beginFill(0xFFE599);
-        circle.drawCircle(200, 100, 50);
+        circle.drawCircle(200, 0, 50);
 
         var text = new PIXI.Text("next");
         text.x = 225;
-        text.y = 135;
+        text.y = 35;
         text.pivot.x = circle.width / 2;
         text.pivot.y = circle.height / 2;
         circle.addChild(text);
