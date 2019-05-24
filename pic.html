@@ -97,27 +97,32 @@
                     var movtexture = PIXI.Texture.fromVideo('Normal start.mp4');
                     // create a new Sprite using the video texture (yes it's that easy)
                     var videoSprite = new PIXI.Sprite(movtexture);
+                    var source=movtexture.baseTexture.source;
                     // Stetch the fullscreen
                     videoSprite.width = app.screen.width;
                     videoSprite.height = app.screen.height;
                     videoSprite.anchor.set(0.5);
                     container.addChild(videoSprite);
+                    
                     //videoSprite.visible = false;
 
-                    animate();
+                   /* animate();
 
                     function animate() {
                         app.render(container);
                         requestAnimationFrame(animate);
-                    };
+                    };*/
                    // videoSprite.visible = true;
 
                     videoplay.visible = false;
-                   setTimeout(function() {
+                     setTimeout(function() {
                         charactor.visible = true;
                         text.visible = true;
+                       //source.pause();
                         videoSprite.visible = false;
-                    }, 5000);
+                    }, 6000);
+                    source.play();
+                  
                     // mov.visible = true;
                     //mov.loop = false;
                     // mov.animationSpeed = 0.2;
