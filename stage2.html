@@ -14,6 +14,8 @@
         }
     
     </style>
+    
+
 </head>
 
 <body>
@@ -27,11 +29,11 @@
             backgroundColor: 0xFFEE99
         });
         document.body.appendChild(app.view);
-
+        
         const container = new PIXI.Container();
         app.stage.addChild(container);
-
-        const text = new PIXI.Text('Question 1:How would you save fire?' + '\n' + 'A:Water' + '\n' + 'B:Candy' + '\n' + 'C:Smoke' + '\n' + 'D:Fish');
+        
+        const text = new PIXI.Text('Question 2:Do you love me?' + '\n' + 'A:No' + '\n' + 'B:Yes' + '\n' + 'C:Not yet' + '\n' + 'D:Never');
         text.x = 50;
         text.y = 100;
         container.addChild(text);
@@ -48,13 +50,13 @@
         container.addChild(a);
         circle.interactive = true;
         circle.buttonMode = true;
-        circle.on('pointerdown', onclick);
+        circle.on('pointerdown', onclick2);
 
         //畫按鈕B
         var circle2 = new PIXI.Graphics();
         circle2.beginFill(0xFFC8B4);
         circle2.drawCircle(175, 325, 25);
-       container.addChild(circle2);
+        container.addChild(circle2);
         const b = new PIXI.Text('B', {
             fill: "0xFF3333"
         });
@@ -77,7 +79,7 @@
         container.addChild(c);
         circle3.interactive = true;
         circle3.buttonMode = true;
-        circle3.on('pointerdown', onclick2);
+        circle3.on('pointerdown', onclick);
         //畫按鈕D
         var circle4 = new PIXI.Graphics();
         circle4.beginFill(0xFFC8B4);
@@ -96,7 +98,7 @@
         const alertA = new PIXI.Text("Yes,you did a right thing!");
         alertA.x = 50;
         alertA.y = 400;
-        container.addChild(alertA);
+       container.addChild(alertA);
         alertA.visible = false;
         //B,C,D的提示訊息
         const alertBCD = new PIXI.Text("No,you did it wrong!");
@@ -112,7 +114,7 @@
             alertA.visible = true;
             setTimeout(function() {
                 alertA.visible = false;
-                location.href = "stage2.html"
+                location.href = "finish.html"
             }, 2000);
 
         }
@@ -125,7 +127,7 @@
             }, 2000);
         }
 
-        function resize() {
+         function resize() {
             app.renderer.resize(window.innerWidth, window.innerHeight);
         }
         resize();
@@ -140,4 +142,6 @@
 
 
 
-</body></html>
+</body>
+
+</html>
