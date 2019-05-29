@@ -17,6 +17,34 @@
 <h1>
 Success!!    
 </h1>
+    <script>
+         const app = new PIXI.Application({
+            width: 800,
+            height: 600,
+            backgroundColor: 0xFFEE99
+        });
+        document.body.appendChild(app.view);
+   var sprites = new PIXI.particles.ParticleContainer(100, {
+     scale: true,
+    position: true,
+     rotation: true,
+     uvs: true,
+     alpha: true
+ });
+        app.stage.addChild(sprites);
+var totalSprites=app.renderer instanceof PIXI.Renderer ? 10000 : 100;
+ for (var i = 0; i < 10; i++) {
+ 
+     // create a new Sprite
+     var dude = PIXI.Sprite.from('fire.jpg');
+
+     sprites.addChild(dude);
+ }
+    
+    
+    
+    
+    </script>
 
 
 </body>
