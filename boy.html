@@ -1,0 +1,156 @@
+<html>
+
+<head>
+    <script src="pixi.js"></script>
+    <script src="pixi.min.js"></script>
+    <meta charset="utf-8">
+
+</head>
+
+<body>
+    <script>
+        var app = new PIXI.Application({
+            width: 800,
+            height: 600,
+            backgroundColor: 0xF0BBFF,
+            antialias: true,
+            forceCanvas: false
+        }); //設定圖層
+        document.body.appendChild(app.view); //顯示
+        var container = new PIXI.Container();
+        app.stage.addChild(container);
+
+        const boy = PIXI.Sprite.from('boy.png');
+        boy.anchor.set(0.5);
+        boy.scale.x = 0.2;
+        boy.scale.y = 0.2;
+        boy.position.set(-300, 0);
+        container.addChild(boy);
+
+        //遊玩控制
+        var circle = new PIXI.Graphics();
+        circle.beginFill(0xFF8888);
+        //drawCircle(x,y,r)
+        circle.drawCircle(400, 500, 50);
+        circle.interactive = true;
+        circle.buttonMode = true;
+        circle.visible = false;
+        container.addChild(circle);
+
+
+        //開始按鈕
+        var start = new PIXI.Graphics();
+        start.beginFill(0xFFFF77);
+        //drawCircle(x,y,r)
+        start.drawCircle(100, 500, 50);
+        start.interactive = true;
+        start.buttonMode = true;
+        container.addChild(start);
+        var text = new PIXI.Text("GO!");
+        text.position.set(130, 530);
+        text.pivot.x = start.width / 2;
+        text.pivot.y = start.height / 2;
+        start.addChild(text);
+
+        //遊戲結束按鈕
+        var finish=new PIXI.Graphics();
+        finish.beginFill(0xDDDDDD);
+        finish.drawCircle(200,200,100);
+        finish.interactive = true;
+        finish.buttonMode = true;
+        container.addChild(finish);
+        var text_finish=new PIXI.Text("FINISH");
+        text_finish.position.set(260,280);
+        text_finish.pivot.x = finish.width / 2;
+        text_finish.pivot.y = finish.height / 2;
+        finish.addChild(text_finish);
+        finish.visible=false;
+       
+        
+        
+
+
+
+        //控制動畫
+        app.ticker.add((delta) => {
+            circle.on('pointertap', onClick);
+            start.on('pointertap', startgame);
+            console.log(boy.position);
+            // boy.position.x-=5*delta;
+
+            function onClick() {
+
+                boy.position.x += 0.3*delta ;
+                setTimeout(function() {
+
+                    app.ticker.stop();
+
+                }, 30000);
+
+            }
+
+            function startgame() {
+                //start.destroy();
+                start.visible=false;
+                circle.visible = true;
+                app.ticker.add((delta) => {
+                    boy.position.x -= 0.1 * delta;
+                    setTimeout(function(){
+                        boy.position.x-=0.2*delta;
+                    },4000);
+                      /*setTimeout(function(){
+                        boy.position.x-=6*delta;
+                    },5000);
+                      setTimeout(function(){
+                        boy.position.x-=6.5*delta;
+                    },5000);*/
+                });
+
+            }
+            //贏的條件
+            if(boy.position.x>=800&&boy.position.x<=900)
+                {
+                    app.ticker.stop();
+                    finish.visible=true;
+                     finish.on('pointertap',win);
+                    function win()
+                    {
+                        location.href='index.html';
+                    }
+                }
+            //輸的條件
+            if(boy.position.x<-450)
+                {
+                    app.ticker.stop();
+                    text_finish.text="you lose";
+                    finish.visible=true;
+                    finish.on('pointertap',lose);
+                    function lose()
+                    {
+                        location.href='index.html';
+                    }
+                }
+           
+        });
+
+
+
+        //保持全螢幕
+        window.addEventListener('resize', resize);
+
+        function resize() {
+            app.renderer.resize(window.innerWidth, window.innerHeight);
+            container.x = app.screen.width / 2;
+            container.y = app.screen.height / 2;
+            container.pivot.x = container.width / 2;
+            container.pivot.y = container.height / 2;
+        }
+        resize();
+
+    </script>
+
+
+
+</body>
+
+</html>

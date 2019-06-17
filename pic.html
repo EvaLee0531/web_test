@@ -29,136 +29,75 @@
         </audio>-->
         <script>
             const app = new PIXI.Application({
-                autoResize: true,
-                resolution: devicePixelRatio,
-                backgroundColor: 0xD8BFD8,
+                width: 800,
+                height: 600,
+                backgroundColor: 0xF0BBFF,
+                antialias: true,
+                forceCanvas: false
             });
             document.body.appendChild(app.view);
             const container = new PIXI.Container();
             app.stage.addChild(container);
+           
 
+            // Create play button that can be used to trigger the video
+            const button = new PIXI.Graphics()
+                .beginFill(0x0, 0.5)
+                .drawRoundedRect(0, 0, 100, 100, 10)
+                .endFill()
+                .beginFill(0xffffff)
+                .moveTo(36, 30)
+                .lineTo(36, 70)
+                .lineTo(70, 50);
 
-            // Create a new texture
-            const texture = PIXI.Texture.from('umbrella.png');
+            // Position the button
+            button.x = (container.width - button.width) / 2;
+            button.y = (container.height - button.height) / 2;
 
-            const texture3 = PIXI.Texture.from('play.png');
-            const charactor = new PIXI.Sprite(texture);
-            const videoplay = new PIXI.Sprite(texture3);
-            charactor.anchor.set(0.5); //設置圖片在中間
-            charactor.scale.x = 0.25;
-            charactor.scale.y = 0.25;
-            charactor.interactive = true;
-            charactor.buttonMode = true;
+            // Enable interactivity on the button
+            button.interactive = true;
+            button.buttonMode = true;
 
-
-
-            videoplay.anchor.set(0.5);
-            videoplay.scale.x = 0.25;
-            videoplay.scale.y = 0.25;
-            videoplay.interactive = true;
-            videoplay.buttonMode = true;
-
-
-            container.addChild(videoplay);
-            container.addChild(charactor);
-            charactor.visible = false;
-
-            const text = new PIXI.Text('Welcome!This is Fire Boss' + '\n' + 'choose one place to play!');
-            text.x = -150;
-            text.y = 100;
-            container.addChild(text);
-            text.visible = false;
-            //movie
-
-            /*  const movframes = ["img/spritesheet-0.png", "img/spritesheet-1.png", "img/spritesheet-2.png", "img/spritesheet-3.png", "img/spritesheet-4.png", "img/spritesheet-5.png", "img/spritesheet-6.png", "img/spritesheet-7.png", "img/spritesheet-8.png", "img/spritesheet-9.png", "img/spritesheet-10.png", "img/spritesheet-11.png", "img/spritesheet-12.png", "img/spritesheet-13.png", "img/spritesheet-14.png", "img/spritesheet-15.png", "img/spritesheet-16.png", "img/spritesheet-17.png", "img/spritesheet-18.png", "img/spritesheet-19.png", "img/spritesheet-20.png", "img/spritesheet-21.png", "img/spritesheet-22.png", "img/spritesheet-23.png", "img/spritesheet-24.png", "img/spritesheet-25.png", "img/spritesheet-26.png", "img/spritesheet-27.png", "img/spritesheet-28.png", "img/spritesheet-29.png", "img/spritesheet-30.png", "img/spritesheet-31.png", "img/spritesheet-32.png", "img/spritesheet-33.png", "img/spritesheet-34.png", "img/spritesheet-35.png", "img/spritesheet-36.png", "img/spritesheet-37.png", "img/spritesheet-38.png", "img/spritesheet-39.png", "img/spritesheet-40.png", "img/spritesheet-41.png", "img/spritesheet-42.png", "img/spritesheet-43.png", "img/spritesheet-44.png", "img/spritesheet-45.png", "img/spritesheet-46.png", "img/spritesheet-47.png"];
-              let texturearray = [];
-              for (let i = 0; i < 48; i++) {
-                  let texture = PIXI.Texture.from(movframes[i]);
-                  texturearray.push(texture);
-              };
-              let mov = new PIXI.AnimatedSprite(texturearray);
-              mov.anchor.set(0.5);
-              mov.scale.x = 0.4;
-              mov.scale.y = 0.5;
-              mov.visible = false;
-              container.addChild(mov);*/
-
-            //movie_audio
-            // var x = document.getElementById("movmusic");
+            // Add to the stage
+            container.addChild(button);
 
 
             app.ticker.add((delta) => {
-                videoplay.on('pointerdown', onClick);
+
                 // create a video texture from a path
+                button.on('pointertap', onClick);
 
                 function onClick() {
-                     PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
-                    // x.play();
-                    var movtexture = PIXI.Texture.fromVideo('Normal start.mp4');
+                     button.destroy();
+                    PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
+
+                    var movtexture = PIXI.Texture.from('Normal start.mp4');
                     // create a new Sprite using the video texture (yes it's that easy)
                     var videoSprite = new PIXI.Sprite(movtexture);
-                    var source=movtexture.baseTexture.source;
+
                     // Stetch the fullscreen
-                    videoSprite.width = app.screen.width;
+                     videoSprite.width = app.screen.width;
                     videoSprite.height = app.screen.height;
                     videoSprite.anchor.set(0.5);
+
                     container.addChild(videoSprite);
-                     
-                    //videoSprite.visible = false;
-
-                   /* animate();
-
-                    function animate() {
-                        app.render(container);
-                        requestAnimationFrame(animate);
-                    };*/
-                   // videoSprite.visible = true;
-
-                    videoplay.visible = false;
-                    
-                     setTimeout(function() {
-                        charactor.visible = true;
-                        text.visible = true;
-                       //source.pause();
-                        videoSprite.visible = false;
-                         console.log("on");
-                    }, 13000);
-                   
-                  
-                    // mov.visible = true;
-                    //mov.loop = false;
-                    // mov.animationSpeed = 0.2;
-
-
-                    // mov.play();
-                    // charactor.visible = true;
-                    // text.visible = true;
-
 
                 }
-                /* if (mov.playing == false && videoplay.visible == false) {
-                     mov.visible = false;
-                 }*/
-
+                setTimeout(function(){location.href="choose.html"},15000);
             });
 
-
-            charactor.on('pointerdown', onclick2);
-
-            function onclick2() {
-                location.href = "stage1.html";
-            };
             //保持遊戲全螢幕
             window.addEventListener('resize', resize);
 
-        function resize() {
-            app.renderer.resize(window.innerWidth, window.innerHeight);
-            container.x = app.screen.width / 2;
-            container.y = app.screen.height / 2;
-            container.pivot.x = container.width / 2;
-            container.pivot.y = container.height / 2;
-        }
-        resize();
+            function resize() {
+                app.renderer.resize(window.innerWidth, window.innerHeight);
+                container.x = app.screen.width / 2;
+                container.y = app.screen.height / 2;
+                container.pivot.x = container.width / 2;
+                container.pivot.y = container.height / 2;
+            }
+            resize();
+
         </script>
 
 

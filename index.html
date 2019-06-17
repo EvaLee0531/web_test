@@ -2,14 +2,9 @@
 
 <head>
     <script src="pixi.min.js"></script>
-    <script src="PIXI.TextInput-master/PIXI.TextInput-master/dist/PIXI.TextInput.js">
-    </script>
-    <script src="PIXI.TextInput-master/PIXI.TextInput-master/src/PIXI.TextInput.js"></script>
-    <script src="PIXI.Input-master/PIXI.Input-master/source/pixi.input.js"></script>
-    <script src="PIXI.Input-master/PIXI.Input-master/bin/pixi.input.js"></script>
-    <script src="PIXI.Input-master/PIXI.Input-master/bin/pixi.input.min.js"></script>
+    <script src="pixi.js"></script>
+     <meta charset="utf-8">
 
-    <h1>First Test</h1>
 </head>
 <style>
     body {
@@ -24,49 +19,12 @@
 
     }
 
-    #chooseid {
-        background-color: #F0BBFF;
-        position: absolute;
-        left: 50%;
-        margin: 100 0 0 -100;
-        text-align: center;
 
-    }
-
-    #showtxt {
-        background-color: #F0BBFF;
-    }
 
 </style>
 
 <body>
 
-    <div id="chooseid">
-
-        Please type your name:<br>
-        <form>
-            <input type="text" id="name" placeholder="Your name"><br>
-            Please select your living place:<br>
-            <select id="place">
-                <option value="Taoyuan">Taoyuan</option>
-                <option value="Taipei">Taipei</option>
-                <option value="Hsinchue">Hsinchue</option>
-                <option value="Tainan">Tainan</option>
-            </select>
-            <button type="button" onclick="showtext()">submit</button>
-
-        </form>
-        <p id="showtxt"></p>
-        <script>
-            function showtext() {
-                const n = document.getElementById('name').value;
-                const place = document.getElementById('place').value;
-                document.getElementById('showtxt').innerHTML = "Your name is:" + n + ",and your living place is:" + place;
-            }
-
-        </script>
-
-    </div>
     <script>
         var app = new PIXI.Application({
             width: 800,
@@ -81,12 +39,14 @@
         app.stage.addChild(container);
 
         var circle = new PIXI.Graphics();
-        circle.beginFill(0xFFE599);
-        circle.drawCircle(200, 0, 50);
+        circle.beginFill(0xFF8888);
+        //drawCircle(x,y,r)
+        circle.drawCircle(100, 100, 50);
 
-        var text = new PIXI.Text("next");
-        text.x = 225;
-        text.y = 35;
+        var text = new PIXI.Text("START");
+        text.x =110;
+        text.y =135;
+        text.scale.x=0.8;
         text.pivot.x = circle.width / 2;
         text.pivot.y = circle.height / 2;
         circle.addChild(text);
@@ -96,6 +56,13 @@
         circle.buttonMode = true;
         // Pointers normalize touch and mouse
         circle.on('pointerdown', onClick);
+        circle.mouseover = function(mouseData) {
+            this.alpha = 0.8;
+        }
+        circle.mouseout = function(mouseData) {
+            this.alpha = 1;
+        }
+
         container.addChild(circle);
 
 
@@ -103,6 +70,8 @@
 
             location.href = "pic.html";
         }
+
+ 
 
         window.addEventListener('resize', resize);
 
