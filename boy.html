@@ -94,7 +94,7 @@
                 start.visible=false;
                 circle.visible = true;
                 app.ticker.add((delta) => {
-                    boy.position.x -= 0.01 * delta;
+                    boy.position.x -= 0.1 * delta;
                     setTimeout(function(){
                         boy.position.x-=0.2*delta;
                     },4000);
@@ -108,7 +108,7 @@
 
             }
             //贏的條件
-            if(boy.position.x>=800&&boy.position.x<=900)
+            if(boy.position.x>=700&&boy.position.x<=900)
                 {
                     app.ticker.stop();
                     finish.visible=true;
