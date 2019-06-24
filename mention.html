@@ -37,9 +37,36 @@
         app.stage.addChild(container);
 
 
-      
+        //注意事項
+        var mention = new PIXI.Graphics();
+        mention.beginFill(0xDDDDDD);
+        mention.alpha = 0.5;
+        mention.drawRect(0, 0, 1920, 100);
+        mention.anchor = 0.5;
+        mention.endFill();
+        container.addChild(mention);
 
-        //開始按鈕
+        var mention_text = new PIXI.Text("Please copy the path to Chrome or Safari");
+        mention_text.x = 750;
+        mention_text.y = 30;
+        mention.addChild(mention_text);
+
+        mention.interactive = true;
+    
+
+        mention.on("pointerdown", close_mention);
+
+        function close_mention() {
+          
+            location.href = "index.html";
+            
+        }
+
+
+
+
+
+       /* //開始按鈕
         var circle = new PIXI.Graphics();
         circle.beginFill(0xFF8888);
         //drawCircle(x,y,r)
@@ -72,7 +99,7 @@
         function onClick() {
 
             location.href = "pic.html";
-        }
+        }*/
 
 
 
