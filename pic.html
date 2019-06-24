@@ -19,7 +19,6 @@
         margin: 0, auto;
         overflow: hidden;
     }
-
 </style>
 <title>intro</title>
 
@@ -38,7 +37,7 @@
             document.body.appendChild(app.view);
             const container = new PIXI.Container();
             app.stage.addChild(container);
-           
+
 
             // Create play button that can be used to trigger the video
             const button = new PIXI.Graphics()
@@ -61,6 +60,20 @@
             // Add to the stage
             container.addChild(button);
 
+            //loading頁面
+            var loading = new PIXI.Graphics();
+            loading.beginFill(0xDDDDDD);
+            loading.alpha = 0.5;
+            loading.drawRect(0, 0, 1920, 100);
+            loading.anchor = 0.5;
+            loading.endFill();
+            container.addChild(loading);
+
+            var loading_text = new PIXI.Text("Loading...");
+            loading_text.x = 900;
+            loading_text.y = 30;
+            loading.addChild(loading_text);
+            loading.visible=false;
 
             app.ticker.add((delta) => {
 
@@ -68,7 +81,8 @@
                 button.on('pointertap', onClick);
 
                 function onClick() {
-                     button.destroy();
+                    button.destroy();
+                    loading.visible=true;
                     PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
 
                     var movtexture = PIXI.Texture.from('Normal start.mp4');
@@ -76,14 +90,18 @@
                     var videoSprite = new PIXI.Sprite(movtexture);
 
                     // Stetch the fullscreen
-                     videoSprite.width = 800;
+                    videoSprite.width = 800;
                     videoSprite.height = 600;
                     videoSprite.anchor.set(0.5);
 
                     container.addChild(videoSprite);
+                    //setTimeout(function(){videoSprite.baseTexture.pause();},2000);
+                    movtexture.baseTexture.on('loaded', function() {loading.visible=false;});
+                    setTimeout(function(){location.href="choose.html"},7000);
 
                 }
-                setTimeout(function(){location.href="choose.html"},15000);
+
+
             });
 
             //保持遊戲全螢幕
@@ -97,13 +115,10 @@
                 container.pivot.y = container.height / 2;
             }
             resize();
-
         </script>
 
 
     </div>
 
 
-</body>
-
-</html>
+</body></html>
