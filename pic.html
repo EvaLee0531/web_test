@@ -20,7 +20,6 @@
         margin: 0, auto;
         overflow: hidden;
     }
-
 </style>
 <title>intro</title>
 
@@ -78,7 +77,7 @@
             loading.visible = false;
 
 
-          
+
             app.ticker.add((delta) => {
 
                 // create a video texture from a path
@@ -87,7 +86,7 @@
                 function onClick() {
                     button.destroy();
                     loading.visible = true;
-             
+
                     var movtexture = PIXI.Texture.from('Normal start.mp4');
                     // create a new Sprite using the video texture (yes it's that easy)
                     var videoSprite = new PIXI.Sprite(movtexture);
@@ -96,18 +95,21 @@
                     videoSprite.width = 800;
                     videoSprite.height = 600;
                     videoSprite.anchor.set(0.5);
-                    videoSprite.visible=false;
+                    videoSprite.visible = false;
 
                     container.addChild(videoSprite);
                     //setTimeout(function(){videoSprite.baseTexture.pause();},2000);
                     movtexture.baseTexture.on('loaded', function() {
                         loading.visible = false;
-                        videoSprite.visible=true;
+                        videoSprite.visible = true;
                         console.log("yes");
+                        setTimeout(function() {
+                            location.href = "choose.html"
+                        }, 15000);
                     });
-                    setTimeout(function() {
-                        location.href = "choose.html"
-                    }, 15000);
+
+
+
 
                 }
 
@@ -125,13 +127,10 @@
                 container.pivot.y = container.height / 2;
             }
             resize();
-
         </script>
 
 
     </div>
 
 
-</body>
-
-</html>
+</body></html>
