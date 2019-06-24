@@ -3,7 +3,7 @@
 <head>
     <script src="pixi.min.js"></script>
     <script src="pixi.js"></script>
-     <meta charset="utf-8">
+    <meta charset="utf-8">
 
 </head>
 <style>
@@ -19,16 +19,14 @@
 
     }
 
-
-
 </style>
 
 <body>
 
     <script>
         var app = new PIXI.Application({
-            width: 800,
-            height: 600,
+            width: 1920,
+            height: 1080,
             backgroundColor: 0xF0BBFF,
             antialias: true,
             forceCanvas: false
@@ -38,15 +36,47 @@
         var container = new PIXI.Container();
         app.stage.addChild(container);
 
+
+        //注意事項
+        var mention = new PIXI.Graphics();
+        mention.beginFill(0xDDDDDD);
+        mention.alpha = 0.5;
+        mention.drawRect(0, 0, 1920, 100);
+        mention.anchor = 0.5;
+        mention.endFill();
+        container.addChild(mention);
+
+        var mention_text = new PIXI.Text("Please copy the path to Chrome or Safari");
+        mention_text.x = 750;
+        mention_text.y = 30;
+        mention.addChild(mention_text);
+
+        mention.interactive = true;
+    
+
+        mention.on("pointerdown", close_mention);
+
+        function close_mention() {
+          
+            mention.visible = false;
+            
+        }
+
+
+
+
+
+        //開始按鈕
         var circle = new PIXI.Graphics();
         circle.beginFill(0xFF8888);
         //drawCircle(x,y,r)
-        circle.drawCircle(100, 100, 50);
+        circle.drawCircle(0, 0, 50);
+        //circle.visible = false;
 
         var text = new PIXI.Text("START");
-        text.x =110;
-        text.y =135;
-        text.scale.x=0.8;
+        text.x = 15;
+        text.y = 30;
+        text.scale.x = 0.8;
         text.pivot.x = circle.width / 2;
         text.pivot.y = circle.height / 2;
         circle.addChild(text);
@@ -71,8 +101,11 @@
             location.href = "pic.html";
         }
 
- 
 
+
+
+
+        //保持遊戲全螢幕
         window.addEventListener('resize', resize);
 
         function resize() {
