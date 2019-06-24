@@ -64,7 +64,7 @@
             var loading = new PIXI.Graphics();
             loading.beginFill(0xDDDDDD);
             loading.alpha = 0.5;
-            loading.drawRect(-900, 0, 1920, 100);
+            loading.drawRect(0, 0, 1920, 100);
             loading.anchor = 0.5;
             loading.endFill();
             container.addChild(loading);
@@ -73,7 +73,7 @@
             loading_text.x = 900;
             loading_text.y = 30;
             loading.addChild(loading_text);
-            loading.visible=false;
+            loading.visible = false;
 
             app.ticker.add((delta) => {
 
@@ -82,8 +82,8 @@
 
                 function onClick() {
                     button.destroy();
-                    loading.visible=true;
-                    PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);
+                    loading.visible = true;
+                   /* PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);*/
 
                     var movtexture = PIXI.Texture.from('Normal start.mp4');
                     // create a new Sprite using the video texture (yes it's that easy)
@@ -96,8 +96,13 @@
 
                     container.addChild(videoSprite);
                     //setTimeout(function(){videoSprite.baseTexture.pause();},2000);
-                    movtexture.baseTexture.on('loaded', function() {loading.visible=false;});
-                    setTimeout(function(){location.href="choose.html"},7000);
+                    movtexture.baseTexture.on('loaded', function() {
+                        loading.visible = false;
+                        console.log("yes");
+                    });
+                    setTimeout(function() {
+                        location.href = "choose.html"
+                    }, 15000);
 
                 }
 
