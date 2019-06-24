@@ -4,7 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <script src="pixi.min.js"></script>
+
+    <script src="pixi.js"></script>
 </head>
 <style>
     body {
@@ -19,6 +20,7 @@
         margin: 0, auto;
         overflow: hidden;
     }
+
 </style>
 <title>intro</title>
 
@@ -64,17 +66,19 @@
             var loading = new PIXI.Graphics();
             loading.beginFill(0xDDDDDD);
             loading.alpha = 0.5;
-            loading.drawRect(0, 0, 1920, 100);
+            loading.drawRect(-900, 0, 1920, 100);
             loading.anchor = 0.5;
             loading.endFill();
             container.addChild(loading);
 
             var loading_text = new PIXI.Text("Loading...");
-            loading_text.x = 900;
+            loading_text.x = 500;
             loading_text.y = 30;
             loading.addChild(loading_text);
             loading.visible = false;
 
+
+          
             app.ticker.add((delta) => {
 
                 // create a video texture from a path
@@ -83,8 +87,7 @@
                 function onClick() {
                     button.destroy();
                     loading.visible = true;
-                   /* PIXI.loaders.Resource.setExtensionLoadType('mp4', PIXI.loaders.Resource.LOAD_TYPE.VIDEO);*/
-
+             
                     var movtexture = PIXI.Texture.from('Normal start.mp4');
                     // create a new Sprite using the video texture (yes it's that easy)
                     var videoSprite = new PIXI.Sprite(movtexture);
@@ -93,11 +96,13 @@
                     videoSprite.width = 800;
                     videoSprite.height = 600;
                     videoSprite.anchor.set(0.5);
+                    videoSprite.visible=false;
 
                     container.addChild(videoSprite);
                     //setTimeout(function(){videoSprite.baseTexture.pause();},2000);
                     movtexture.baseTexture.on('loaded', function() {
                         loading.visible = false;
+                        videoSprite.visible=true;
                         console.log("yes");
                     });
                     setTimeout(function() {
@@ -120,10 +125,13 @@
                 container.pivot.y = container.height / 2;
             }
             resize();
+
         </script>
 
 
     </div>
 
 
-</body></html>
+</body>
+
+</html>
