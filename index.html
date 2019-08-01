@@ -41,14 +41,16 @@
         var mention = new PIXI.Graphics();
         mention.beginFill(0xDDDDDD);
         mention.alpha = 0.5;
-        mention.drawRect(0, 0, 1920, 100);
+        mention.drawRect(0, 0, 1920, 1080);
         mention.anchor = 0.5;
         mention.endFill();
         container.addChild(mention);
 
         var mention_text = new PIXI.Text("Please copy the path to Chrome or Safari");
         mention_text.x = 750;
-        mention_text.y = 30;
+        mention_text.y = 500;
+        
+        
         mention.addChild(mention_text);
 
         mention.interactive = true;
@@ -61,49 +63,6 @@
             location.href = "start.html";
             
         }
-
-
-
-
-
-       /* //開始按鈕
-        var circle = new PIXI.Graphics();
-        circle.beginFill(0xFF8888);
-        //drawCircle(x,y,r)
-        circle.drawCircle(0, 0, 50);
-        //circle.visible = false;
-
-        var text = new PIXI.Text("START");
-        text.x = 15;
-        text.y = 30;
-        text.scale.x = 0.8;
-        text.pivot.x = circle.width / 2;
-        text.pivot.y = circle.height / 2;
-        circle.addChild(text);
-        // Opt-in to interactivity
-        circle.interactive = true;
-        // Shows hand cursor
-        circle.buttonMode = true;
-        // Pointers normalize touch and mouse
-        circle.on('pointerdown', onClick);
-        circle.mouseover = function(mouseData) {
-            this.alpha = 0.8;
-        }
-        circle.mouseout = function(mouseData) {
-            this.alpha = 1;
-        }
-
-        container.addChild(circle);
-
-
-        function onClick() {
-
-            location.href = "pic.html";
-        }*/
-
-
-
-
 
         //保持遊戲全螢幕
         window.addEventListener('resize', resize);

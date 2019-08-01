@@ -1,0 +1,150 @@
+<html>
+
+<head>
+    <script src="pixi.min.js"></script>
+    <script src="pixi.js"></script>
+    <meta charset="utf-8">
+
+</head>
+<style>
+    body {
+        position: absolute;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    h1 {
+        margin: 0 auto;
+        text-align: center;
+
+    }
+
+</style>
+
+<body>
+
+    <script>
+        var app = new PIXI.Application({
+            width: 1920,
+            height: 1080,
+            backgroundColor: 0xF0BBFF,
+            antialias: true,
+            forceCanvas: false
+        }); //設定圖層
+        document.body.appendChild(app.view); //顯示
+
+        var container = new PIXI.Container();
+        app.stage.addChild(container);
+
+        /*//影片
+        // create a video texture from a path
+        const load = PIXI.loader.add('Normal start.mp4').load(init);
+
+        function init() {
+            var movtexture = PIXI.Texture.from('Normal start.mp4');
+            // create a new Sprite using the video texture (yes it's that easy)
+            const videoSprite = new PIXI.Sprite(movtexture);
+            // Stetch the fullscreen
+            videoSprite.width = 800;
+            videoSprite.height = 600;
+            videoSprite.anchor.set(0.5);
+            //videoSprite.visible = false;
+          
+            container.addChild(videoSprite);
+        }*/
+
+        //影片照片1
+        const pic1 = PIXI.Sprite.from('golden1.jpg');
+        pic1.anchor.set(0.5);
+        pic1.scale.x = 0.5;
+        pic1.scale.y = 0.5;
+        pic1.position.set(-400, 0);
+        container.addChild(pic1);
+        //影片照片2
+        const pic2 = PIXI.Sprite.from('golden2.jpg');
+        pic2.anchor.set(0.5);
+        pic2.scale.x = 0.2;
+        pic2.scale.y = 0.2;
+        pic2.position.set(-400, 0);
+        pic2.visible = false;
+        container.addChild(pic2);
+
+        //影片照片3
+        const pic3 = PIXI.Sprite.from('golden3.jpg');
+        pic3.anchor.set(0.5);
+        pic3.scale.x = 0.5;
+        pic3.scale.y = 0.5;
+        pic3.position.set(-400, 0);
+        pic3.visible = false;
+        container.addChild(pic3);
+        
+        //影片照片4
+        const pic4 = PIXI.Sprite.from('golden4.jpg');
+        pic4.anchor.set(0.5);
+        pic4.scale.x = 0.5;
+        pic4.scale.y = 0.5;
+        pic4.position.set(-400, 0);
+        pic4.visible = false;
+        container.addChild(pic4);
+
+        app.ticker.add(function(delta) {
+
+            pic1.position.x += 5 * delta;
+            pic1.position.y -= 3 * delta;
+            if (pic1.position.x >= -200) {
+                pic1.position.x = -200;
+                pic1.position.y = -200;
+                setTimeout(function() {
+                    // pic1.visible = false;
+                    pic2.visible = true;
+                    pic2.position.x += 5 * delta;
+                    pic2.position.y -= 1 * delta;
+                }, 3000);
+                if (pic2.position.x >= 200) {
+                    pic2.position.x = 200;
+                    pic2.position.y = -200;
+                    setTimeout(function() {
+                        pic3.visible = true;
+                        pic3.position.x += 5 * delta;
+                        pic3.position.y += 3 * delta;
+                    }, 3000);
+                    if (pic3.position.x >= -200) {
+                        pic3.position.x = -200;
+                        pic3.position.y = 100;
+                        setTimeout(function() {
+                            pic4.visible = true;
+                            pic4.position.x += 5 * delta;
+                            pic4.position.y += 1 * delta;
+                        }, 3000);
+                        if(pic4.position.x>=200)
+                            {
+                                pic4.position.x=200;
+                                pic4.position.y=100;
+                                setTimeout(function(){
+                                    location.href="choose.html";
+                                },3000);
+                                
+                            }
+                    }
+                }
+            }
+        });
+
+
+
+        //保持遊戲全螢幕
+        window.addEventListener('resize', resize);
+
+        function resize() {
+            app.renderer.resize(window.innerWidth, window.innerHeight);
+            container.x = app.screen.width / 2;
+            container.y = app.screen.height / 2;
+            container.pivot.x = container.width / 2;
+            container.pivot.y = container.height / 2;
+        }
+        resize();
+
+    </script>
+</body>
+
+</html>

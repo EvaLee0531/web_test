@@ -12371,10 +12371,10 @@ var PIXI = (function (exports) {
 	        {
 	            this._onPlayStart();
 	        }
-	        else if (this.autoPlay)
+	        /*else if (this.autoPlay)
 	        {
 	            source.play();
-	        }
+	        }*/
 	    };
 
 	    /**
