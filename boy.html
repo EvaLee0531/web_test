@@ -54,9 +54,14 @@
         var circle = new PIXI.Graphics();
         circle.beginFill(0xFF8888);
         //drawCircle(x,y,r)
-        circle.drawCircle(400, 500, 50);
+        circle.drawCircle(400, 450, 60);
         circle.interactive = true;
         circle.buttonMode = true;
+         var text_play = new PIXI.Text("tap me!");
+        text_play.position.set(420, 495);
+        text_play.pivot.x = circle.width / 2;
+        text_play.pivot.y = circle.height / 2;
+        circle.addChild(text_play);
         circle.visible = false;
         container.addChild(circle);
 
@@ -65,12 +70,12 @@
         var start = new PIXI.Graphics();
         start.beginFill(0xFFFF77);
         //drawCircle(x,y,r)
-        start.drawCircle(100, 500, 50);
+        start.drawCircle(100,450, 60);
         start.interactive = true;
         start.buttonMode = true;
         container.addChild(start);
         var text = new PIXI.Text("GO!");
-        text.position.set(130, 530);
+        text.position.set(140, 495);
         text.pivot.x = start.width / 2;
         text.pivot.y = start.height / 2;
         start.addChild(text);
@@ -118,7 +123,7 @@
                 app.ticker.add((delta) => {
                     boyanisprite.position.x += 0.05 * delta;
                     setTimeout(function() {
-                        boyanisprite.position.x += 0.5 * delta;
+                        boyanisprite.position.x += 0.2 * delta;
                     }, 4000);
                     /*setTimeout(function(){
                         boy.position.x-=6*delta;
@@ -134,6 +139,7 @@
                 app.ticker.stop();
                 text_finish.text = "you lose";
                 finish.visible = true;
+                circle.visible=false;
                 finish.on('pointertap', lose);
 
                 function lose() {
@@ -144,6 +150,7 @@
             if (boyanisprite.position.x < -300) {
                 app.ticker.stop();
                 finish.visible = true;
+                circle.visible=false;
                 finish.on('pointertap', win);
 
                 function win() {

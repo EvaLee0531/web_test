@@ -93,7 +93,7 @@
             pic1.position.y -= 3 * delta;
             if (pic1.position.x >= -200) {
                 pic1.position.x = -200;
-                pic1.position.y = -200;
+                pic1.position.y = -100;
                 setTimeout(function() {
                     // pic1.visible = false;
                     pic2.visible = true;
@@ -102,7 +102,7 @@
                 }, 3000);
                 if (pic2.position.x >= 200) {
                     pic2.position.x = 200;
-                    pic2.position.y = -200;
+                    pic2.position.y = -100;
                     setTimeout(function() {
                         pic3.visible = true;
                         pic3.position.x += 5 * delta;
@@ -110,7 +110,7 @@
                     }, 3000);
                     if (pic3.position.x >= -200) {
                         pic3.position.x = -200;
-                        pic3.position.y = 100;
+                        pic3.position.y = 150;
                         setTimeout(function() {
                             pic4.visible = true;
                             pic4.position.x += 5 * delta;
@@ -119,7 +119,7 @@
                         if(pic4.position.x>=200)
                             {
                                 pic4.position.x=200;
-                                pic4.position.y=100;
+                                pic4.position.y=150;
                                 setTimeout(function(){
                                     location.href="choose.html";
                                 },3000);
