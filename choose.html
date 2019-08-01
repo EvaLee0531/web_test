@@ -20,6 +20,7 @@
         document.body.appendChild(app.view); //顯示
         var container = new PIXI.Container();
         app.stage.addChild(container);
+       
         //牛郎
         let boy_ani = ["牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_00.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_01.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_02.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_03.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_04.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_05.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_06.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_07.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_08.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_09.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_10.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_11.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_12.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_13.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_14.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_15.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_16.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_17.png"];
 
@@ -98,6 +99,8 @@
             container.y = app.screen.height / 2;
             container.pivot.x = container.width / 2;
             container.pivot.y = container.height / 2;
+            container.anchor.x=app.screen.width/2;
+            container.anchor.y=app.screen.height/2;
         }
         resize();
     </script>

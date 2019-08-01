@@ -93,7 +93,7 @@
             pic1.position.y -= 3 * delta;
             if (pic1.position.x >= -200) {
                 pic1.position.x = -200;
-                pic1.position.y = -100;
+                pic1.position.y = -150;
                 setTimeout(function() {
                     // pic1.visible = false;
                     pic2.visible = true;
@@ -102,7 +102,7 @@
                 }, 3000);
                 if (pic2.position.x >= 200) {
                     pic2.position.x = 200;
-                    pic2.position.y = -100;
+                    pic2.position.y = -150;
                     setTimeout(function() {
                         pic3.visible = true;
                         pic3.position.x += 5 * delta;
@@ -141,6 +141,8 @@
             container.y = app.screen.height / 2;
             container.pivot.x = container.width / 2;
             container.pivot.y = container.height / 2;
+              container.anchor.x=app.screen.width/2;
+            container.anchor.y=app.screen.height/2;
         }
         resize();
 
