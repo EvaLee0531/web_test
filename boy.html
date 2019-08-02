@@ -10,8 +10,6 @@
 <body>
     <script>
         var app = new PIXI.Application({
-            width: 800,
-            height: 600,
             backgroundColor: 0xF0BBFF,
             antialias: true,
             forceCanvas: false
@@ -20,8 +18,27 @@
         var container = new PIXI.Container();
         app.stage.addChild(container);
 
-
-        let boy = ["牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_00.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_01.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_02.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_03.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_04.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_05.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_06.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_07.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_08.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_09.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_10.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_11.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_12.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_13.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_14.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_15.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_16.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_17.png"];
+        
+        const boyFrames=["牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_00.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_01.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_02.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_03.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_04.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_05.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_06.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_07.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_08.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_09.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_10.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_11.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_12.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_13.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_14.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_15.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_16.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_17.png"];
+       /* const girlFrames=["牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_00.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_01.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_02.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_03.png", , "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_04.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_05.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_06.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_07.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_08.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_09.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_10.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_11.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_12.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_13.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_14.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_15.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_16.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_17.png"];*/
+        PIXI.loader.add(boyFrames).load(setup);
+        const animatedBoy=PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
+      
+        
+        function setup()
+        {
+            //const animatedBoy=PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
+            //animatedGirl=PIXI.extras.AnimatedSprite.fromFrames(girl);
+            animatedBoy.scale.set(0.1);
+            animatedBoy.position.set(500,-200);
+            animatedBoy.animationSpeed=0.8;
+            animatedBoy.play();
+            container.addChild(animatedBoy);
+            
+        }
+        
+        
+       /* let boy = ["牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_00.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_01.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_02.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_03.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_04.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_05.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_06.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_07.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_08.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_09.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_10.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_11.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_12.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_13.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_14.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_15.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_16.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_17.png"];
         let textureArray_b = [];
 
         for (let i = 0; i < 18; i++) {
@@ -34,7 +51,7 @@
         boyanisprite.scale.set(0.1);
         boyanisprite.animationSpeed = 0.8;
         boyanisprite.play();
-        container.addChild(boyanisprite);
+        container.addChild(boyanisprite);*/
 
 
        /* let girl = ["牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_00.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_01.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_02.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_03.png", , "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_04.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_05.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_06.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_07.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_08.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_09.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_10.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_11.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_12.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_13.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_14.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_15.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_16.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_17.png"];
@@ -54,11 +71,11 @@
         var circle = new PIXI.Graphics();
         circle.beginFill(0xFF8888);
         //drawCircle(x,y,r)
-        circle.drawCircle(400, 400, 60);
+        circle.drawCircle(400, 200, 60);
         circle.interactive = true;
         circle.buttonMode = true;
          var text_play = new PIXI.Text("tap me!");
-        text_play.position.set(420, 450);
+        text_play.position.set(420, 250);
         text_play.pivot.x = circle.width / 2;
         text_play.pivot.y = circle.height / 2;
         circle.addChild(text_play);
@@ -70,12 +87,12 @@
         var start = new PIXI.Graphics();
         start.beginFill(0xFFFF77);
         //drawCircle(x,y,r)
-        start.drawCircle(100,400, 60);
+        start.drawCircle(100,200, 60);
         start.interactive = true;
         start.buttonMode = true;
         container.addChild(start);
         var text = new PIXI.Text("GO!");
-        text.position.set(140, 450);
+        text.position.set(140, 250);
         text.pivot.x = start.width / 2;
         text.pivot.y = start.height / 2;
         start.addChild(text);
@@ -83,14 +100,14 @@
         //遊戲結束按鈕
         var finish = new PIXI.Graphics();
         finish.beginFill(0xDDDDDD);
-        finish.drawCircle(200, 200, 100);
+        finish.drawCircle(0, 0, 100);
         finish.interactive = true;
         finish.buttonMode = true;
         container.addChild(finish);
         var text_finish = new PIXI.Text("FINISH");
-        text_finish.position.set(260, 280);
         text_finish.pivot.x = finish.width / 2;
         text_finish.pivot.y = finish.height / 2;
+        text_finish.position.set(60,75);        
         finish.addChild(text_finish);
         finish.visible = false;
 
@@ -107,7 +124,7 @@
 
             function onClick() {
 
-                boyanisprite.position.x -= 0.2 * delta;
+                animatedBoy.position.x -= 0.2 * delta;
                 setTimeout(function() {
 
                     app.ticker.stop();
@@ -121,9 +138,9 @@
                 start.visible = false;
                 circle.visible = true;
                 app.ticker.add((delta) => {
-                    boyanisprite.position.x += 0.05 * delta;
+                    animatedBoy.position.x += 0.05 * delta;
                     setTimeout(function() {
-                        boyanisprite.position.x += 0.2 * delta;
+                        animatedBoy.position.x += 0.1 * delta;
                     }, 4000);
                     /*setTimeout(function(){
                         boy.position.x-=6*delta;
@@ -135,7 +152,7 @@
 
             }
             //輸的條件
-            if (boyanisprite.position.x >= 700) {
+            if (animatedBoy.position.x >= 600) {
                 app.ticker.stop();
                 text_finish.text = "you lose";
                 finish.visible = true;
@@ -147,7 +164,7 @@
                 }
             }
             //贏的條件
-            if (boyanisprite.position.x < -300) {
+            if (animatedBoy.position.x < -300) {
                 app.ticker.stop();
                 finish.visible = true;
                 circle.visible=false;
@@ -171,8 +188,7 @@
             container.y = app.screen.height / 2;
             container.pivot.x = container.width / 2;
             container.pivot.y = container.height / 2;
-              container.anchor.x=app.screen.width/2;
-            container.anchor.y=app.screen.height/2;
+           
         }
         resize();
     </script>
