@@ -13,20 +13,14 @@
         overflow: hidden;
     }
 
-    h1 {
-        margin: 0 auto;
-        text-align: center;
-
-    }
-
 </style>
 
 <body>
 
     <script>
         var app = new PIXI.Application({
-           
-            backgroundColor: 0xF0BBFF,
+            
+            backgroundColor: 0xFFFFBB,
             antialias: true,
             forceCanvas: false
         }); //設定圖層
@@ -76,7 +70,7 @@
         pic3.position.set(-400, 0);
         pic3.visible = false;
         container.addChild(pic3);
-        
+
         //影片照片4
         const pic4 = PIXI.Sprite.from('golden4.jpg');
         pic4.anchor.set(0.5);
@@ -115,15 +109,14 @@
                             pic4.position.x += 5 * delta;
                             pic4.position.y += 1 * delta;
                         }, 3000);
-                        if(pic4.position.x>=200)
-                            {
-                                pic4.position.x=200;
-                                pic4.position.y=150;
-                                setTimeout(function(){
-                                    location.href="choose.html";
-                                },3000);
-                                
-                            }
+                        if (pic4.position.x >= 200) {
+                            pic4.position.x = 200;
+                            pic4.position.y = 150;
+                            setTimeout(function() {
+                                location.href = "choose.html";
+                            }, 3000);
+
+                        }
                     }
                 }
             }
@@ -132,7 +125,7 @@
 
 
         //保持遊戲全螢幕
-        window.addEventListener('resize', resize);
+       window.addEventListener('resize', resize);
 
         function resize() {
             app.renderer.resize(window.innerWidth, window.innerHeight);
@@ -140,7 +133,7 @@
             container.y = app.screen.height / 2;
             container.pivot.x = container.width / 2;
             container.pivot.y = container.height / 2;
-           
+           container.anchor=0.5;
         }
         resize();
 

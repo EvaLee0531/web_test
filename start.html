@@ -13,11 +13,6 @@
         overflow: hidden;
     }
 
-    h1 {
-        margin: 0 auto;
-        text-align: center;
-
-    }
 
 </style>
 
@@ -41,13 +36,13 @@
         var circle = new PIXI.Graphics();
         circle.beginFill(0xFF8888);
         //drawCircle(x,y,r)
-        circle.drawCircle(0, 0, 50);
+        circle.drawCircle(50, 50, 100);
         //circle.visible = false;
 
         var text = new PIXI.Text("START");
-        text.x = 8;
-        text.y = 35;
-        text.scale.x = 0.8;
+        text.x =110;
+        text.y = 130;
+        text.scale.x = 1;
         text.pivot.x = circle.width / 2;
         text.pivot.y = circle.height / 2;
         circle.addChild(text);
@@ -85,6 +80,7 @@
             container.y = app.screen.height / 2;
             container.pivot.x = container.width / 2;
             container.pivot.y = container.height / 2;
+            container.anchor=0.5;
           
         }
         resize();

@@ -6,11 +6,19 @@
     <meta charset="utf-8">
 
 </head>
+<style>
+    body {
+        position: absolute;
+        margin: 0 auto;
+        overflow: hidden;
+    }
 
+
+</style>
 <body>
     <script>
         var app = new PIXI.Application({
-            backgroundColor: 0xF0BBFF,
+            backgroundColor: 0xFFCCCC,
             antialias: true,
             forceCanvas: false
         }); //設定圖層
@@ -30,7 +38,7 @@
             //const animatedBoy=PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
             //animatedGirl=PIXI.extras.AnimatedSprite.fromFrames(girl);
             animatedBoy.scale.set(0.1);
-            animatedBoy.position.set(500,-200);
+            animatedBoy.position.set(400,-200);
             animatedBoy.animationSpeed=0.8;
             animatedBoy.play();
             container.addChild(animatedBoy);
@@ -152,7 +160,7 @@
 
             }
             //輸的條件
-            if (animatedBoy.position.x >= 600) {
+            if (animatedBoy.position.x >= 525) {
                 app.ticker.stop();
                 text_finish.text = "you lose";
                 finish.visible = true;
@@ -188,7 +196,7 @@
             container.y = app.screen.height / 2;
             container.pivot.x = container.width / 2;
             container.pivot.y = container.height / 2;
-           
+           container.anchor=0.5;
         }
         resize();
     </script>

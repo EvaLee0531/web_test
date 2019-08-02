@@ -6,12 +6,19 @@
     <meta charset="utf-8">
 
 </head>
+<style>
+    body {
+        position: absolute;
+        margin: 0 auto;
+        overflow: hidden;
+    }
 
+
+</style>
 <body>
 
     <script>
         var app = new PIXI.Application({
-           
             backgroundColor: 0xF0BBFF,
             antialias: true,
             forceCanvas: false
@@ -157,7 +164,7 @@
             container.y = app.screen.height / 2;
             container.pivot.x = container.width / 2;
             container.pivot.y = container.height / 2;
-           
+           container.anchor=0.5;
         }
         resize();
     </script>
