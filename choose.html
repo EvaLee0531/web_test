@@ -20,39 +20,73 @@
         document.body.appendChild(app.view); //顯示
         var container = new PIXI.Container();
         app.stage.addChild(container);
-       
+
         //牛郎
-        let boy_ani = ["牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_00.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_01.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_02.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_03.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_04.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_05.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_06.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_07.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_08.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_09.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_10.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_11.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_12.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_13.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_14.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_15.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_16.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_17.png"];
 
-        let textureArray = [];
+        const boyFrames = ["牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_00.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_01.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_02.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_03.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_04.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_05.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_06.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_07.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_08.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_09.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_10.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_11.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_12.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_13.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_14.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_15.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_16.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_17.png"];
+        PIXI.loader.add(boyFrames).load(setup);
 
-        for (let i = 0; i < 18; i++) {
-            let texture = PIXI.Texture.fromImage(boy_ani[i]);
+        function setup() {
+            //resources可以初始化背景圖片
+            let resources = PIXI.loader.resources;
+            animatedBoy = PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
+            animatedBoy.animationSpeed = 0.5;
+            animatedBoy.scale.set(0.2, 0.2);
+            animatedBoy.anchor.set(0.5);
+            animatedBoy.position.set(300, 0);
+            animatedBoy.play();
+            container.addChild(animatedBoy);
+            animatedBoy.interactive = true;
+            animatedBoy.buttonMode = true;
+            animatedBoy.on('pointerdown', boyplay);
 
-            textureArray.push(texture);
-        };
-        let boyanisprite = new PIXI.AnimatedSprite(textureArray);
-        boyanisprite.scale.x = 0.2;
-        boyanisprite.scale.y = 0.2;
-        boyanisprite.anchor.set(0.5);
-        boyanisprite.x = 600;
-        boyanisprite.animationSpeed = 0.5;
-        boyanisprite.play();
-        boyanisprite.interactive = true;
-        boyanisprite.buttonMode = true;
-        boyanisprite.on('pointerdown', boyplay);
-        container.addChild(boyanisprite);
-        boyanisprite.mouseover = function(mouseData) {
-            this.alpha = 0.8;
+            animatedBoy.mouseover = function(mouseData) {
+                this.alpha = 0.8;
+            }
+            animatedBoy.mouseout = function(mouseData) {
+                this.alpha = 1;
+            }
+
+
+            function boyplay() {
+                location.href = "boy.html";
+            }
+
+
+
         }
-        boyanisprite.mouseout = function(mouseData) {
-            this.alpha = 1;
-        }
+
+        /*  let boy_ani = ["牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_00.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_01.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_02.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_03.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_04.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_05.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_06.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_07.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_08.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_09.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_10.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_11.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_12.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_13.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_14.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_15.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_16.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_17.png"];
+
+          let textureArray = [];
+
+          for (let i = 0; i < 18; i++) {
+              let texture = PIXI.Texture.fromImage(boy_ani[i]);
+
+              textureArray.push(texture);
+          };
+         let boyanisprite = new PIXI.AnimatedSprite(textureArray);
+         boyanisprite.scale.x = 0.2;
+         boyanisprite.scale.y = 0.2;
+         boyanisprite.anchor.set(0.5);
+         boyanisprite.x = 600;
+         boyanisprite.animationSpeed = 0.5;
+         boyanisprite.play();
+         boyanisprite.interactive = true;
+         boyanisprite.buttonMode = true;
+         boyanisprite.on('pointerdown', boyplay);
+         container.addChild(boyanisprite);
+         boyanisprite.mouseover = function(mouseData) {
+             this.alpha = 0.8;
+         }
+         boyanisprite.mouseout = function(mouseData) {
+             this.alpha = 1;
+         }
 
 
-        function boyplay() {
-            location.href = "boy.html";
-        }
+         function boyplay() {
+             location.href = "boy.html";
+         }*/
 
         //織女
         let girl_ani = ["牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_00.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_01.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_02.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_03.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_04.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_05.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_06.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_07.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_08.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_09.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_10.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_11.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_12.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_13.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_14.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_15.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_16.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_17.png"];
@@ -67,8 +101,9 @@
         let girlanisprite = new PIXI.AnimatedSprite(textureArray_g);
         girlanisprite.scale.x = 0.2;
         girlanisprite.scale.y = 0.2;
+        girlanisprite.position.set(-300,0);
         girlanisprite.anchor.set(0.5);
-        
+
         girlanisprite.animationSpeed = 0.5;
         girlanisprite.play();
         girlanisprite.interactive = true;
@@ -99,10 +134,13 @@
             container.y = app.screen.height / 2;
             container.pivot.x = container.width / 2;
             container.pivot.y = container.height / 2;
-            container.anchor.x=app.screen.width/2;
-            container.anchor.y=app.screen.height/2;
+            container.anchor.x = app.screen.width / 2;
+            container.anchor.y = app.screen.height / 2;
         }
         resize();
+
     </script>
 
-</body></html>
+</body>
+
+</html>
