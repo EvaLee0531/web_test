@@ -43,7 +43,7 @@
             animatedGirl.visible = false;
             container.addChild(animatedGirl);
 
-            animatedFly.position.set(420, 200);
+            animatedFly.position.set(0, 200);
             animatedFly.animationSpeed = 0.5;
             animatedFly.scale.set(0.2, 0.2);
             animatedFly.anchor.set(0.5);
@@ -79,7 +79,12 @@
         }
 
 
-
+        //loading
+        var loading=new PIXI.Text("Loading...");
+        loading.anchor.set(0.5);
+        loading.position.set(0,0);
+        loading.visible=false;
+        backgroundimg.addChild(loading);
 
         //遊戲結束顯示
         var finish = new PIXI.Graphics();
@@ -87,7 +92,7 @@
         finish.drawCircle(0, 0, 100);
         container.addChild(finish);
         var text_finish = new PIXI.Text("You Found Me!");
-        text_finish.position.set(28, 75);
+        text_finish.position.set(25, 75);
         text_finish.pivot.x = finish.width / 2;
         text_finish.pivot.y = finish.height / 2;
         finish.addChild(text_finish);
@@ -127,17 +132,22 @@
             }
 
             function startgame() {
-
                 start.visible = false;
-                animatedFly.visible = true;
-                animatedGirl.visible = true;
-                app.ticker.add((delta) => {
-                    animatedGirl.position.x -= 0.05 * delta;
-                    setTimeout(function() {
-                        animatedGirl.position.x -= 0.1 * delta;
-                    }, 4000);
+                loading.visible=true;
+                setTimeout(function() {
+                    animatedFly.visible = true;
+                    animatedGirl.visible = true;
+                     loading.visible=false;
+                    app.ticker.add((delta) => {
+                        animatedGirl.position.x -= 0.05 * delta;
+                        setTimeout(function() {
+                            animatedGirl.position.x -= 0.1 * delta;
+                        }, 5000);
 
-                });
+                    });
+                }, 2000);
+
+
 
             }
             //贏的條件

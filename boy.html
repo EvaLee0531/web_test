@@ -29,7 +29,7 @@
 
         const boyFrames = ["牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_00.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_01.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_02.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_03.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_04.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_05.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_06.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_07.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_08.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_09.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_10.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_11.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_12.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_13.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_14.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_15.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_16.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_17.png"];
         const flybtn = ["牛郎織女2/飛行按鈕/喜鵲1.png", "牛郎織女2/飛行按鈕/喜鵲2.png", "牛郎織女2/飛行按鈕/喜鵲3.png", "牛郎織女2/飛行按鈕/喜鵲4.png", "牛郎織女2/飛行按鈕/喜鵲5.png"];
-       
+
         const animatedBoy = PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
         const animatedFly = PIXI.extras.AnimatedSprite.fromFrames(flybtn);
         PIXI.loader.add(boyFrames).add(flybtn).load(setup);
@@ -41,10 +41,10 @@
             animatedBoy.position.set(400, -200);
             animatedBoy.animationSpeed = 0.8;
             animatedBoy.play();
-            animatedBoy.visible=false;
+            animatedBoy.visible = false;
             container.addChild(animatedBoy);
 
-            animatedFly.position.set(420, 200);
+            animatedFly.position.set(0, 200);
             animatedFly.animationSpeed = 0.5;
             animatedFly.scale.set(0.2, 0.2);
             animatedFly.anchor.set(0.5);
@@ -57,7 +57,7 @@
         }
         //遊戲背景
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-         backgroundimg.width = window.innerWidth;
+        backgroundimg.width = window.innerWidth;
         backgroundimg.height = window.innerHeight;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
@@ -79,9 +79,14 @@
             this.alpha = 1;
         }
 
+        //loading
+        var loading = new PIXI.Text("Loading...");
+        loading.anchor.set(0.5);
+        loading.position.set(0, 0);
+        loading.visible = false;
+        backgroundimg.addChild(loading);
 
-
-        //遊戲結束按鈕
+        //遊戲結束提示訊息
         var finish = new PIXI.Graphics();
         finish.beginFill(0xDDDDDD);
         finish.drawCircle(0, 0, 100);
@@ -89,10 +94,10 @@
         var text_finish = new PIXI.Text("You Found Me!");
         text_finish.pivot.x = finish.width / 2;
         text_finish.pivot.y = finish.height / 2;
-        text_finish.position.set(28, 75);
+        text_finish.position.set(25, 75);
         finish.addChild(text_finish);
         finish.visible = false;
-         //遊戲重新開始按鈕
+        //遊戲重新開始按鈕
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
         replay.scale.set(0.5, 0.5);
         replay.anchor.set(0.5);
@@ -132,14 +137,21 @@
 
             function startgame() {
                 start.visible = false;
-                animatedFly.visible = true;
-                animatedBoy.visible=true;
-                app.ticker.add((delta) => {
-                    animatedBoy.position.x += 0.05 * delta;
-                    setTimeout(function() {
-                        animatedBoy.position.x += 0.1 * delta;
-                    }, 4000);
-                });
+                loading.visible = true;
+                setTimeout(function() {
+                    loading.visible = false;
+                    animatedFly.visible = true;
+                    animatedBoy.visible = true;
+                    app.ticker.add((delta) => {
+                        animatedBoy.position.x += 0.05 * delta;
+                        setTimeout(function() {
+                            animatedBoy.position.x += 0.1 * delta;
+                        }, 4000);
+                    });
+                }, 2000)
+
+
+
 
             }
             //輸的條件
@@ -147,9 +159,9 @@
                 app.ticker.stop();
                 text_finish.text = "OH...\nYou Lose...";
                 finish.visible = true;
-                replay.visible=true;
+                replay.visible = true;
                 animatedFly.visible = false;
-                animatedBoy.visible=false;
+                animatedBoy.visible = false;
                 replay.on('pointertap', lose);
 
                 function lose() {
@@ -160,9 +172,9 @@
             if (animatedBoy.position.x < -300) {
                 app.ticker.stop();
                 finish.visible = true;
-                replay.visible=true;
+                replay.visible = true;
                 animatedFly.visible = false;
-                animatedBoy.visible=false;
+                animatedBoy.visible = false;
                 replay.on('pointertap', win);
 
                 function win() {
