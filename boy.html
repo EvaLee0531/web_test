@@ -29,8 +29,7 @@
 
         const boyFrames = ["牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_00.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_01.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_02.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_03.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_04.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_05.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_06.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_07.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_08.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_09.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_10.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_11.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_12.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_13.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_14.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_15.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_16.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_17.png"];
         const flybtn = ["牛郎織女2/飛行按鈕/喜鵲1.png", "牛郎織女2/飛行按鈕/喜鵲2.png", "牛郎織女2/飛行按鈕/喜鵲3.png", "牛郎織女2/飛行按鈕/喜鵲4.png", "牛郎織女2/飛行按鈕/喜鵲5.png"];
-        /* const girlFrames=["牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_00.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_01.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_02.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_03.png", , "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_04.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_05.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_06.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_07.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_08.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_09.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_10.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_11.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_12.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_13.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_14.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_15.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_16.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_17.png"];*/
-
+       
         const animatedBoy = PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
         const animatedFly = PIXI.extras.AnimatedSprite.fromFrames(flybtn);
         PIXI.loader.add(boyFrames).add(flybtn).load(setup);
@@ -58,8 +57,8 @@
         }
         //遊戲背景
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = screen.availWidth;
-        backgroundimg.height = screen.availHeight;
+         backgroundimg.width = window.innerWidth;
+        backgroundimg.height = window.innerHeight;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
 

@@ -28,8 +28,8 @@
         
           //遊戲背景
         var backgroundimg=PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width=screen.availWidth;
-        backgroundimg.height=screen.availHeight;
+       backgroundimg.width = window.innerWidth;
+        backgroundimg.height = window.innerHeight;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
 
