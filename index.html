@@ -29,9 +29,10 @@
         app.stage.addChild(container);
         
         //遊戲背景
+        var ratio = Math.min(window.innerWidth , window.innerHeight);
         var backgroundimg=PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = window.innerWidth;
-        backgroundimg.height = window.innerHeight;
+        backgroundimg.width = ratio;
+        backgroundimg.height = ratio;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
 
