@@ -18,7 +18,6 @@
 <body>
     <script>
         var app = new PIXI.Application({
-            backgroundColor: 0xFFCCCC,
             antialias: true,
             forceCanvas: false
         }); //設定圖層
@@ -143,12 +142,12 @@
                     animatedFly.visible = true;
                     animatedBoy.visible = true;
                     app.ticker.add((delta) => {
-                        animatedBoy.position.x += 0.05 * delta;
+                        animatedBoy.position.x += 0.03 * delta;
                         setTimeout(function() {
                             animatedBoy.position.x += 0.1 * delta;
                         }, 4000);
                     });
-                }, 2000)
+                }, 3000)
 
 
 
