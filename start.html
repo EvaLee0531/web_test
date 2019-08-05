@@ -20,7 +20,7 @@
 
     <script>
         var app = new PIXI.Application({
-            backgroundColor: 0xF0BBFF,
+            //backgroundColor: 0xF0BBFF,
             antialias: true,
             forceCanvas: false
         }); //設定圖層
@@ -29,23 +29,27 @@
         var container = new PIXI.Container();
         app.stage.addChild(container);
 
+         //遊戲背景
+        var backgroundimg=PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
+        backgroundimg.width=screen.availWidth;
+        backgroundimg.height=screen.availHeight;
+        backgroundimg.anchor.set(0.5);
+        container.addChild(backgroundimg);
 
-      
+        var logo=new PIXI.Sprite.from("牛郎織女2/遊戲背景/LOGO.png");
+        logo.anchor.set(0.5);
+        logo.position.set(0,-100);
+        logo.scale.set(0.8,0.8);
+        backgroundimg.addChild(logo);
 
         //開始按鈕
-        var circle = new PIXI.Graphics();
-        circle.beginFill(0xFF8888);
-        //drawCircle(x,y,r)
-        circle.drawCircle(50, 50, 100);
-        //circle.visible = false;
+        var circle = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
+        circle.anchor.set(0.5);
+        circle.scale.set(0.5,0.5);
+        circle.position.set(0,200);
+       backgroundimg.addChild(circle);
 
-        var text = new PIXI.Text("START");
-        text.x =110;
-        text.y = 130;
-        text.scale.x = 1;
-        text.pivot.x = circle.width / 2;
-        text.pivot.y = circle.height / 2;
-        circle.addChild(text);
+      
         // Opt-in to interactivity
         circle.interactive = true;
         // Shows hand cursor
@@ -78,8 +82,8 @@
             app.renderer.resize(window.innerWidth, window.innerHeight);
             container.x = app.screen.width / 2;
             container.y = app.screen.height / 2;
-            container.pivot.x = container.width / 2;
-            container.pivot.y = container.height / 2;
+            /*container.pivot.x = container.width / 2;
+            container.pivot.y = container.height / 2;*/
             container.anchor=0.5;
           
         }

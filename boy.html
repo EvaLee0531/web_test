@@ -13,8 +13,8 @@
         overflow: hidden;
     }
 
-
 </style>
+
 <body>
     <script>
         var app = new PIXI.Application({
@@ -26,99 +26,89 @@
         var container = new PIXI.Container();
         app.stage.addChild(container);
 
-        
-        const boyFrames=["牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_00.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_01.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_02.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_03.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_04.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_05.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_06.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_07.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_08.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_09.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_10.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_11.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_12.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_13.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_14.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_15.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_16.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_17.png"];
-       /* const girlFrames=["牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_00.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_01.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_02.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_03.png", , "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_04.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_05.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_06.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_07.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_08.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_09.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_10.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_11.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_12.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_13.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_14.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_15.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_16.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_17.png"];*/
-        PIXI.loader.add(boyFrames).load(setup);
-        const animatedBoy=PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
-      
-        
-        function setup()
-        {
+
+        const boyFrames = ["牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_00.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_01.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_02.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_03.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_04.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_05.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_06.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_07.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_08.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_09.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_10.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_11.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_12.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_13.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_14.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_15.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_16.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_17.png"];
+        const flybtn = ["牛郎織女2/飛行按鈕/喜鵲1.png", "牛郎織女2/飛行按鈕/喜鵲2.png", "牛郎織女2/飛行按鈕/喜鵲3.png", "牛郎織女2/飛行按鈕/喜鵲4.png", "牛郎織女2/飛行按鈕/喜鵲5.png"];
+        /* const girlFrames=["牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_00.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_01.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_02.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_03.png", , "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_04.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_05.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_06.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_07.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_08.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_09.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_10.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_11.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_12.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_13.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_14.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_15.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_16.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_17.png"];*/
+
+        const animatedBoy = PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
+        const animatedFly = PIXI.extras.AnimatedSprite.fromFrames(flybtn);
+        PIXI.loader.add(boyFrames).add(flybtn).load(setup);
+
+        function setup() {
             //const animatedBoy=PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
             //animatedGirl=PIXI.extras.AnimatedSprite.fromFrames(girl);
             animatedBoy.scale.set(0.1);
-            animatedBoy.position.set(400,-200);
-            animatedBoy.animationSpeed=0.8;
+            animatedBoy.position.set(400, -200);
+            animatedBoy.animationSpeed = 0.8;
             animatedBoy.play();
+            animatedBoy.visible=false;
             container.addChild(animatedBoy);
-            
+
+            animatedFly.position.set(420, 200);
+            animatedFly.animationSpeed = 0.5;
+            animatedFly.scale.set(0.2, 0.2);
+            animatedFly.anchor.set(0.5);
+            animatedFly.play();
+            animatedFly.interactive = true;
+            animatedFly.buttonMode = true;
+            animatedFly.visible = false;
+            container.addChild(animatedFly);
+
         }
-        
-        
-       /* let boy = ["牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_00.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_01.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_02.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_03.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_04.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_05.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_06.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_07.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_08.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_09.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_10.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_11.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_12.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_13.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_14.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_15.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_16.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_17.png"];
-        let textureArray_b = [];
+        //遊戲背景
+        var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
+        backgroundimg.width = screen.availWidth;
+        backgroundimg.height = screen.availHeight;
+        backgroundimg.anchor.set(0.5);
+        container.addChild(backgroundimg);
 
-        for (let i = 0; i < 18; i++) {
-            let texture = PIXI.Texture.fromImage(boy[i]);
-
-            textureArray_b.push(texture);
-        };
-        let boyanisprite = new PIXI.AnimatedSprite(textureArray_b);
-        boyanisprite.position.set(500, -50);
-        boyanisprite.scale.set(0.1);
-        boyanisprite.animationSpeed = 0.8;
-        boyanisprite.play();
-        container.addChild(boyanisprite);*/
-
-
-       /* let girl = ["牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_00.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_01.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_02.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_03.png", , "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_04.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_05.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_06.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_07.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_08.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_09.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_10.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_11.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_12.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_13.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_14.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_15.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_16.png", "牛郎織女動圖/織女奔跑前/織女拆圖合併-beforerun_17.png"];
-        let textureArrayG = [];
-
-        for (let i = 0; i < 18; i++) {
-            let textureG = PIXI.Texture.fromImage(girl[i]);
-            textureArrayG.push(textureG);
-        };
-        let girlsprite = new PIXI.AnimatedSprite(textureArrayG);
-        girlsprite.position.set(-200, 0);
-        girlsprite.scale.set(0.1);
-        girlsprite.animationSpeed = 0.8;
-        girlsprite.play();
-        container.addChild(girlsprite);*/
-        //遊玩控制
-        var circle = new PIXI.Graphics();
-        circle.beginFill(0xFF8888);
-        //drawCircle(x,y,r)
-        circle.drawCircle(400, 200, 60);
-        circle.interactive = true;
-        circle.buttonMode = true;
-         var text_play = new PIXI.Text("tap me!");
-        text_play.position.set(420, 250);
-        text_play.pivot.x = circle.width / 2;
-        text_play.pivot.y = circle.height / 2;
-        circle.addChild(text_play);
-        circle.visible = false;
-        container.addChild(circle);
 
 
         //開始按鈕
-        var start = new PIXI.Graphics();
-        start.beginFill(0xFFFF77);
-        //drawCircle(x,y,r)
-        start.drawCircle(100,200, 60);
-        start.interactive = true;
+        var start = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
+        start.anchor.set(0.5);
+        start.scale.set(0.5, 0.5);
+        start.position.set(0, 200);
         start.buttonMode = true;
-        container.addChild(start);
-        var text = new PIXI.Text("GO!");
-        text.position.set(140, 250);
-        text.pivot.x = start.width / 2;
-        text.pivot.y = start.height / 2;
-        start.addChild(text);
+        start.interactive = true;
+        backgroundimg.addChild(start);
+        start.mouseover = function(mouseData) {
+            this.alpha = 0.8;
+        }
+        start.mouseout = function(mouseData) {
+            this.alpha = 1;
+        }
+
+
 
         //遊戲結束按鈕
         var finish = new PIXI.Graphics();
         finish.beginFill(0xDDDDDD);
         finish.drawCircle(0, 0, 100);
-        finish.interactive = true;
-        finish.buttonMode = true;
         container.addChild(finish);
-        var text_finish = new PIXI.Text("FINISH");
+        var text_finish = new PIXI.Text("You Found Me!");
         text_finish.pivot.x = finish.width / 2;
         text_finish.pivot.y = finish.height / 2;
-        text_finish.position.set(60,75);        
+        text_finish.position.set(28, 75);
         finish.addChild(text_finish);
         finish.visible = false;
+         //遊戲重新開始按鈕
+        var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
+        replay.scale.set(0.5, 0.5);
+        replay.anchor.set(0.5);
+        replay.position.set(0, 200);
+        replay.visible = false;
+        replay.interactive = true;
+        replay.buttonMode = true;
+        replay.mouseover = function(mouseData) {
+            this.alpha = 0.8;
+        }
+        replay.mouseout = function(mouseData) {
+            this.alpha = 1;
+        }
 
+        backgroundimg.addChild(replay);
 
 
 
@@ -126,7 +116,7 @@
 
         //控制動畫
         app.ticker.add((delta) => {
-            circle.on('pointertap', onClick);
+            animatedFly.on('pointertap', onClick);
             start.on('pointertap', startgame);
 
 
@@ -142,30 +132,26 @@
             }
 
             function startgame() {
-                //start.destroy();
                 start.visible = false;
-                circle.visible = true;
+                animatedFly.visible = true;
+                animatedBoy.visible=true;
                 app.ticker.add((delta) => {
                     animatedBoy.position.x += 0.05 * delta;
                     setTimeout(function() {
                         animatedBoy.position.x += 0.1 * delta;
                     }, 4000);
-                    /*setTimeout(function(){
-                        boy.position.x-=6*delta;
-                    },5000);
-                      setTimeout(function(){
-                        boy.position.x-=6.5*delta;
-                    },5000);*/
                 });
 
             }
             //輸的條件
             if (animatedBoy.position.x >= 525) {
                 app.ticker.stop();
-                text_finish.text = "you lose";
+                text_finish.text = "OH...\nYou Lose...";
                 finish.visible = true;
-                circle.visible=false;
-                finish.on('pointertap', lose);
+                replay.visible=true;
+                animatedFly.visible = false;
+                animatedBoy.visible=false;
+                replay.on('pointertap', lose);
 
                 function lose() {
                     location.href = 'start.html';
@@ -175,8 +161,10 @@
             if (animatedBoy.position.x < -300) {
                 app.ticker.stop();
                 finish.visible = true;
-                circle.visible=false;
-                finish.on('pointertap', win);
+                replay.visible=true;
+                animatedFly.visible = false;
+                animatedBoy.visible=false;
+                replay.on('pointertap', win);
 
                 function win() {
                     location.href = 'start.html';
@@ -194,13 +182,16 @@
             app.renderer.resize(window.innerWidth, window.innerHeight);
             container.x = app.screen.width / 2;
             container.y = app.screen.height / 2;
-            container.pivot.x = container.width / 2;
-            container.pivot.y = container.height / 2;
-           container.anchor=0.5;
+            /* container.pivot.x = container.width / 2;
+             container.pivot.y = container.height / 2;*/
+            container.anchor = 0.5;
         }
         resize();
+
     </script>
 
 
 
-</body></html>
+</body>
+
+</html>

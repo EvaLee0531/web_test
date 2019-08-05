@@ -19,16 +19,21 @@
 
     <script>
         var app = new PIXI.Application({
-            backgroundColor: 0xF0BBFF,
             antialias: true,
             forceCanvas: false
         }); //設定圖層
         document.body.appendChild(app.view); //顯示
         var container = new PIXI.Container();
         app.stage.addChild(container);
+        
+          //遊戲背景
+        var backgroundimg=PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
+        backgroundimg.width=screen.availWidth;
+        backgroundimg.height=screen.availHeight;
+        backgroundimg.anchor.set(0.5);
+        container.addChild(backgroundimg);
 
         //牛郎
-
         const boyFrames = ["牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_00.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_01.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_02.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_03.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_04.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_05.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_06.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_07.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_08.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_09.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_10.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_11.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_12.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_13.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_14.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_15.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_16.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_17.png"];
 
         const girlFrames = ["牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_00.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_01.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_02.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_03.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_04.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_05.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_06.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_07.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_08.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_09.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_10.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_11.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_12.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_13.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_14.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_15.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_16.png", "牛郎織女動圖/織女選擇圖/織女拆圖合併-織女ch_17.png"];
@@ -43,7 +48,7 @@
             animatedBoy.anchor.set(0.5);
             animatedBoy.position.set(200, 0);
             animatedBoy.play();
-            container.addChild(animatedBoy);
+            backgroundimg.addChild(animatedBoy);
             animatedBoy.interactive = true;
             animatedBoy.buttonMode = true;
             animatedBoy.on('pointerdown', boyplay);
@@ -66,7 +71,7 @@
             animatedGirl.anchor.set(0.5);
             animatedGirl.position.set(-200, 0);
             animatedGirl.play();
-            container.addChild(animatedGirl);
+            backgroundimg.addChild(animatedGirl);
             animatedGirl.interactive = true;
             animatedGirl.buttonMode = true;
             animatedGirl.on('pointerdown', girlplay);
@@ -162,8 +167,8 @@
             app.renderer.resize(window.innerWidth, window.innerHeight);
             container.x = app.screen.width / 2;
             container.y = app.screen.height / 2;
-            container.pivot.x = container.width / 2;
-            container.pivot.y = container.height / 2;
+            //container.pivot.x = container.width / 2;
+            //container.pivot.y = container.height / 2;
            container.anchor=0.5;
         }
         resize();

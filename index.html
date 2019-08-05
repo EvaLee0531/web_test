@@ -20,7 +20,7 @@
     <script>
         var app = new PIXI.Application({
           
-            backgroundColor: 0xE8CCFF,
+            //backgroundColor: 0xE8CCFF,
             antialias: true,
             forceCanvas: false
         }); //設定圖層
@@ -28,20 +28,26 @@
 
         var container = new PIXI.Container();
         app.stage.addChild(container);
+        
+        //遊戲背景
+        var backgroundimg=PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
+        backgroundimg.width=screen.availWidth;
+        backgroundimg.height=screen.availHeight;
+        container.addChild(backgroundimg);
 
 
         //注意事項
         var mention = new PIXI.Graphics();
         mention.beginFill(0xDDDDDD);
         mention.alpha = 0.5;
-        mention.drawRect(0, 0, 1920, 1080);
+        mention.drawRect(0, 0, screen.availWidth, screen.availHeight);
         mention.anchor = 0.5;
         mention.endFill();
         container.addChild(mention);
 
         var mention_text = new PIXI.Text("Please copy the path to Chrome or Safari");
-        mention_text.x = 750;
-        mention_text.y = 500;
+        mention_text.x = 500;
+        mention_text.y = 400;
         
         
         mention.addChild(mention_text);
