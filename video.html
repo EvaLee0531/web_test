@@ -12,6 +12,7 @@
         margin: 0 auto;
         overflow: hidden;
     }
+
 </style>
 
 <body>
@@ -29,7 +30,10 @@
         var container = new PIXI.Container();
         app.stage.addChild(container);
 
-        var ratio = Math.min(window.innerWidth , window.innerHeight);
+
+
+
+        var ratio = Math.min(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/漫畫背景.png");
         backgroundimg.width = ratio;
         backgroundimg.height = ratio;
@@ -39,6 +43,7 @@
         container.addChild(backgroundimg);
 
 
+        
         //影片照片1
         const pic1 = PIXI.Sprite.from('牛郎織女2/遊戲背景/四格漫畫一、黃牛領牛郎相遇織女.png');
         pic1.anchor.set(0.5);
@@ -86,7 +91,7 @@
                     pic2.position.y -= 1 * delta;
                 }, 3000);
                 if (pic2.position.x >= 200) {
-                    pic2.position.x =200;
+                    pic2.position.x = 200;
                     pic2.position.y = -150;
                     pic2.alpha -= 0.005 * delta;
                     if (pic2.alpha == 0) {
@@ -120,8 +125,8 @@
                                 backgroundimg.visible = true;
                                 backgroundimg.alpha += 0.01 * delta;
                             }, 3000);
-                               setTimeout(function() {
-                              location.href="choose.html";
+                            setTimeout(function() {
+                                location.href = "choose.html";
                             }, 7000);
 
                         }
@@ -130,7 +135,6 @@
             }
         });
 
-
         //保持遊戲全螢幕
         window.addEventListener('resize', resize);
 
@@ -138,10 +142,12 @@
             app.renderer.resize(window.innerWidth, window.innerHeight);
             container.x = app.screen.width / 2;
             container.y = app.screen.height / 2;
-        
+
             container.anchor = 0.5;
         }
         resize();
-   
+
     </script>
-</body></html>
+</body>
+
+</html>
