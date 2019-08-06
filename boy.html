@@ -18,11 +18,15 @@
 <body>
     <script>
         var app = new PIXI.Application({
+            width: 1920,
+            height: 1080,
             antialias: true,
             forceCanvas: false
         }); //設定圖層
         document.body.appendChild(app.view); //顯示
         var container = new PIXI.Container();
+        container.width = app.screen.width;
+        container.height = app.screen.height;
         app.stage.addChild(container);
 
 
@@ -31,16 +35,18 @@
 
         const animatedBoy = PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
         const animatedFly = PIXI.extras.AnimatedSprite.fromFrames(flybtn);
-        PIXI.loader.add(boyFrames).add(flybtn).load(setup);
+        PIXI.loader.add(boyFrames).add(flybtn).load(setup).on("progress", loadProgressHandler);
+
+
 
         function setup() {
             //const animatedBoy=PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
             //animatedGirl=PIXI.extras.AnimatedSprite.fromFrames(girl);
             animatedBoy.scale.set(0.1);
-            animatedBoy.position.set(400, -200);
+            animatedBoy.position.set(0, -200);
             animatedBoy.animationSpeed = 0.8;
             animatedBoy.play();
-            animatedBoy.visible = false;
+            //animatedBoy.visible = false;
             container.addChild(animatedBoy);
 
             animatedFly.position.set(0, 200);
@@ -50,14 +56,36 @@
             animatedFly.play();
             animatedFly.interactive = true;
             animatedFly.buttonMode = true;
-            animatedFly.visible = false;
+            //animatedFly.visible = false;
             container.addChild(animatedFly);
 
         }
+
+
+        function loadProgressHandler(loader, resource) {
+
+            if (loader.progress >= 99) {
+
+                loading.visible = false;
+                start.visible = false;
+                animatedFly.visible = true;
+                console.log(animatedFly.visible);
+                animatedBoy.visible = true;
+                app.ticker.add((delta) => {
+                    animatedBoy.position.x += 1 * delta;
+                    setTimeout(function() {
+                        animatedBoy.position.x += 0.2 * delta;
+                    }, 4000);
+                });
+            };
+        }
+
+
         //遊戲背景
+        var ratio = Math.min(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = window.innerWidth;
-        backgroundimg.height = window.innerHeight;
+        backgroundimg.width = ratio;
+        backgroundimg.height = ratio;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
 
@@ -100,7 +128,7 @@
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
         replay.scale.set(0.5, 0.5);
         replay.anchor.set(0.5);
-        replay.position.set(0, 200);
+        replay.position.set(0, 300);
         replay.visible = false;
         replay.interactive = true;
         replay.buttonMode = true;
@@ -137,24 +165,10 @@
             function startgame() {
                 start.visible = false;
                 loading.visible = true;
-                setTimeout(function() {
-                    loading.visible = false;
-                    animatedFly.visible = true;
-                    animatedBoy.visible = true;
-                    app.ticker.add((delta) => {
-                        animatedBoy.position.x += 0.03 * delta;
-                        setTimeout(function() {
-                            animatedBoy.position.x += 0.1 * delta;
-                        }, 4000);
-                    });
-                }, 3000)
-
-
-
 
             }
             //輸的條件
-            if (animatedBoy.position.x >= 525) {
+            if (animatedBoy.position.x >= 200) {
                 app.ticker.stop();
                 text_finish.text = "OH...\nYou Lose...";
                 finish.visible = true;
@@ -185,6 +199,7 @@
 
 
 
+
         //保持全螢幕
         window.addEventListener('resize', resize);
 
@@ -192,9 +207,10 @@
             app.renderer.resize(window.innerWidth, window.innerHeight);
             container.x = app.screen.width / 2;
             container.y = app.screen.height / 2;
-            /* container.pivot.x = container.width / 2;
-             container.pivot.y = container.height / 2;*/
+            /*container.pivot.x = container.width / 2;
+            container.pivot.y = container.height / 2;*/
             container.anchor = 0.5;
+
         }
         resize();
 

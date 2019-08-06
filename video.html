@@ -42,13 +42,13 @@
         //影片照片1
         const pic1 = PIXI.Sprite.from('牛郎織女2/遊戲背景/四格漫畫一、黃牛領牛郎相遇織女.png');
         pic1.anchor.set(0.5);
-        pic1.scale.set(0.3, 0.3);
+        pic1.scale.set(0.2, 0.2);
         pic1.position.set(-400, 0);
         container.addChild(pic1);
         //影片照片2
         const pic2 = PIXI.Sprite.from('牛郎織女2/遊戲背景/四格漫畫二、牛郎織女情投意合.png');
         pic2.anchor.set(0.5);
-        pic2.scale.set(0.3, 0.3);
+        pic2.scale.set(0.2, 0.2);
         pic2.position.set(-400, 0);
         pic2.visible = false;
         container.addChild(pic2);
@@ -56,7 +56,7 @@
         //影片照片3
         const pic3 = PIXI.Sprite.from('牛郎織女2/遊戲背景/四格漫畫三、天后知曉勃然大怒.png');
         pic3.anchor.set(0.5);
-        pic3.scale.set(0.3, 0.3);
+        pic3.scale.set(0.2, 0.2);
         pic3.position.set(-400, 0);
         pic3.visible = false;
         container.addChild(pic3);
@@ -64,7 +64,7 @@
         //影片照片4
         const pic4 = PIXI.Sprite.from('牛郎織女2/遊戲背景/四格漫畫四、牛郎織女被迫分開.png');
         pic4.anchor.set(0.5);
-        pic4.scale.set(0.3, 0.3);
+        pic4.scale.set(0.2, 0.2);
         pic4.position.set(-400, 0);
         pic4.visible = false;
         container.addChild(pic4);
@@ -73,8 +73,8 @@
 
             pic1.position.x += 5 * delta;
             pic1.position.y -= 3 * delta;
-            if (pic1.position.x >= -200) {
-                pic1.position.x = -200;
+            if (pic1.position.x >= -100) {
+                pic1.position.x = -100;
                 pic1.position.y = -150;
                 pic1.alpha -= 0.005 * delta;
                 if (pic1.alpha == 0) {
@@ -99,7 +99,7 @@
                     }, 3000);
                     if (pic3.position.x >= -200) {
                         pic3.position.x = -200;
-                        pic3.position.y = 150;
+                        pic3.position.y = 100;
                         pic3.alpha -= 0.005 * delta;
                         if (pic3.alpha == 0) {
                             pic3.visible = false;
@@ -111,7 +111,7 @@
                         }, 3000);
                         if (pic4.position.x >= 200) {
                             pic4.position.x = 200;
-                            pic4.position.y = 150;
+                            pic4.position.y = 100;
                             pic4.alpha -= 0.005 * delta;
                             if (pic4.alpha == 0) {
                                 pic4.visible = false;

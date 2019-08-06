@@ -29,7 +29,7 @@
         //動畫設定－主角和遊戲控制
         const girl = ["牛郎織女動圖/織女奔跑/織女拆圖合併-run_00.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_01.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_02.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_03.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_04.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_05.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_06.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_07.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_08.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_09.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_10.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_11.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_12.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_13.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_14.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_15.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_16.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_17.png"];
         const flybtn = ["牛郎織女2/飛行按鈕/喜鵲1.png", "牛郎織女2/飛行按鈕/喜鵲2.png", "牛郎織女2/飛行按鈕/喜鵲3.png", "牛郎織女2/飛行按鈕/喜鵲4.png", "牛郎織女2/飛行按鈕/喜鵲5.png"]
-        PIXI.loader.add(girl).add(flybtn).load(setup);
+        PIXI.loader.add(girl).add(flybtn).load(setup).on("progress", loadProgressHandler);
         const animatedGirl = PIXI.extras.AnimatedSprite.fromFrames(girl);
         const animatedFly = PIXI.extras.AnimatedSprite.fromFrames(flybtn);
 
@@ -40,7 +40,7 @@
             animatedGirl.position.set(-300, -200);
             animatedGirl.animationSpeed = 0.8;
             animatedGirl.play();
-            animatedGirl.visible = false;
+            //animatedGirl.visible = false;
             container.addChild(animatedGirl);
 
             animatedFly.position.set(0, 200);
@@ -50,15 +50,34 @@
             animatedFly.play();
             animatedFly.interactive = true;
             animatedFly.buttonMode = true;
-            animatedFly.visible = false;
+            // animatedFly.visible = false;
             container.addChild(animatedFly);
 
         }
 
+        function loadProgressHandler(loader, resource) {
+      
+            if (loader.progress >= 99) {
+
+                loading.visible = false;
+                start.visible = false;
+                animatedFly.visible = true;
+                console.log(animatedFly.visible);
+                animatedGirl.visible = true;
+                app.ticker.add((delta) => {
+                    animatedGirl.position.x -= 1 * delta;
+                    setTimeout(function() {
+                        animatedGirl.position.x -= 3 * delta;
+                    }, 4000);
+                });
+            };
+        }
+
         //遊戲背景
+        var ratio = Math.min(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = window.innerWidth;
-        backgroundimg.height = window.innerHeight;
+        backgroundimg.width = ratio;
+        backgroundimg.height = ratio;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
 
@@ -80,10 +99,10 @@
 
 
         //loading
-        var loading=new PIXI.Text("Loading...");
+        var loading = new PIXI.Text("Loading...");
         loading.anchor.set(0.5);
-        loading.position.set(0,0);
-        loading.visible=false;
+        loading.position.set(0, 0);
+        loading.visible = false;
         backgroundimg.addChild(loading);
 
         //遊戲結束顯示
@@ -102,7 +121,7 @@
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
         replay.scale.set(0.5, 0.5);
         replay.anchor.set(0.5);
-        replay.position.set(0, 400);
+        replay.position.set(0, 300);
         replay.visible = false;
         replay.interactive = true;
         replay.buttonMode = true;
@@ -133,25 +152,11 @@
 
             function startgame() {
                 start.visible = false;
-                loading.visible=true;
-                setTimeout(function() {
-                    animatedFly.visible = true;
-                    animatedGirl.visible = true;
-                     loading.visible=false;
-                    app.ticker.add((delta) => {
-                        animatedGirl.position.x -= 0.03 * delta;
-                        setTimeout(function() {
-                            animatedGirl.position.x -= 0.1 * delta;
-                        }, 4000);
-
-                    });
-                }, 3000);
-
-
+                loading.visible = true;
 
             }
             //贏的條件
-            if (animatedGirl.position.x >= 500) {
+            if (animatedGirl.position.x >= 300) {
                 app.ticker.stop();
                 finish.visible = true;
                 animatedFly.visible = false;
@@ -165,7 +170,7 @@
                 }
             }
             //輸的條件
-            if (animatedGirl.position.x < -500) {
+            if (animatedGirl.position.x < -400) {
                 app.ticker.stop();
                 text_finish.text = "OH...\nYou Lose...";
                 finish.visible = true;
