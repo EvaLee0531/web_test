@@ -97,19 +97,7 @@
         loading.scale.set(2,2);
         loading.position.set(0,0);
         backgroundimg.addChild(loading);
-        app.ticker.add(function(delta){
-            
-            if(loading.alpha==0)
-                {
-                    loading.alpha+=0.05*delta;
-                    
-                }
-            else if(loading.alpha>0){
-                loading.alpha-=0.05*delta;
-                
-            }
-        });
-
+        
 
         function loadProgressHandler(loader, resource) {
 
