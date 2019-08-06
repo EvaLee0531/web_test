@@ -40,13 +40,11 @@
 
 
         function setup() {
-            //const animatedBoy=PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
-            //animatedGirl=PIXI.extras.AnimatedSprite.fromFrames(girl);
+
             animatedBoy.scale.set(0.1);
-            animatedBoy.position.set(0, -200);
+            animatedBoy.position.set(200, -200);
             animatedBoy.animationSpeed = 0.8;
             animatedBoy.play();
-            //animatedBoy.visible = false;
             container.addChild(animatedBoy);
 
             animatedFly.position.set(0, 200);
@@ -56,7 +54,6 @@
             animatedFly.play();
             animatedFly.interactive = true;
             animatedFly.buttonMode = true;
-            //animatedFly.visible = false;
             container.addChild(animatedFly);
 
         }
@@ -69,12 +66,11 @@
                 loading.visible = false;
                 start.visible = false;
                 animatedFly.visible = true;
-                console.log(animatedFly.visible);
                 animatedBoy.visible = true;
                 app.ticker.add((delta) => {
                     animatedBoy.position.x += 1 * delta;
                     setTimeout(function() {
-                        animatedBoy.position.x += 0.2 * delta;
+                        animatedBoy.position.x += 4 * delta;
                     }, 4000);
                 });
             };
@@ -114,17 +110,20 @@
         loading.visible = false;
         backgroundimg.addChild(loading);
 
-        //遊戲結束提示訊息
-        var finish = new PIXI.Graphics();
-        finish.beginFill(0xDDDDDD);
-        finish.drawCircle(0, 0, 100);
-        container.addChild(finish);
-        var text_finish = new PIXI.Text("You Found Me!");
-        text_finish.pivot.x = finish.width / 2;
-        text_finish.pivot.y = finish.height / 2;
-        text_finish.position.set(25, 75);
-        finish.addChild(text_finish);
-        finish.visible = false;
+              //遊戲結束顯示
+          const style = new PIXI.TextStyle({
+            fontVariant: "Noto Sans TC",
+            fontWeight: "bold",
+            fill: "#8C0044",
+        });
+     
+        var finish = new PIXI.Text("寶\t貝\t！\t你\t找\t到\t我\t了",style);
+        finish.anchor.set(0.5);
+        finish.x = 0;
+        finish.y = 0;
+        finish.scale.set(5, 5);
+        finish.visible=false;
+        backgroundimg.addChild(finish);
         //遊戲重新開始按鈕
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
         replay.scale.set(0.5, 0.5);
@@ -142,10 +141,6 @@
 
         backgroundimg.addChild(replay);
 
-
-
-
-
         //控制動畫
         app.ticker.add((delta) => {
             animatedFly.on('pointertap', onClick);
@@ -154,7 +149,7 @@
 
             function onClick() {
 
-                animatedBoy.position.x -= 0.2 * delta;
+                animatedBoy.position.x -= 0.1 * delta;
                 setTimeout(function() {
 
                     app.ticker.stop();
@@ -169,9 +164,9 @@
 
             }
             //輸的條件
-            if (animatedBoy.position.x >= 200) {
+            if (animatedBoy.position.x >=250) {
                 app.ticker.stop();
-                text_finish.text = "OH...\nYou Lose...";
+                finish.text = "噢\t.\t.\t.\t寶\t貝\t我\t們\t明\t年\t見";
                 finish.visible = true;
                 replay.visible = true;
                 animatedFly.visible = false;

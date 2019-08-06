@@ -12,7 +12,6 @@
         margin: 0 auto;
         overflow: hidden;
     }
-
 </style>
 
 <body>
@@ -91,23 +90,36 @@
 
 
         }
-           //loading
+        //loading
         var loading = new PIXI.Text("Loading...");
         loading.anchor.set(0.5);
-        loading.scale.set(2,2);
-        loading.position.set(0,0);
+        loading.scale.set(2, 2);
+        loading.position.set(0, 0);
         backgroundimg.addChild(loading);
-        
+
 
         function loadProgressHandler(loader, resource) {
+            if (loader.progress >= 99) {
+                loading.visible = false;
+            }
+        };
+        const style = new PIXI.TextStyle({
+            fontVariant: "Noto Sans TC",
+            fontWeight: "bold",
+            fill: "#00AA88",
+            dropShadow: true,
+            dropShadowAngle: 0.4,
+            dropShadowBlur: 2,
+            dropShadowDistance: 2,
+        });
 
-            console.log(resource.name+","+loader.progress+"%");
-            if(loader.progress>=99)
-                {
-                    loading.visible=false;
-                }
-        }
-     
+        var title = new PIXI.Text("選\t擇\t角\t色", style);
+        title.anchor.set(0.5);
+        title.x = -50;
+        title.y = -450;
+        title.scale.set(5, 5);
+        backgroundimg.addChild(title);
+
         //保持全螢幕
         window.addEventListener('resize', resize);
 
@@ -118,9 +130,6 @@
             container.anchor = 0.5;
         }
         resize();
-
     </script>
 
-</body>
-
-</html>
+</body></html>

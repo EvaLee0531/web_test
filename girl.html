@@ -34,8 +34,7 @@
         const animatedFly = PIXI.extras.AnimatedSprite.fromFrames(flybtn);
 
         function setup() {
-            //const animatedBoy=PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
-            //animatedGirl=PIXI.extras.AnimatedSprite.fromFrames(girl);
+
             animatedGirl.scale.set(0.1);
             animatedGirl.position.set(-300, -200);
             animatedGirl.animationSpeed = 0.8;
@@ -60,12 +59,11 @@
                 loading.visible = false;
                 start.visible = false;
                 animatedFly.visible = true;
-                console.log(animatedFly.visible);
                 animatedGirl.visible = true;
                 app.ticker.add((delta) => {
                     animatedGirl.position.x -= 1 * delta;
                     setTimeout(function() {
-                        animatedGirl.position.x -= 3 * delta;
+                        animatedGirl.position.x -= 4 * delta;
                     }, 4000);
                 });
             };
@@ -105,16 +103,19 @@
         backgroundimg.addChild(loading);
 
         //遊戲結束顯示
-        var finish = new PIXI.Graphics();
-        finish.beginFill(0xDDDDDD);
-        finish.drawCircle(0, 0, 100);
-        container.addChild(finish);
-        var text_finish = new PIXI.Text("You Found Me!");
-        text_finish.position.set(25, 75);
-        text_finish.pivot.x = finish.width / 2;
-        text_finish.pivot.y = finish.height / 2;
-        finish.addChild(text_finish);
-        finish.visible = false;
+          const style = new PIXI.TextStyle({
+            fontVariant: "Noto Sans TC",
+            fontWeight: "bold",
+            fill: "#8C0044",
+        });
+     
+        var finish = new PIXI.Text("寶\t貝\t！\t你\t找\t到\t我\t了",style);
+        finish.anchor.set(0.5);
+        finish.x = 0;
+        finish.y = 0;
+        finish.scale.set(5, 5);
+        finish.visible=false;
+        backgroundimg.addChild(finish);
 
         //遊戲重新開始按鈕
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
@@ -140,7 +141,7 @@
 
             function onClick() {
 
-                animatedGirl.position.x += 0.2 * delta;
+                animatedGirl.position.x += 0.1 * delta;
                 setTimeout(function() {
 
                     app.ticker.stop();
@@ -171,7 +172,7 @@
             //輸的條件
             if (animatedGirl.position.x < -400) {
                 app.ticker.stop();
-                text_finish.text = "OH...\nYou Lose...";
+                finish.text = "噢\t.\t.\t.\t見\t不\t到\t我\t的\t寶\t貝\t了";
                 finish.visible = true;
                 replay.visible = true;
 

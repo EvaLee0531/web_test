@@ -19,8 +19,8 @@
 
     <script>
         var app = new PIXI.Application({
-            width:1920,
-            height:1080,
+            width: 1920,
+            height: 1080,
             antialias: true,
             forceCanvas: false
         }); //設定圖層
@@ -28,10 +28,10 @@
 
         var container = new PIXI.Container();
         app.stage.addChild(container);
-        
+
         //遊戲背景
-        var ratio = Math.min(window.innerWidth , window.innerHeight);
-        var backgroundimg=PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
+        var ratio = Math.min(window.innerWidth, window.innerHeight);
+        var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
         backgroundimg.width = ratio;
         backgroundimg.height = ratio;
         backgroundimg.anchor.set(0.5);
@@ -40,29 +40,31 @@
 
         //注意事項
         var mention = new PIXI.Graphics();
-        mention.beginFill(0xDDDDDD);
-        mention.alpha = 0.5;
-        mention.anchor=0.5;
-        mention.drawRect(-950,-550,1920, 1080);
+        mention.beginFill(0xFFFFFF);
+        mention.alpha = 0.3;
+        mention.anchor = 0.5;
+        mention.drawRect(-950, -550, 1920, 1080);
         mention.endFill();
         backgroundimg.addChild(mention);
 
-        var mention_text = new PIXI.Text("Please copy the path to Chrome or Safari");
-        mention_text.x = -200;
-        mention_text.y = 50;
+        const style = new PIXI.TextStyle({
+            fontVariant: "Noto Sans TC",
+            fontWeight: "bold",
+            fill: "#CC0000",
+        });
+        var mention_text = new PIXI.Text("請\t將\t網\t址\t複\t製\t到\tChrome 開\t啟\n\n點\t任 一\t處\t進\t入\t遊\t戲\t開\t始\t畫\t面",style);
         
-        
-        mention.addChild(mention_text);
-
+        mention_text.x = -250;
+        mention_text.y = -50;
+        mention_text.scale.set(3, 3);
+        backgroundimg.addChild(mention_text);
         mention.interactive = true;
-    
-
         mention.on("pointerdown", close_mention);
 
         function close_mention() {
-          
+
             location.href = "start.html";
-            
+
         }
 
         //保持遊戲全螢幕
@@ -72,9 +74,7 @@
             app.renderer.resize(window.innerWidth, window.innerHeight);
             container.x = app.screen.width / 2;
             container.y = app.screen.height / 2;
-           /* container.pivot.x = container.width / 2;
-            container.pivot.y = container.height / 2;*/
-           container.anchor=0.5;
+            container.anchor = 0.5;
         }
         resize();
 
