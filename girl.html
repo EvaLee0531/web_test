@@ -12,6 +12,7 @@
         margin: 0 auto;
         overflow: hidden;
     }
+
 </style>
 
 <body>
@@ -119,18 +120,18 @@
         backgroundimg.addChild(replay);
 
         //遊戲結果
-        var lose_img =new PIXI.Sprite.from("帥奴隸做的字/22-02.png");
+        var lose_img = new PIXI.Sprite.from("帥奴隸做的字/22-02-02.png");
         lose_img.anchor.set(0.5);
         lose_img.scale.set(0.2, 0.2);
         lose_img.position.set(0, 0);
         lose_img.visible = false;
         backgroundimg.addChild(lose_img);
-         var win_img=new PIXI.Sprite.from("帥奴隸做的字/22-03.png");
-         win_img.anchor.set(0.5);
-         win_img.scale.set(0.2,0.2);
-         win_img.visible=false;
-         backgroundimg.addChild(win_img);
-         
+        var win_img = new PIXI.Sprite.from("帥奴隸做的字/22-03.png");
+        win_img.anchor.set(0.5);
+        win_img.scale.set(0.2, 0.2);
+        win_img.visible = false;
+        backgroundimg.addChild(win_img);
+
         //控制動畫
         app.ticker.add((delta) => {
             animatedFly.on('pointertap', onClick);
@@ -157,14 +158,14 @@
                 app.ticker.stop();
                 animatedFly.visible = false;
                 animatedGirl.visible = false;
-                win_img.visible=true;
+                win_img.visible = true;
                 replay.visible = true;
                 replay.on('pointertap', win);
 
                 function win() {
                     location.href = 'start.html';
                 }
-                
+
             }
             //輸的條件
             if (animatedGirl.position.x < -400) {
@@ -179,7 +180,7 @@
                     location.href = 'start.html';
                 }
 
-               
+
             }
 
         });
@@ -196,8 +197,11 @@
             container.anchor = 0.5;
         }
         resize();
+
     </script>
 
 
 
-</body></html>
+</body>
+
+</html>

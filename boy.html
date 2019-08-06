@@ -106,12 +106,12 @@
         var loading = new PIXI.Text("Loading...");
         loading.anchor.set(0.5);
         loading.position.set(0, 0);
-        loading.scale.set(2,2);
+        loading.scale.set(2, 2);
         loading.visible = false;
         backgroundimg.addChild(loading);
 
-              //遊戲結束顯示
-          const style = new PIXI.TextStyle({
+        //遊戲結束顯示
+        const style = new PIXI.TextStyle({
             fontVariant: "Noto Sans TC",
             fill: "#8C0044",
         });
@@ -132,16 +132,16 @@
         }
 
         backgroundimg.addChild(replay);
-        
-        var lose_img=new PIXI.Sprite.from("帥奴隸做的字/22-02.png");
+
+        var lose_img = new PIXI.Sprite.from("帥奴隸做的字/22-02-02.png");
         lose_img.anchor.set(0.5);
-        lose_img.scale.set(0.2,0.2);
-        lose_img.visible=false;
+        lose_img.scale.set(0.2, 0.2);
+        lose_img.visible = false;
         backgroundimg.addChild(lose_img);
-            var win_img=new PIXI.Sprite.from("帥奴隸做的字/22-03.png");
+        var win_img = new PIXI.Sprite.from("帥奴隸做的字/22-03.png");
         win_img.anchor.set(0.5);
-        win_img.scale.set(0.2,0.2);
-        win_img.visible=false;
+        win_img.scale.set(0.2, 0.2);
+        win_img.visible = false;
         backgroundimg.addChild(win_img);
 
         //控制動畫
@@ -167,12 +167,12 @@
 
             }
             //輸的條件
-            if (animatedBoy.position.x >=250) {
-     
-                
+            if (animatedBoy.position.x >= 250) {
+
+
                 app.ticker.stop();
                 replay.visible = true;
-                lose_img.visible=true;
+                lose_img.visible = true;
                 animatedFly.visible = false;
                 animatedBoy.visible = false;
                 replay.on('pointertap', lose);
@@ -184,7 +184,7 @@
             //贏的條件
             if (animatedBoy.position.x < -300) {
                 app.ticker.stop();
-                win_img.visible=true;
+                win_img.visible = true;
                 replay.visible = true;
                 animatedFly.visible = false;
                 animatedBoy.visible = false;
