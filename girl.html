@@ -12,7 +12,6 @@
         margin: 0 auto;
         overflow: hidden;
     }
-
 </style>
 
 <body>
@@ -53,7 +52,7 @@
         }
 
         function loadProgressHandler(loader, resource) {
-      
+
             if (loader.progress >= 99) {
 
                 loading.visible = false;
@@ -77,7 +76,6 @@
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
 
-
         //開始按鈕
         var start = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
         start.anchor.set(0.5);
@@ -98,24 +96,10 @@
         var loading = new PIXI.Text("Loading...");
         loading.anchor.set(0.5);
         loading.position.set(0, 0);
-        loading.scale.set(2,2);
+        loading.scale.set(2, 2);
         loading.visible = false;
         backgroundimg.addChild(loading);
 
-        //遊戲結束顯示
-          const style = new PIXI.TextStyle({
-            fontVariant: "Noto Sans TC",
-            fill: "#8C0044",
-           
-        });
-     
-        var finish = new PIXI.Text("寶\t貝\t！\t你\t找\t到\t我\t了",style);
-        finish.anchor.set(0.5);
-        finish.x = 0;
-        finish.y = 0;
-        finish.scale.set(5, 5);
-        finish.visible=false;
-        backgroundimg.addChild(finish);
 
         //遊戲重新開始按鈕
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
@@ -134,6 +118,19 @@
 
         backgroundimg.addChild(replay);
 
+        //遊戲結果
+        var lose_img =new PIXI.Sprite.from("帥奴隸做的字/22-02.png");
+        lose_img.anchor.set(0.5);
+        lose_img.scale.set(0.2, 0.2);
+        lose_img.position.set(0, 0);
+        lose_img.visible = false;
+        backgroundimg.addChild(lose_img);
+         var win_img=new PIXI.Sprite.from("帥奴隸做的字/22-03.png");
+         win_img.anchor.set(0.5);
+         win_img.scale.set(0.2,0.2);
+         win_img.visible=false;
+         backgroundimg.addChild(win_img);
+         
         //控制動畫
         app.ticker.add((delta) => {
             animatedFly.on('pointertap', onClick);
@@ -158,31 +155,31 @@
             //贏的條件
             if (animatedGirl.position.x >= 300) {
                 app.ticker.stop();
-                finish.visible = true;
                 animatedFly.visible = false;
                 animatedGirl.visible = false;
+                win_img.visible=true;
                 replay.visible = true;
-
                 replay.on('pointertap', win);
 
                 function win() {
                     location.href = 'start.html';
                 }
+                
             }
             //輸的條件
             if (animatedGirl.position.x < -400) {
                 app.ticker.stop();
-                finish.text = "噢\t.\t.\t.\t見\t不\t到\t我\t的\t寶\t貝\t了";
-                finish.visible = true;
                 replay.visible = true;
-
                 animatedFly.visible = false;
                 animatedGirl.visible = false;
+                lose_img.visible = true;
                 replay.on('pointertap', lose);
 
                 function lose() {
                     location.href = 'start.html';
                 }
+
+               
             }
 
         });
@@ -199,11 +196,8 @@
             container.anchor = 0.5;
         }
         resize();
-
     </script>
 
 
 
-</body>
-
-</html>
+</body></html>

@@ -115,14 +115,7 @@
             fontVariant: "Noto Sans TC",
             fill: "#8C0044",
         });
-     
-        var finish = new PIXI.Text("寶\t貝\t！\t你\t找\t到\t我\t了",style);
-        finish.anchor.set(0.5);
-        finish.x = 0;
-        finish.y = 0;
-        finish.scale.set(5, 5);
-        finish.visible=false;
-        backgroundimg.addChild(finish);
+
         //遊戲重新開始按鈕
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
         replay.scale.set(0.5, 0.5);
@@ -139,6 +132,17 @@
         }
 
         backgroundimg.addChild(replay);
+        
+        var lose_img=new PIXI.Sprite.from("帥奴隸做的字/22-02.png");
+        lose_img.anchor.set(0.5);
+        lose_img.scale.set(0.2,0.2);
+        lose_img.visible=false;
+        backgroundimg.addChild(lose_img);
+            var win_img=new PIXI.Sprite.from("帥奴隸做的字/22-03.png");
+        win_img.anchor.set(0.5);
+        win_img.scale.set(0.2,0.2);
+        win_img.visible=false;
+        backgroundimg.addChild(win_img);
 
         //控制動畫
         app.ticker.add((delta) => {
@@ -164,10 +168,11 @@
             }
             //輸的條件
             if (animatedBoy.position.x >=250) {
+     
+                
                 app.ticker.stop();
-                finish.text = "噢\t.\t.\t.\t寶\t貝\t我\t們\t明\t年\t見";
-                finish.visible = true;
                 replay.visible = true;
+                lose_img.visible=true;
                 animatedFly.visible = false;
                 animatedBoy.visible = false;
                 replay.on('pointertap', lose);
@@ -179,7 +184,7 @@
             //贏的條件
             if (animatedBoy.position.x < -300) {
                 app.ticker.stop();
-                finish.visible = true;
+                win_img.visible=true;
                 replay.visible = true;
                 animatedFly.visible = false;
                 animatedBoy.visible = false;

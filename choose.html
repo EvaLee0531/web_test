@@ -32,6 +32,12 @@
         backgroundimg.height = ratio;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
+        
+        var title=PIXI.Sprite.fromImage("帥奴隸做的字/22_工作區域 1.png");
+        title.anchor.set(0.5);
+        title.scale.set(0.3,0.3);
+        title.position.set(0,-450);
+        backgroundimg.addChild(title);
 
         //牛郎
         const boyFrames = ["牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_00.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_01.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_02.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_03.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_04.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_05.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_06.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_07.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_08.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_09.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_10.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_11.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_12.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_13.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_14.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_15.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_16.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_17.png"];
@@ -44,9 +50,9 @@
             let resources = PIXI.loader.resources;
             animatedBoy = PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
             animatedBoy.animationSpeed = 0.5;
-            animatedBoy.scale.set(0.2, 0.2);
+            animatedBoy.scale.set(0.3, 0.3);
             animatedBoy.anchor.set(0.5);
-            animatedBoy.position.set(200, 0);
+            animatedBoy.position.set(300, 0);
             animatedBoy.play();
             backgroundimg.addChild(animatedBoy);
             animatedBoy.interactive = true;
@@ -67,9 +73,9 @@
 
             animatedGirl = PIXI.extras.AnimatedSprite.fromFrames(girlFrames);
             animatedGirl.animationSpeed = 0.5;
-            animatedGirl.scale.set(0.2, 0.2);
+            animatedGirl.scale.set(0.3, 0.3);
             animatedGirl.anchor.set(0.5);
-            animatedGirl.position.set(-200, 0);
+            animatedGirl.position.set(-300, 0);
             animatedGirl.play();
             backgroundimg.addChild(animatedGirl);
             animatedGirl.interactive = true;
@@ -103,19 +109,7 @@
                 loading.visible = false;
             }
         };
-        const style = new PIXI.TextStyle({
-            fontVariant: "Noto Sans TC",
-            fontWeight: "bold",
-            fill: "#CC0000",
-          
-        });
 
-        var title = new PIXI.Text("選\t擇\t角\t色", style);
-        title.anchor.set(0.5);
-        title.x = -50;
-        title.y = -450;
-        title.scale.set(5, 5);
-        backgroundimg.addChild(title);
 
         //保持全螢幕
         window.addEventListener('resize', resize);
