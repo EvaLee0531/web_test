@@ -16,203 +16,210 @@
 </style>
 
 <body>
-    <script>
-        var app = new PIXI.Application({
-            width: 1920,
-            height: 1080,
-            antialias: true,
-            forceCanvas: false
-        }); //設定圖層
-        document.body.appendChild(app.view); //顯示
-        var container = new PIXI.Container();
-        container.width = app.screen.width;
-        container.height = app.screen.height;
-        app.stage.addChild(container);
+    <iframe src="play_background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+    </iframe>
+        <audio src="jump02.mp3" id="buttonclick"></audio>
+        <script>
+            var app = new PIXI.Application({
+                width: 1920,
+                height: 1080,
+                antialias: true,
+                forceCanvas: false
+            }); //設定圖層
+            document.body.appendChild(app.view); //顯示
+            var container = new PIXI.Container();
+            container.width = app.screen.width;
+            container.height = app.screen.height;
+            app.stage.addChild(container);
 
 
-        const boyFrames = ["牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_00.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_01.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_02.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_03.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_04.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_05.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_06.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_07.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_08.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_09.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_10.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_11.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_12.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_13.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_14.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_15.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_16.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_17.png"];
-        const flybtn = ["牛郎織女2/飛行按鈕/喜鵲1.png", "牛郎織女2/飛行按鈕/喜鵲2.png", "牛郎織女2/飛行按鈕/喜鵲3.png", "牛郎織女2/飛行按鈕/喜鵲4.png", "牛郎織女2/飛行按鈕/喜鵲5.png"];
+            const boyFrames = ["牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_00.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_01.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_02.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_03.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_04.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_05.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_06.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_07.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_08.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_09.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_10.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_11.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_12.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_13.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_14.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_15.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_16.png", "牛郎織女動圖/牛郎奔跑/牛郎拆圖合併-run_17.png"];
+            const flybtn = ["牛郎織女2/飛行按鈕/喜鵲1.png", "牛郎織女2/飛行按鈕/喜鵲2.png", "牛郎織女2/飛行按鈕/喜鵲3.png", "牛郎織女2/飛行按鈕/喜鵲4.png", "牛郎織女2/飛行按鈕/喜鵲5.png"];
 
-        const animatedBoy = PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
-        const animatedFly = PIXI.extras.AnimatedSprite.fromFrames(flybtn);
-        PIXI.loader.add(boyFrames).add(flybtn).load(setup).on("progress", loadProgressHandler);
-
-
-
-        function setup() {
-
-            animatedBoy.scale.set(0.1);
-            animatedBoy.position.set(200, -200);
-            animatedBoy.animationSpeed = 0.8;
-            animatedBoy.play();
-            container.addChild(animatedBoy);
-
-            animatedFly.position.set(0, 200);
-            animatedFly.animationSpeed = 0.5;
-            animatedFly.scale.set(0.2, 0.2);
-            animatedFly.anchor.set(0.5);
-            animatedFly.play();
-            animatedFly.interactive = true;
-            animatedFly.buttonMode = true;
-            container.addChild(animatedFly);
-
-        }
+            const animatedBoy = PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
+            const animatedFly = PIXI.extras.AnimatedSprite.fromFrames(flybtn);
+            PIXI.loader.add(boyFrames).add(flybtn).load(setup).on("progress", loadProgressHandler);
 
 
-        function loadProgressHandler(loader, resource) {
 
-            if (loader.progress >= 99) {
+            function setup() {
 
-                loading.visible = false;
-                start.visible = false;
-                animatedFly.visible = true;
-                animatedBoy.visible = true;
-                app.ticker.add((delta) => {
-                    animatedBoy.position.x += 1 * delta;
+                animatedBoy.scale.set(0.1);
+                animatedBoy.position.set(200, -200);
+                animatedBoy.animationSpeed = 0.8;
+                animatedBoy.play();
+                container.addChild(animatedBoy);
+
+                animatedFly.position.set(0, 200);
+                animatedFly.animationSpeed = 0.5;
+                animatedFly.scale.set(0.2, 0.2);
+                animatedFly.anchor.set(0.5);
+                animatedFly.play();
+                animatedFly.interactive = true;
+                animatedFly.buttonMode = true;
+                container.addChild(animatedFly);
+
+            }
+
+
+            function loadProgressHandler(loader, resource) {
+
+                if (loader.progress >= 99) {
+
+                    loading.visible = false;
+                    start.visible = false;
+                    animatedFly.visible = true;
+                    animatedBoy.visible = true;
+                    app.ticker.add((delta) => {
+                        animatedBoy.position.x += 1 * delta;
+                        setTimeout(function() {
+                            animatedBoy.position.x += 4 * delta;
+                        }, 4000);
+                    });
+                };
+            }
+
+
+            //遊戲背景
+            var ratio = Math.min(window.innerWidth, window.innerHeight);
+            var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
+            backgroundimg.width = ratio;
+            backgroundimg.height = ratio;
+            backgroundimg.anchor.set(0.5);
+            container.addChild(backgroundimg);
+
+
+
+            //開始按鈕
+            var start = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
+            start.anchor.set(0.5);
+            start.scale.set(0.5, 0.5);
+            start.position.set(0, 200);
+            start.buttonMode = true;
+            start.interactive = true;
+            backgroundimg.addChild(start);
+            start.mouseover = function(mouseData) {
+                this.alpha = 0.8;
+            }
+            start.mouseout = function(mouseData) {
+                this.alpha = 1;
+            }
+
+            //loading
+            var loading = new PIXI.Text("Loading...");
+            loading.anchor.set(0.5);
+            loading.position.set(0, 0);
+            loading.scale.set(2, 2);
+            loading.visible = false;
+            backgroundimg.addChild(loading);
+
+            //遊戲結束顯示
+            const style = new PIXI.TextStyle({
+                fontVariant: "Noto Sans TC",
+                fill: "#8C0044",
+            });
+
+            //遊戲重新開始按鈕
+            var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
+            replay.scale.set(0.5, 0.5);
+            replay.anchor.set(0.5);
+            replay.position.set(0, 300);
+            replay.visible = false;
+            replay.interactive = true;
+            replay.buttonMode = true;
+            replay.mouseover = function(mouseData) {
+                this.alpha = 0.8;
+            }
+            replay.mouseout = function(mouseData) {
+                this.alpha = 1;
+            }
+
+            backgroundimg.addChild(replay);
+
+            var lose_img = new PIXI.Sprite.from("帥奴隸做的字/22-02.png");
+            lose_img.anchor.set(0.5);
+            lose_img.scale.set(0.4, 0.4);
+            lose_img.visible = false;
+            backgroundimg.addChild(lose_img);
+            var win_img = new PIXI.Sprite.from("帥奴隸做的字/22-03.png");
+            win_img.anchor.set(0.5);
+            win_img.scale.set(0.2, 0.2);
+            win_img.visible = false;
+            backgroundimg.addChild(win_img);
+
+            //控制動畫
+            app.ticker.add((delta) => {
+                animatedFly.on('pointertap', onClick);
+                start.on('pointertap', startgame);
+
+
+                function onClick() {
+                   buttonclick.play();
+                    animatedBoy.position.x -= 0.1 * delta;
                     setTimeout(function() {
-                        animatedBoy.position.x += 4 * delta;
-                    }, 4000);
-                });
-            };
-        }
+                        button
+                        app.ticker.stop();
+                        replay.visible = true;
+                        animatedFly.visible = false;
+                        animatedBoy.visible = false;
+                        lose_img.visible = true;
 
+                    }, 30000);
 
-        //遊戲背景
-        var ratio = Math.min(window.innerWidth, window.innerHeight);
-        var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = ratio;
-        backgroundimg.height = ratio;
-        backgroundimg.anchor.set(0.5);
-        container.addChild(backgroundimg);
+                }
 
+                function startgame() {
+                    start.visible = false;
+                    loading.visible = true;
 
+                }
+                //輸的條件
+                if (animatedBoy.position.x >= 250) {
 
-        //開始按鈕
-        var start = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
-        start.anchor.set(0.5);
-        start.scale.set(0.5, 0.5);
-        start.position.set(0, 200);
-        start.buttonMode = true;
-        start.interactive = true;
-        backgroundimg.addChild(start);
-        start.mouseover = function(mouseData) {
-            this.alpha = 0.8;
-        }
-        start.mouseout = function(mouseData) {
-            this.alpha = 1;
-        }
-
-        //loading
-        var loading = new PIXI.Text("Loading...");
-        loading.anchor.set(0.5);
-        loading.position.set(0, 0);
-        loading.scale.set(2, 2);
-        loading.visible = false;
-        backgroundimg.addChild(loading);
-
-        //遊戲結束顯示
-        const style = new PIXI.TextStyle({
-            fontVariant: "Noto Sans TC",
-            fill: "#8C0044",
-        });
-
-        //遊戲重新開始按鈕
-        var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
-        replay.scale.set(0.5, 0.5);
-        replay.anchor.set(0.5);
-        replay.position.set(0, 300);
-        replay.visible = false;
-        replay.interactive = true;
-        replay.buttonMode = true;
-        replay.mouseover = function(mouseData) {
-            this.alpha = 0.8;
-        }
-        replay.mouseout = function(mouseData) {
-            this.alpha = 1;
-        }
-
-        backgroundimg.addChild(replay);
-
-        var lose_img = new PIXI.Sprite.from("帥奴隸做的字/22-02.png");
-        lose_img.anchor.set(0.5);
-        lose_img.scale.set(0.4, 0.4);
-        lose_img.visible = false;
-        backgroundimg.addChild(lose_img);
-        var win_img = new PIXI.Sprite.from("帥奴隸做的字/22-03.png");
-        win_img.anchor.set(0.5);
-        win_img.scale.set(0.2, 0.2);
-        win_img.visible = false;
-        backgroundimg.addChild(win_img);
-
-        //控制動畫
-        app.ticker.add((delta) => {
-            animatedFly.on('pointertap', onClick);
-            start.on('pointertap', startgame);
-
-
-            function onClick() {
-
-                animatedBoy.position.x -= 0.1 * delta;
-                setTimeout(function() {
 
                     app.ticker.stop();
+                    replay.visible = true;
+                    lose_img.visible = true;
+                    animatedFly.visible = false;
+                    animatedBoy.visible = false;
+                    replay.on('pointertap', lose);
 
-                }, 30000);
-
-            }
-
-            function startgame() {
-                start.visible = false;
-                loading.visible = true;
-
-            }
-            //輸的條件
-            if (animatedBoy.position.x >= 250) {
-
-
-                app.ticker.stop();
-                replay.visible = true;
-                lose_img.visible = true;
-                animatedFly.visible = false;
-                animatedBoy.visible = false;
-                replay.on('pointertap', lose);
-
-                function lose() {
-                    location.href = 'start.html';
+                    function lose() {
+                        location.href = 'start.html';
+                    }
                 }
-            }
-            //贏的條件
-            if (animatedBoy.position.x < -300) {
-                app.ticker.stop();
-                win_img.visible = true;
-                replay.visible = true;
-                animatedFly.visible = false;
-                animatedBoy.visible = false;
-                replay.on('pointertap', win);
+                //贏的條件
+                if (animatedBoy.position.x < -300) {
+                    app.ticker.stop();
+                    win_img.visible = true;
+                    replay.visible = true;
+                    animatedFly.visible = false;
+                    animatedBoy.visible = false;
+                    replay.on('pointertap', win);
 
-                function win() {
-                    location.href = 'start.html';
+                    function win() {
+                        location.href = 'start.html';
+                    }
                 }
+
+            });
+
+
+
+
+            //保持全螢幕
+            window.addEventListener('resize', resize);
+
+            function resize() {
+                app.renderer.resize(window.innerWidth, window.innerHeight);
+                container.x = app.screen.width / 2;
+                container.y = app.screen.height / 2;
+                container.anchor = 0.5;
+
             }
+            resize();
 
-        });
-
-
-
-
-        //保持全螢幕
-        window.addEventListener('resize', resize);
-
-        function resize() {
-            app.renderer.resize(window.innerWidth, window.innerHeight);
-            container.x = app.screen.width / 2;
-            container.y = app.screen.height / 2;
-            container.anchor = 0.5;
-
-        }
-        resize();
-
-    </script>
+        </script>
 
 
 

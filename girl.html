@@ -16,6 +16,9 @@
 </style>
 
 <body>
+    <iframe src="play_background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+    </iframe>
+    <audio src="jump02.mp3" id="buttonclick"></audio>
     <script>
         var app = new PIXI.Application({
             antialias: true,
@@ -138,11 +141,15 @@
             start.on('pointertap', startgame);
 
             function onClick() {
-
+                buttonclick.play();
                 animatedGirl.position.x += 0.1 * delta;
                 setTimeout(function() {
 
                     app.ticker.stop();
+                    replay.visible = true;
+                    animatedFly.visible = false;
+                    animatedGirl.visible = false;
+                    lose_img.visible = true;
 
                 }, 30000);
 
