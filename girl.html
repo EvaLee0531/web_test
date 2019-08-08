@@ -31,10 +31,14 @@
 
         //動畫設定－主角和遊戲控制
         const girl = ["牛郎織女動圖/織女奔跑/織女拆圖合併-run_00.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_01.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_02.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_03.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_04.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_05.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_06.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_07.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_08.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_09.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_10.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_11.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_12.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_13.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_14.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_15.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_16.png", "牛郎織女動圖/織女奔跑/織女拆圖合併-run_17.png"];
-        const flybtn = ["牛郎織女2/飛行按鈕/喜鵲1.png", "牛郎織女2/飛行按鈕/喜鵲2.png", "牛郎織女2/飛行按鈕/喜鵲3.png", "牛郎織女2/飛行按鈕/喜鵲4.png", "牛郎織女2/飛行按鈕/喜鵲5.png"]
-        PIXI.loader.add(girl).add(flybtn).load(setup).on("progress", loadProgressHandler);
+        const flybtn = ["牛郎織女2/飛行按鈕/喜鵲1.png", "牛郎織女2/飛行按鈕/喜鵲2.png", "牛郎織女2/飛行按鈕/喜鵲3.png", "牛郎織女2/飛行按鈕/喜鵲4.png", "牛郎織女2/飛行按鈕/喜鵲5.png"];
+        const boy = ["牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_00.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_01.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_02.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_03.png",
+            "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_04.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_05.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_06.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_07.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_08.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_09.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_10.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_11.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_12.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_13.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_14.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_15.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_16.png", "牛郎織女動圖/牛郎奔跑前/牛郎拆圖合併-奔跑_17.png"
+        ];
+        PIXI.loader.add(girl).add(flybtn).add(boy).load(setup).on("progress", loadProgressHandler);
         const animatedGirl = PIXI.extras.AnimatedSprite.fromFrames(girl);
         const animatedFly = PIXI.extras.AnimatedSprite.fromFrames(flybtn);
+        const animatedBoy = PIXI.extras.AnimatedSprite.fromFrames(boy);
 
         function setup() {
 
@@ -53,6 +57,12 @@
             animatedFly.buttonMode = true;
             container.addChild(animatedFly);
 
+            animatedBoy.scale.set(0.1);
+            animatedBoy.animationSpeed = 0.8;
+            animatedBoy.play();
+            animatedBoy.position.set(220, -200);
+            container.addChild(animatedBoy);
+
         }
 
         function loadProgressHandler(loader, resource) {
@@ -63,6 +73,7 @@
                 start.visible = false;
                 animatedFly.visible = true;
                 animatedGirl.visible = true;
+                animatedBoy.visible = true;
                 app.ticker.add((delta) => {
                     animatedGirl.position.x -= 1 * delta;
                     setTimeout(function() {
@@ -161,10 +172,9 @@
 
             }
             //贏的條件
-            if (animatedGirl.position.x >= 300) {
+            if (animatedGirl.position.x >= 120) {
                 app.ticker.stop();
                 animatedFly.visible = false;
-                animatedGirl.visible = false;
                 win_img.visible = true;
                 replay.visible = true;
                 replay.on('pointertap', win);
@@ -179,7 +189,6 @@
                 app.ticker.stop();
                 replay.visible = true;
                 animatedFly.visible = false;
-                animatedGirl.visible = false;
                 lose_img.visible = true;
                 replay.on('pointertap', lose);
 

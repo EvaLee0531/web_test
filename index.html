@@ -16,7 +16,8 @@
 </style>
 
 <body>
-
+    <iframe src="background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+    </iframe>
     <script>
         var app = new PIXI.Application({
             width: 1920,
@@ -36,7 +37,41 @@
         backgroundimg.height = ratio;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
+        //logo
+        var logo = new PIXI.Sprite.from("牛郎織女2/遊戲背景/LOGO.png");
+        logo.anchor.set(0.5);
+        logo.position.set(0, -100);
+        logo.scale.set(0.8, 0.8);
+        logo.visible = false;
+        backgroundimg.addChild(logo);
 
+        //開始按鈕
+        var circle = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
+        circle.anchor.set(0.5);
+        circle.scale.set(0.5, 0.5);
+        circle.position.set(0, 250);
+        circle.visible = false;
+        backgroundimg.addChild(circle);
+        // Opt-in to interactivity
+        circle.interactive = true;
+        // Shows hand cursor
+        circle.buttonMode = true;
+        // Pointers normalize touch and mouse
+        circle.on('pointerdown', onClick);
+        circle.mouseover = function(mouseData) {
+            this.alpha = 0.8;
+        }
+        circle.mouseout = function(mouseData) {
+            this.alpha = 1;
+        }
+
+        container.addChild(circle);
+
+
+        function onClick() {
+
+            location.href = "video.html";
+        }
 
         //注意事項
         var mention = new PIXI.Graphics();
@@ -52,8 +87,8 @@
             fontWeight: "bold",
             fill: "#CC0000",
         });
-        var mention_text = new PIXI.Text("請\t將\t網\t址\t複\t製\t到\tChrome 開\t啟\n\n點\t任 一\t處\t進\t入\t遊\t戲\t開\t始\t畫\t面",style);
-        
+        var mention_text = new PIXI.Text("請\t將\t網\t址\t複\t製\t到\tChrome 開\t啟\n\n點\t任 一\t處\t進\t入\t遊\t戲\t開\t始\t畫\t面", style);
+
         mention_text.x = -250;
         mention_text.y = -50;
         mention_text.scale.set(3, 3);
@@ -63,7 +98,10 @@
 
         function close_mention() {
 
-            location.href = "start.html";
+            circle.visible = true;
+            logo.visible = true;
+            mention.visible = false;
+            mention_text.visible = false;
 
         }
 
