@@ -16,8 +16,8 @@
 </style>
 
 <body>
-  <iframe src="video_background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
-</iframe> 
+    <iframe src="video_background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+    </iframe>
     <audio src="video_background.mp3" id="background"></audio>
     <script>
         var app = new PIXI.Application({
@@ -48,7 +48,7 @@
 
         //影片照片1
         const pic1 = PIXI.Sprite.from('牛郎織女2/遊戲背景/四格漫畫一、黃牛領牛郎相遇織女.png');
-       
+
         //影片照片2
         const pic2 = PIXI.Sprite.from('牛郎織女2/遊戲背景/四格漫畫二、牛郎織女情投意合.png');
         //影片照片3
@@ -75,13 +75,13 @@
         pic4.position.set(-400, 0);
         pic4.visible = false;
         container.addChild(pic4);
-        
-          //控制背景音樂
+
+        //控制背景音樂
         /*判斷手機系統是Android還是IOS*/
-     if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
+        if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
             var music_btn = new PIXI.Sprite.from("play.png");
             music_btn.anchor.set(0.5);
-            music_btn.position.set(-400, -300);
+            music_btn.position.set(0, 0);
             music_btn.scale.set(0.2, 0.2);
             container.addChild(music_btn);
             music_btn.interactive = true;
@@ -94,72 +94,134 @@
             }
 
             music_btn.on("pointerdown", playmusic);
-        } 
-        function playmusic() {
-            
-            background.play();
-            music_btn.visible=false;
         }
-        
+
+        function playmusic() {
+
+            background.play();
+            music_btn.visible = false;
+        }
+
         app.ticker.add(function(delta) {
 
-            pic1.position.x += 5 * delta;
-            pic1.position.y -= 3 * delta;
-            if (pic1.position.x >= -100) {
-                pic1.position.x = -100;
-                pic1.position.y = -150;
-                pic1.alpha -= 0.005 * delta;
-                if (pic1.alpha == 0) {
-                    pic1.visible = false;
-                }
-                setTimeout(function() {
-                    pic2.visible = true;
-                    pic2.position.x += 5 * delta;
-                    pic2.position.y -= 1 * delta;
-                }, 3000);
-                if (pic2.position.x >= 200) {
-                    pic2.position.x = 200;
-                    pic2.position.y = -150;
-                    pic2.alpha -= 0.005 * delta;
-                    if (pic2.alpha == 0) {
-                        pic2.visible = false;
+            if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i) && music_btn.visible == false) {
+                pic1.position.x += 5 * delta;
+                pic1.position.y -= 3 * delta;
+                if (pic1.position.x >= -100) {
+                    pic1.position.x = -100;
+                    pic1.position.y = -150;
+                    pic1.alpha -= 0.005 * delta;
+                    if (pic1.alpha == 0) {
+                        pic1.visible = false;
                     }
                     setTimeout(function() {
-                        pic3.visible = true;
-                        pic3.position.x += 5 * delta;
-                        pic3.position.y += 3 * delta;
+                        pic2.visible = true;
+                        pic2.position.x += 5 * delta;
+                        pic2.position.y -= 1 * delta;
                     }, 3000);
-                    if (pic3.position.x >= -200) {
-                        pic3.position.x = -200;
-                        pic3.position.y = 100;
-                        pic3.alpha -= 0.005 * delta;
-                        if (pic3.alpha == 0) {
-                            pic3.visible = false;
+                    if (pic2.position.x >= 200) {
+                        pic2.position.x = 200;
+                        pic2.position.y = -150;
+                        pic2.alpha -= 0.005 * delta;
+                        if (pic2.alpha == 0) {
+                            pic2.visible = false;
                         }
                         setTimeout(function() {
-                            pic4.visible = true;
-                            pic4.position.x += 5 * delta;
-                            pic4.position.y += 1 * delta;
+                            pic3.visible = true;
+                            pic3.position.x += 5 * delta;
+                            pic3.position.y += 3 * delta;
                         }, 3000);
-                        if (pic4.position.x >= 200) {
-                            pic4.position.x = 200;
-                            pic4.position.y = 100;
-                            pic4.alpha -= 0.005 * delta;
-                            if (pic4.alpha == 0) {
-                                pic4.visible = false;
+                        if (pic3.position.x >= -200) {
+                            pic3.position.x = -200;
+                            pic3.position.y = 100;
+                            pic3.alpha -= 0.005 * delta;
+                            if (pic3.alpha == 0) {
+                                pic3.visible = false;
                             }
                             setTimeout(function() {
-                                backgroundimg.visible = true;
-                                backgroundimg.alpha += 0.01 * delta;
+                                pic4.visible = true;
+                                pic4.position.x += 5 * delta;
+                                pic4.position.y += 1 * delta;
                             }, 3000);
-                            setTimeout(function() {
-                                location.href = "choose.html";
-                            }, 7000);
+                            if (pic4.position.x >= 200) {
+                                pic4.position.x = 200;
+                                pic4.position.y = 100;
+                                pic4.alpha -= 0.005 * delta;
+                                if (pic4.alpha == 0) {
+                                    pic4.visible = false;
+                                }
+                                setTimeout(function() {
+                                    backgroundimg.visible = true;
+                                    backgroundimg.alpha += 0.01 * delta;
+                                }, 3000);
+                                setTimeout(function() {
+                                    location.href = "choose.html";
+                                }, 7000);
 
+                            }
+                        }
+                    }
+                }
+            } else {
+                pic1.position.x += 5 * delta;
+                pic1.position.y -= 3 * delta;
+                if (pic1.position.x >= -100) {
+                    pic1.position.x = -100;
+                    pic1.position.y = -150;
+                    pic1.alpha -= 0.005 * delta;
+                    if (pic1.alpha == 0) {
+                        pic1.visible = false;
+                    }
+                    setTimeout(function() {
+                        pic2.visible = true;
+                        pic2.position.x += 5 * delta;
+                        pic2.position.y -= 1 * delta;
+                    }, 3000);
+                    if (pic2.position.x >= 200) {
+                        pic2.position.x = 200;
+                        pic2.position.y = -150;
+                        pic2.alpha -= 0.005 * delta;
+                        if (pic2.alpha == 0) {
+                            pic2.visible = false;
+                        }
+                        setTimeout(function() {
+                            pic3.visible = true;
+                            pic3.position.x += 5 * delta;
+                            pic3.position.y += 3 * delta;
+                        }, 3000);
+                        if (pic3.position.x >= -200) {
+                            pic3.position.x = -200;
+                            pic3.position.y = 100;
+                            pic3.alpha -= 0.005 * delta;
+                            if (pic3.alpha == 0) {
+                                pic3.visible = false;
+                            }
+                            setTimeout(function() {
+                                pic4.visible = true;
+                                pic4.position.x += 5 * delta;
+                                pic4.position.y += 1 * delta;
+                            }, 3000);
+                            if (pic4.position.x >= 200) {
+                                pic4.position.x = 200;
+                                pic4.position.y = 100;
+                                pic4.alpha -= 0.005 * delta;
+                                if (pic4.alpha == 0) {
+                                    pic4.visible = false;
+                                }
+                                setTimeout(function() {
+                                    backgroundimg.visible = true;
+                                    backgroundimg.alpha += 0.01 * delta;
+                                }, 3000);
+                                setTimeout(function() {
+                                    location.href = "choose.html";
+                                }, 7000);
+
+                            }
                         }
                     }
                 }
             }
+
         });
 
         //保持遊戲全螢幕
