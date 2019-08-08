@@ -18,6 +18,7 @@
 <body>
   <iframe src="video_background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
 </iframe> 
+    <audio src="video_background.mp3" id="background"></audio>
     <script>
         var app = new PIXI.Application({
 
@@ -33,7 +34,7 @@
 
 
 
-
+        //遊戲背景
         var ratio = Math.min(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/漫畫背景.png");
         backgroundimg.width = ratio;
@@ -55,7 +56,7 @@
         //影片照片4
         const pic4 = PIXI.Sprite.from('牛郎織女2/遊戲背景/四格漫畫四、牛郎織女被迫分開.png');
 
-         pic1.anchor.set(0.5);
+        pic1.anchor.set(0.5);
         pic1.scale.set(0.2, 0.2);
         pic1.position.set(-400, 0);
         container.addChild(pic1);
@@ -74,6 +75,30 @@
         pic4.position.set(-400, 0);
         pic4.visible = false;
         container.addChild(pic4);
+        
+          //控制背景音樂
+        /*判斷手機系統是Android還是IOS*/
+     if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
+            var music_btn = new PIXI.Sprite.from("play.png");
+            music_btn.anchor.set(0.5);
+            music_btn.position.set(-650, -450);
+            music_btn.scale.set(0.2, 0.2);
+            backgroundimg.addChild(music_btn);
+            music_btn.interactive = true;
+            music_btn.buttonMode = true;
+            music_btn.mouseover = function(mouseData) {
+                this.alpha = 0.8;
+            }
+            music_btn.mouseout = function(mouseData) {
+                this.alpha = 1;
+            }
+
+            music_btn.on("pointerdown", playmusic);
+        } 
+        function playmusic() {
+            background.play();
+        }
+        
         app.ticker.add(function(delta) {
 
             pic1.position.x += 5 * delta;

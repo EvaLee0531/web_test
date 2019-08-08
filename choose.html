@@ -12,12 +12,14 @@
         margin: 0 auto;
         overflow: hidden;
     }
+
 </style>
 
 <body>
 
-      <iframe src="background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
-</iframe> 
+    <iframe src="background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+    </iframe>
+    <audio src="background.mp3" id="background"></audio>
     <script>
         var app = new PIXI.Application({
             antialias: true,
@@ -34,12 +36,35 @@
         backgroundimg.height = ratio;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
-        
-        var title=PIXI.Sprite.fromImage("帥奴隸做的字/22_工作區域 1.png");
+
+        var title = PIXI.Sprite.fromImage("帥奴隸做的字/22_工作區域 1.png");
         title.anchor.set(0.5);
-        title.scale.set(0.3,0.3);
-        title.position.set(0,-450);
+        title.scale.set(0.3, 0.3);
+        title.position.set(0, -450);
         backgroundimg.addChild(title);
+        
+         //控制背景音樂
+        /*判斷手機系統是Android還是IOS*/
+     if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
+            var music_btn = new PIXI.Sprite.from("play.png");
+            music_btn.anchor.set(0.5);
+            music_btn.position.set(-650, -450);
+            music_btn.scale.set(0.2, 0.2);
+            backgroundimg.addChild(music_btn);
+            music_btn.interactive = true;
+            music_btn.buttonMode = true;
+            music_btn.mouseover = function(mouseData) {
+                this.alpha = 0.8;
+            }
+            music_btn.mouseout = function(mouseData) {
+                this.alpha = 1;
+            }
+
+            music_btn.on("pointerdown", playmusic);
+        } 
+        function playmusic() {
+            background.play();
+        }
 
         //牛郎
         const boyFrames = ["牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_00.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_01.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_02.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_03.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_04.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_05.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_06.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_07.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_08.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_09.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_10.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_11.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_12.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_13.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_14.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_15.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_16.png", "牛郎織女動圖/牛郎選擇圖/牛郎拆圖合併-腳色選擇_17.png"];
@@ -123,6 +148,9 @@
             container.anchor = 0.5;
         }
         resize();
+
     </script>
 
-</body></html>
+</body>
+
+</html>

@@ -97,12 +97,10 @@
         container.addChild(backgroundimg);
         //控制背景音樂
         /*判斷手機系統是Android還是IOS*/
-        if (navigator.userAgent.match(/android/i)) {
-            //如果是Android的話
-        } else if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
-            var music_btn = new PIXI.Sprite.from("play-button.png");
+       if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
+            var music_btn = new PIXI.Sprite.from("play.png");
             music_btn.anchor.set(0.5);
-            music_btn.position.set(600, 200);
+            music_btn.position.set(-650, -450);
             music_btn.scale.set(0.2, 0.2);
             backgroundimg.addChild(music_btn);
             music_btn.interactive = true;
@@ -115,10 +113,7 @@
             }
 
             music_btn.on("pointerdown", playmusic);
-        } else {
-            console.log("computer");
-        }
-
+        } ;
 
         function playmusic() {
             background.play();

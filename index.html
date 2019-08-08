@@ -18,6 +18,7 @@
 <body>
     <iframe src="background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
     </iframe>
+     <audio src="background.mp3" id="background"></audio>
     <script>
         var app = new PIXI.Application({
             width: 1920,
@@ -44,6 +45,29 @@
         logo.scale.set(0.8, 0.8);
         logo.visible = false;
         backgroundimg.addChild(logo);
+        
+          //控制背景音樂
+        /*判斷手機系統是Android還是IOS*/
+     if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
+            var music_btn = new PIXI.Sprite.from("play.png");
+            music_btn.anchor.set(0.5);
+            music_btn.position.set(-650, -450);
+            music_btn.scale.set(0.2, 0.2);
+            backgroundimg.addChild(music_btn);
+            music_btn.interactive = true;
+            music_btn.buttonMode = true;
+            music_btn.mouseover = function(mouseData) {
+                this.alpha = 0.8;
+            }
+            music_btn.mouseout = function(mouseData) {
+                this.alpha = 1;
+            }
+
+            music_btn.on("pointerdown", playmusic);
+        } 
+        function playmusic() {
+            background.play();
+        }
 
         //開始按鈕
         var circle = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
