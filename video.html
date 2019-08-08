@@ -104,7 +104,7 @@
 
         app.ticker.add(function(delta) {
 
-            if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i) && music_btn.visible == false) {
+            if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i) && background.playing==true) {
                 pic1.position.x += 5 * delta;
                 pic1.position.y -= 3 * delta;
                 if (pic1.position.x >= -100) {
