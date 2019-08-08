@@ -18,7 +18,7 @@
 <body>
     <iframe src="background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
     </iframe>
-     <audio src="background.mp3" id="background"></audio>
+    <audio src="background.mp3" id="background"></audio>
     <script>
         var app = new PIXI.Application({
             width: 1920,
@@ -45,10 +45,10 @@
         logo.scale.set(0.8, 0.8);
         logo.visible = false;
         backgroundimg.addChild(logo);
-        
-          //控制背景音樂
+
+        //控制背景音樂
         /*判斷手機系統是Android還是IOS*/
-     if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
+        if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
             var music_btn = new PIXI.Sprite.from("play.png");
             music_btn.anchor.set(0.5);
             music_btn.position.set(-650, -450);
@@ -64,10 +64,11 @@
             }
 
             music_btn.on("pointerdown", playmusic);
-        } 
+        }
+
         function playmusic() {
             background.play();
-            music_btn.visible=false;
+            music_btn.visible = false;
         }
 
         //開始按鈕
@@ -106,8 +107,8 @@
         mention.drawRect(-950, -550, 1920, 1080);
         mention.endFill();
         backgroundimg.addChild(mention);
-        
-        var mention_img=new PIXI.Sprite.from("mention.png");
+
+        var mention_img = new PIXI.Sprite.from("mention.png");
         mention_img.anchor.set(0.5);
         backgroundimg.addChild(mention_img);
 
