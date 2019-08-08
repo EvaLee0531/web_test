@@ -81,7 +81,7 @@
         if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
             var music_btn = new PIXI.Sprite.from("play.png");
             music_btn.anchor.set(0.5);
-            music_btn.position.set(0, 0);
+            music_btn.position.set(-500, -300);
             music_btn.scale.set(0.2, 0.2);
             container.addChild(music_btn);
             music_btn.interactive = true;
@@ -95,6 +95,7 @@
 
             music_btn.on("pointerdown", playmusic);
         }
+     
 
         function playmusic() {
 
@@ -104,68 +105,6 @@
 
         app.ticker.add(function(delta) {
 
-            if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i) && music_btn.visible==false) {
-                setTimeout(function(){
-                    pic1.position.x += 5 * delta;
-                pic1.position.y -= 3 * delta;
-                if (pic1.position.x >= -100) {
-                    pic1.position.x = -100;
-                    pic1.position.y = -150;
-                    pic1.alpha -= 0.005 * delta;
-                    if (pic1.alpha == 0) {
-                        pic1.visible = false;
-                    }
-                    setTimeout(function() {
-                        pic2.visible = true;
-                        pic2.position.x += 5 * delta;
-                        pic2.position.y -= 1 * delta;
-                    }, 3000);
-                    if (pic2.position.x >= 200) {
-                        pic2.position.x = 200;
-                        pic2.position.y = -150;
-                        pic2.alpha -= 0.005 * delta;
-                        if (pic2.alpha == 0) {
-                            pic2.visible = false;
-                        }
-                        setTimeout(function() {
-                            pic3.visible = true;
-                            pic3.position.x += 5 * delta;
-                            pic3.position.y += 3 * delta;
-                        }, 3000);
-                        if (pic3.position.x >= -200) {
-                            pic3.position.x = -200;
-                            pic3.position.y = 100;
-                            pic3.alpha -= 0.005 * delta;
-                            if (pic3.alpha == 0) {
-                                pic3.visible = false;
-                            }
-                            setTimeout(function() {
-                                pic4.visible = true;
-                                pic4.position.x += 5 * delta;
-                                pic4.position.y += 1 * delta;
-                            }, 3000);
-                            if (pic4.position.x >= 200) {
-                                pic4.position.x = 200;
-                                pic4.position.y = 100;
-                                pic4.alpha -= 0.005 * delta;
-                                if (pic4.alpha == 0) {
-                                    pic4.visible = false;
-                                }
-                                setTimeout(function() {
-                                    backgroundimg.visible = true;
-                                    backgroundimg.alpha += 0.01 * delta;
-                                }, 3000);
-                                setTimeout(function() {
-                                    location.href = "choose.html";
-                                }, 7000);
-
-                            }
-                        }
-                    }
-                } 
-                },500);
-               
-            } else {
                 pic1.position.x += 5 * delta;
                 pic1.position.y -= 3 * delta;
                 if (pic1.position.x >= -100) {
@@ -223,7 +162,7 @@
                         }
                     }
                 }
-            }
+            
 
         });
 
