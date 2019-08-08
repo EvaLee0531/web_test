@@ -104,8 +104,9 @@
 
         app.ticker.add(function(delta) {
 
-            if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i) && background.playing==true) {
-                pic1.position.x += 5 * delta;
+            if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i) && music_btn.visible==false) {
+                setTimeout(function(){
+                    pic1.position.x += 5 * delta;
                 pic1.position.y -= 3 * delta;
                 if (pic1.position.x >= -100) {
                     pic1.position.x = -100;
@@ -161,7 +162,9 @@
                             }
                         }
                     }
-                }
+                } 
+                },500);
+               
             } else {
                 pic1.position.x += 5 * delta;
                 pic1.position.y -= 3 * delta;
