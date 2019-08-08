@@ -144,11 +144,7 @@
         loading.visible = false;
         backgroundimg.addChild(loading);
 
-        //遊戲結束顯示
-        const style = new PIXI.TextStyle({
-            fontVariant: "Noto Sans TC",
-            fill: "#8C0044",
-        });
+     
 
         //遊戲重新開始按鈕
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
@@ -169,7 +165,7 @@
 
         var lose_img = new PIXI.Sprite.from("帥奴隸做的字/22-02.png");
         lose_img.anchor.set(0.5);
-        lose_img.scale.set(0.4, 0.4);
+        lose_img.scale.set(0.3, 0.3);
         lose_img.visible = false;
         backgroundimg.addChild(lose_img);
         var win_img = new PIXI.Sprite.from("帥奴隸做的字/22-03.png");
@@ -205,7 +201,7 @@
 
             }
             //輸的條件
-            if (animatedBoy.position.x >= 250) {
+            if (animatedBoy.position.x >= 280) {
 
 
                 app.ticker.stop();
