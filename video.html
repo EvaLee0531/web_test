@@ -81,9 +81,9 @@
      if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
             var music_btn = new PIXI.Sprite.from("play.png");
             music_btn.anchor.set(0.5);
-            music_btn.position.set(-650, -450);
+            music_btn.position.set(-400, -300);
             music_btn.scale.set(0.2, 0.2);
-            backgroundimg.addChild(music_btn);
+            container.addChild(music_btn);
             music_btn.interactive = true;
             music_btn.buttonMode = true;
             music_btn.mouseover = function(mouseData) {
@@ -96,7 +96,9 @@
             music_btn.on("pointerdown", playmusic);
         } 
         function playmusic() {
+            
             background.play();
+            music_btn.visible=false;
         }
         
         app.ticker.add(function(delta) {
