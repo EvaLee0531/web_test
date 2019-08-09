@@ -18,7 +18,7 @@
 <body>
     <iframe src="play_background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
     </iframe>
-     <audio src="play_background.mp3" id="background"></audio>
+    <audio src="play_background.mp3" id="background"></audio>
     <audio src="jump02.mp3" id="buttonclick"></audio>
     <script>
         var app = new PIXI.Application({
@@ -67,9 +67,8 @@
         }
 
         function loadProgressHandler(loader, resource) {
-
+            loading.text = "Loading:" + (loader.progress | 0) + "%";
             if (loader.progress >= 99) {
-
                 loading.visible = false;
                 start.visible = false;
                 animatedFly.visible = true;
@@ -85,12 +84,28 @@
         }
 
         //遊戲背景
-        var ratio = Math.min(window.innerWidth, window.innerHeight);
+        var ratio_min = Math.min(window.innerWidth, window.innerHeight);
+        var ratio_max = Math.max(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = ratio;
-        backgroundimg.height = ratio;
+       // backgroundimg.width = ratio;
+        //backgroundimg.height = ratio;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
+
+        //判斷手機方向：
+
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
+            if (window.orientation === 180 || window.orientation === 0) {
+                //alert('目前您的螢幕為縱向！');
+                backgroundimg.width = ratio_min;
+                backgroundimg.height = ratio_min;
+            }
+            if (window.orientation === 90 || window.orientation === -90) {
+                //alert('目前您的螢幕為橫向！');
+                backgroundimg.width = ratio_max;
+                backgroundimg.height = ratio_max;
+            }
+        }, false);
 
         //開始按鈕
         var start = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
@@ -106,9 +121,9 @@
         start.mouseout = function(mouseData) {
             this.alpha = 1;
         }
-          //控制背景音樂
+        //控制背景音樂
         /*判斷手機系統是Android還是IOS*/
-     if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
+        if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
             var music_btn = new PIXI.Sprite.from("play.png");
             music_btn.anchor.set(0.5);
             music_btn.position.set(-650, -450);
@@ -124,10 +139,11 @@
             }
 
             music_btn.on("pointerdown", playmusic);
-        } 
+        }
+
         function playmusic() {
             background.play();
-            music_btn.visible=false;
+            music_btn.visible = false;
         }
 
 

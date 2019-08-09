@@ -33,11 +33,31 @@
 
         //遊戲背景
         var ratio = Math.min(window.innerWidth, window.innerHeight);
+        var ratio_max = Math.max(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = ratio;
-        backgroundimg.height = ratio;
+        //backgroundimg.width = ratio;
+       // backgroundimg.height = ratio;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
+        
+         //判斷手機方向：
+
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
+            if (window.orientation === 180 || window.orientation === 0) {
+                alert('目前您的螢幕為縱向！');
+                backgroundimg.width = ratio_min;
+                backgroundimg.height = ratio_min;
+            }
+            if (window.orientation === 90 || window.orientation === -90) {
+                alert('目前您的螢幕為橫向！');
+                backgroundimg.width = ratio_max;
+                backgroundimg.height = ratio_max;
+            }
+        }, false);
+
+        
+        
+        
         //logo
         var logo = new PIXI.Sprite.from("牛郎織女2/遊戲背景/LOGO.png");
         logo.anchor.set(0.5);

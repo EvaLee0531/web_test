@@ -71,9 +71,8 @@
 
 
         function loadProgressHandler(loader, resource) {
-
-            if (loader.progress >= 99) {
-
+            loading.text="Loading:"+(loader.progress|0)+"%";
+            if (loader.progress >= 99) { 
                 loading.visible = false;
                 start.visible = false;
                 animatedFly.visible = true;

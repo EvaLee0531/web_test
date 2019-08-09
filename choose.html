@@ -133,6 +133,7 @@
 
 
         function loadProgressHandler(loader, resource) {
+            loading.text="Loading:"+(loader.progress|0)+"%";
             if (loader.progress >= 99) {
                 loading.visible = false;
             }
