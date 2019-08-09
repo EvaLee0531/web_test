@@ -62,7 +62,7 @@
             container.addChild(animatedFly);
 
             animatedGirl.scale.set(0.15);
-            animatedGirl.position.set(-450, -200);
+            animatedGirl.position.set(-500, -200);
             animatedGirl.animationSpeed = 0.6;
             animatedGirl.play();
             container.addChild(animatedGirl);
@@ -215,7 +215,7 @@
                 }
             }
             //贏的條件
-            if (animatedBoy.position.x < -350) {
+            if (animatedBoy.position.x < -400) {
                 app.ticker.stop();
                 win_img.visible = true;
                 replay.visible = true;
