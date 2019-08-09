@@ -46,13 +46,13 @@
 
         function setup() {
 
-            animatedBoy.scale.set(0.1);
+            animatedBoy.scale.set(0.15);
             animatedBoy.position.set(180, -200);
             animatedBoy.animationSpeed = 0.8;
             animatedBoy.play();
             container.addChild(animatedBoy);
 
-            animatedFly.position.set(0, 200);
+            animatedFly.position.set(0, 250);
             animatedFly.animationSpeed = 0.5;
             animatedFly.scale.set(0.2, 0.2);
             animatedFly.anchor.set(0.5);
@@ -61,8 +61,8 @@
             animatedFly.buttonMode = true;
             container.addChild(animatedFly);
 
-            animatedGirl.scale.set(0.1);
-            animatedGirl.position.set(-380, -200);
+            animatedGirl.scale.set(0.15);
+            animatedGirl.position.set(-450, -200);
             animatedGirl.animationSpeed = 0.6;
             animatedGirl.play();
             container.addChild(animatedGirl);
@@ -150,7 +150,7 @@
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
         replay.scale.set(0.5, 0.5);
         replay.anchor.set(0.5);
-        replay.position.set(0, 300);
+        replay.position.set(0, 200);
         replay.visible = false;
         replay.interactive = true;
         replay.buttonMode = true;
@@ -165,12 +165,12 @@
 
         var lose_img = new PIXI.Sprite.from("帥奴隸做的字/22-02.png");
         lose_img.anchor.set(0.5);
-        lose_img.scale.set(0.3, 0.3);
+        lose_img.scale.set(0.25, 0.25);
         lose_img.visible = false;
         backgroundimg.addChild(lose_img);
         var win_img = new PIXI.Sprite.from("帥奴隸做的字/22-03.png");
         win_img.anchor.set(0.5);
-        win_img.scale.set(0.2, 0.2);
+        win_img.scale.set(0.15, 0.15);
         win_img.visible = false;
         backgroundimg.addChild(win_img);
 
@@ -215,7 +215,7 @@
                 }
             }
             //贏的條件
-            if (animatedBoy.position.x < -300) {
+            if (animatedBoy.position.x < -350) {
                 app.ticker.stop();
                 win_img.visible = true;
                 replay.visible = true;
