@@ -75,13 +75,13 @@ turn:<span id="turn"></span><br />
 
         //陀螺儀控制
         if (window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientation', function(event) {
+            window.addEventListener('devicemotion', function(event) {
                     var a = document.getElementById('alpha');
                     var b = document.getElementById('beta');
                     var g = document.getElementById('gamma');
-                    alpha = event.alpha;
-                    beta = event.beta;
-                    gamma = event.gamma;
+                    alpha = event.acceleration.x;
+                    beta = event.acceleration.y;
+                    gamma = event.acceleration.z;
                     a.innerHTML = Math.round(alpha);
                     b.innerHTML = Math.round(beta);
                     g.innerHTML = Math.round(gamma);
@@ -101,7 +101,7 @@ turn:<span id="turn"></span><br />
                 animatedBoy.visible = true;
                 app.ticker.add((delta) => {
                     animatedGirl.position.x -= 1 * delta;
-                    if (alpha == 0 && beta == 0 && gamma == 0) {
+                    if (alpha != 0 && beta != 0 && gamma != 0) {
                         var m = document.getElementById('turn');
                         m.innerHTML = "yes";
                         animatedGirl.position.x += 5 * delta;
