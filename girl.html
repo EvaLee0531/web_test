@@ -79,12 +79,12 @@ turn:<span id="turn"></span><br />
                     var a = document.getElementById('alpha');
                     var b = document.getElementById('beta');
                     var g = document.getElementById('gamma');
-                    alpha = event.acceleration.x;
-                    beta = event.acceleration.y;
-                    gamma = event.acceleration.z;
-                    a.innerHTML = Math.round(alpha);
-                    b.innerHTML = Math.round(beta);
-                    g.innerHTML = Math.round(gamma);
+                    alpha = Math.round(event.acceleration.x);
+                    beta = Math.round(event.acceleration.y);
+                    gamma = Math.round(event.acceleration.z);
+                    a.innerHTML = alpha;
+                    b.innerHTML = beta;
+                    g.innerHTML = gamma;
                 },
                 false);
         } else {
