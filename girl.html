@@ -187,31 +187,29 @@
         win_img.scale.set(0.15, 0.15);
         win_img.visible = false;
         backgroundimg.addChild(win_img);
+         //陀螺儀控制
+           
+                window.addEventListener('deviceorientation', function(event) {
+                        var alpha = event.alpha;
+                        var beta = event.beta;
+                        var gamma = event.gamma;
+                    console.log("alpha:"+alpha);
+                     console.log("beta:"+beta);
+                     console.log("gamma:"+gamma);
+
+                    },
+                    false);
+             /*else {
+                document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
+            }*/
+
 
         //控制動畫
         app.ticker.add((delta) => {
             // animatedFly.on('pointertap', onClick);
             start.on('pointertap', startgame);
 
-            //陀螺儀控制
-
-            if (window.DeviceOrientationEvent) {
-                window.addEventListener('deviceorientation', function(event) {
-                        var alpha = event.alpha;
-                        var beta = event.beta;
-                        var gamma = event.gamma;
-                        if(alpha!=0&&beta!=0&&gamma!=0)
-                            {
-                                animatedGirl.position.x+=0.1*delta;
-                            }
-
-                    },
-                    false);
-            } else {
-                document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
-            }
-
-
+           
             /* function onClick() {
                  buttonclick.play();
                  animatedGirl.position.x += 0.1 * delta;
