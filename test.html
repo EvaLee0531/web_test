@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <script src="pixi.js"></script>
+    <script src="pixi.min.js"></script>
+    <meta charset="utf-8">
+
+</head>
+<style>
+    body {
+        position: absolute;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+</style>
+alpha:<span id="alpha"></span><br/>
+beta:<span id="beta"></span><br/>
+gamma:<span id="gamma"></span><br/>
+<body>
+    <iframe src="play_background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+    </iframe>
+    <audio src="play_background.mp3" id="background"></audio>
+    <audio src="jump02.mp3" id="buttonclick"></audio>
+    <script>
+        var app = new PIXI.Application({
+            antialias: true,
+            forceCanvas: false
+        }); //設定圖層
+        document.body.appendChild(app.view); //顯示
+        var container = new PIXI.Container();
+        app.stage.addChild(container);
+
+
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', function(event) {
+                    var a = document.getElementById('alpha',
+                            b = document.getElementById('beta'),
+                            g = document.getElementById('gamma'),
+                            alpha = event.alpha,
+                            beta = event.beta,
+                            gamma = event.gamma;
+
+                            a.innerHTML = Math.round(alpha); b.innerHTML = Math.round(beta); g.innerHTML = Math.round(gamma);
+
+                        },
+                        false);
+            }
+            else {
+                document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
+            }
+
+
+            //保持全螢幕
+            window.addEventListener('resize', resize);
+
+            function resize() {
+                app.renderer.resize(window.innerWidth, window.innerHeight);
+                container.x = app.screen.width / 2;
+                container.y = app.screen.height / 2;
+                container.anchor = 0.5;
+            }
+            resize();
+
+    </script>
+
+
+
+</body>
+
+</html>
