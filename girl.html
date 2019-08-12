@@ -104,15 +104,15 @@ turn:<span id="turn"></span><br />
                     if (alpha > 0 || beta > 0 || gamma > 0) {
                         var m = document.getElementById('turn');
                         m.innerHTML = "yes";
-                        animatedGirl.position.x += 2 * delta;
+                        animatedGirl.position.x += 4 * delta;
                     }
-                    else if(alpha<=0&&beta<=0&&gamma<=0){
+                    else if(alpha==0&&beta==0&&gamma==0){
                         var x=document.getElementById('turn');
                         x.innerHTML="no";
                        // animatedGirl.position.x -= 1 * delta;
                     }
                     setTimeout(function() {
-                        animatedGirl.position.x -= 4 * delta;
+                        animatedGirl.position.x -= 2 * delta;
                     }, 4000);
 
 
