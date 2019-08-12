@@ -190,6 +190,29 @@ gamma:<span id="gamma"></span><br />
         win_img.scale.set(0.15, 0.15);
         win_img.visible = false;
         backgroundimg.addChild(win_img);
+        
+        var alpha;
+        var beta;
+        var gamma;
+
+        //陀螺儀控制
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', function(event) {
+                    var a = document.getElementById('alpha');
+                    var b = document.getElementById('beta');
+                    var g = document.getElementById('gamma');
+                    alpha = event.alpha;
+                    beta = event.beta;
+                    gamma = event.gamma;
+                    a.innerHTML = Math.round(alpha);
+                    b.innerHTML = Math.round(beta);
+                    g.innerHTML = Math.round(gamma);
+                },
+                false);
+        } else {
+            document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
+        }
+
 
         //控制動畫
         app.ticker.add((delta) => {
@@ -200,26 +223,6 @@ gamma:<span id="gamma"></span><br />
                 start.visible = false;
                 loading.visible = true;
 
-            }
-            //陀螺儀控制
-            if (window.DeviceOrientationEvent) {
-                window.addEventListener('deviceorientation', function(event) {
-                        var a = document.getElementById('alpha');
-                        var b = document.getElementById('beta');
-                        var g = document.getElementById('gamma');
-                        var alpha = event.alpha;
-                        var beta = event.beta;
-                        var gamma = event.gamma;
-                        a.innerHTML = Math.round(alpha);
-                        b.innerHTML = Math.round(beta);
-                        g.innerHTML = Math.round(gamma);
-                        if (alpha != null && beta != null && gamma != null && alpha != 0 && beta != 0 && gamma != 0) {
-                            animatedGirl.position.x += 0.1 * delta;
-                        }
-                    },
-                    false);
-            } else {
-                document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
             }
 
             /* function onClick() {
@@ -236,6 +239,10 @@ gamma:<span id="gamma"></span><br />
                  }, 30000);
 
              }*/
+            if(alpha!=null&&alpha!=0&&beta!=null&&beta!=0&&gamma!=null&&gamma!=0)
+                {
+                    animatedGirl.position.x+=0.1*delta;
+                }
 
 
             //贏的條件
