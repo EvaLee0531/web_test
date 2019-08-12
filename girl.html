@@ -106,10 +106,10 @@ turn:<span id="turn"></span><br />
                         m.innerHTML = "yes";
                         animatedGirl.position.x += 2 * delta;
                     }
-                    else{
+                    else if(alpha<=0&&beta<=0&&gamma<=0){
                         var x=document.getElementById('turn');
-                        m.innerHTML="no";
-                        animatedGirl.position.x -= 1 * delta;
+                        x.innerHTML="no";
+                       // animatedGirl.position.x -= 1 * delta;
                     }
                     setTimeout(function() {
                         animatedGirl.position.x -= 4 * delta;
