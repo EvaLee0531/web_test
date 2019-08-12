@@ -100,12 +100,13 @@ gamma:<span id="gamma"></span><br />
                 animatedBoy.visible = true;
                 app.ticker.add((delta) => {
                     animatedGirl.position.x -= 1 * delta;
+                    if (alpha != 0 && beta != 0 && gamma != 0) {
+                        animatedGirl.position.x += 5 * delta;
+                    }
                     setTimeout(function() {
                         animatedGirl.position.x -= 4 * delta;
                     }, 4000);
-                    if (alpha != 0 && beta != 0 && gamma != 0) {
-                        animatedGirl.position.x += 2 * delta;
-                    }
+                    
 
                 });
             };
