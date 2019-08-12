@@ -107,6 +107,8 @@ turn:<span id="turn"></span><br />
                         animatedGirl.position.x += 2 * delta;
                     }
                     else{
+                        var x=document.getElementById('turn');
+                        m.innerHTML="no";
                         animatedGirl.position.x -= 1 * delta;
                     }
                     setTimeout(function() {
