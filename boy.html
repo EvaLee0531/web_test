@@ -91,7 +91,7 @@
                 app.ticker.add((delta) => {
                     animatedBoy.position.x += 1 * delta;
                     if (alpha > 0 || beta > 0 || gamma > 0) {
-                        animatedBoy.position.x += 4 * delta;
+                        animatedBoy.position.x -= 4 * delta;
                     }
                     setTimeout(function() {
                         animatedBoy.position.x += 3 * delta;
@@ -214,7 +214,7 @@
 
             }
             //輸的條件
-            if (animatedBoy.position.x >= 280) {
+            if (animatedBoy.position.x >= 290) {
 
 
                 app.ticker.stop();
