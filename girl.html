@@ -190,23 +190,42 @@
 
         //控制動畫
         app.ticker.add((delta) => {
-            animatedFly.on('pointertap', onClick);
+            // animatedFly.on('pointertap', onClick);
             start.on('pointertap', startgame);
 
-            function onClick() {
-                buttonclick.play();
-                animatedGirl.position.x += 0.1 * delta;
-                setTimeout(function() {
+            //陀螺儀控制
 
-                    app.ticker.stop();
-                    replay.visible = true;
-                    animatedFly.visible = false;
-                    animatedGirl.visible = false;
-                    lose_img.visible = true;
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientation', function(event) {
+                        var alpha = event.alpha;
+                        var beta = event.beta;
+                        var gamma = event.gamma;
+                        if(alpha!=0&&beta!=0&&gamma!=0)
+                            {
+                                animatedGirl.position.x+=0.1*delta;
+                            }
 
-                }, 30000);
-
+                    },
+                    false);
+            } else {
+                document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
             }
+
+
+            /* function onClick() {
+                 buttonclick.play();
+                 animatedGirl.position.x += 0.1 * delta;
+                 setTimeout(function() {
+
+                     app.ticker.stop();
+                     replay.visible = true;
+                     animatedFly.visible = false;
+                     animatedGirl.visible = false;
+                     lose_img.visible = true;
+
+                 }, 30000);
+
+             }*/
 
             function startgame() {
                 start.visible = false;
