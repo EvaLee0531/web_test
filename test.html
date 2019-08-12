@@ -14,9 +14,10 @@
     }
 
 </style>
-alpha:<span id="alpha"></span><br/>
-beta:<span id="beta"></span><br/>
-gamma:<span id="gamma"></span><br/>
+alpha:<span id="alpha"></span><br />
+beta:<span id="beta"></span><br />
+gamma:<span id="gamma"></span><br />
+
 <body>
     <iframe src="play_background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
     </iframe>
@@ -34,33 +35,33 @@ gamma:<span id="gamma"></span><br/>
 
         if (window.DeviceOrientationEvent) {
             window.addEventListener('deviceorientation', function(event) {
-                    var a = document.getElementById('alpha',
-                            b = document.getElementById('beta'),
-                            g = document.getElementById('gamma'),
-                            alpha = event.alpha,
-                            beta = event.beta,
-                            gamma = event.gamma;
+                    var a = document.getElementById('alpha');
+                      var b=document.getElementById('beta');
+                      var g=document.getElementById('gamma');
+                   var alpha = event.alpha;
+                   var beta = event.beta;
+                  var  gamma = event.gamma;
+                    a.innerHTML = Math.round(alpha);
+                    b.innerHTML = Math.round(beta);
+                 g.innerHTML = Math.round(gamma);
 
-                            a.innerHTML = Math.round(alpha); b.innerHTML = Math.round(beta); g.innerHTML = Math.round(gamma);
-
-                        },
-                        false);
-            }
-            else {
-                document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
-            }
+                },
+                false);
+        } else {
+            document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
+        }
 
 
-            //保持全螢幕
-            window.addEventListener('resize', resize);
+        //保持全螢幕
+        window.addEventListener('resize', resize);
 
-            function resize() {
-                app.renderer.resize(window.innerWidth, window.innerHeight);
-                container.x = app.screen.width / 2;
-                container.y = app.screen.height / 2;
-                container.anchor = 0.5;
-            }
-            resize();
+        function resize() {
+            app.renderer.resize(window.innerWidth, window.innerHeight);
+            container.x = app.screen.width / 2;
+            container.y = app.screen.height / 2;
+            container.anchor = 0.5;
+        }
+        resize();
 
     </script>
 
