@@ -14,6 +14,9 @@
     }
 
 </style>
+alpha:<span id="alpha"></span><br />
+beta:<span id="beta"></span><br />
+gamma:<span id="gamma"></span><br />
 
 <body>
     <iframe src="play_background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
@@ -193,14 +196,25 @@
             // animatedFly.on('pointertap', onClick);
             start.on('pointertap', startgame);
 
+            function startgame() {
+                start.visible = false;
+                loading.visible = true;
+
+            }
+            //陀螺儀控制
             if (window.DeviceOrientationEvent) {
-                window.addEventListener('deviceorientation', function(event) { 
+                window.addEventListener('deviceorientation', function(event) {
+                        var a = document.getElementById('alpha');
+                        var b = document.getElementById('beta');
+                        var g = document.getElementById('gamma');
                         var alpha = event.alpha;
                         var beta = event.beta;
                         var gamma = event.gamma;
-                    if(alpha!=null&&beta!=null&&gamma!=null)
-                        {
-                            animatedGirl.position.x+=0.1*delta;
+                        a.innerHTML = Math.round(alpha);
+                        b.innerHTML = Math.round(beta);
+                        g.innerHTML = Math.round(gamma);
+                        if (alpha != null && beta != null && gamma != null && alpha != 0 && beta != 0 && gamma != 0) {
+                            animatedGirl.position.x += 0.1 * delta;
                         }
                     },
                     false);
@@ -223,11 +237,7 @@
 
              }*/
 
-            function startgame() {
-                start.visible = false;
-                loading.visible = true;
 
-            }
             //贏的條件
             if (animatedGirl.position.x >= 110) {
                 app.ticker.stop();
