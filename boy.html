@@ -68,19 +68,33 @@
             container.addChild(animatedGirl);
 
         }
+        //陀螺儀控制
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('devicemotion', function(event) {
+                    alpha = Math.round(event.acceleration.x);
+                    beta = Math.round(event.acceleration.y);
+                    gamma = Math.round(event.acceleration.z);
+                },
+                false);
+        } else {
+            document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
+        }
 
 
         function loadProgressHandler(loader, resource) {
-            loading.text="Loading:"+(loader.progress|0)+"%";
-            if (loader.progress >= 99) { 
+            loading.text = "Loading:" + (loader.progress | 0) + "%";
+            if (loader.progress >= 99) {
                 loading.visible = false;
                 start.visible = false;
                 animatedFly.visible = true;
                 animatedBoy.visible = true;
                 app.ticker.add((delta) => {
                     animatedBoy.position.x += 1 * delta;
-                    setTimeout(function() {
+                    if (alpha > 0 || beta > 0 || gamma > 0) {
                         animatedBoy.position.x += 4 * delta;
+                    }
+                    setTimeout(function() {
+                        animatedBoy.position.x += 3 * delta;
                     }, 4000);
                 });
             };
@@ -96,7 +110,7 @@
         container.addChild(backgroundimg);
         //控制背景音樂
         /*判斷手機系統是Android還是IOS*/
-       if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
+        if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
             var music_btn = new PIXI.Sprite.from("play.png");
             music_btn.anchor.set(0.5);
             music_btn.position.set(-650, -450);
@@ -112,12 +126,12 @@
             }
 
             music_btn.on("pointerdown", playmusic);
-        } ;
+        };
 
         function playmusic() {
             background.play();
-            music_btn.visible=false;
-        
+            music_btn.visible = false;
+
         }
 
         //開始按鈕
@@ -143,7 +157,7 @@
         loading.visible = false;
         backgroundimg.addChild(loading);
 
-     
+
 
         //遊戲重新開始按鈕
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
@@ -175,11 +189,11 @@
 
         //控制動畫
         app.ticker.add((delta) => {
-            animatedFly.on('pointertap', onClick);
+           // animatedFly.on('pointertap', onClick);
             start.on('pointertap', startgame);
 
 
-            function onClick() {
+            /*function onClick() {
                 buttonclick.play();
                 animatedBoy.position.x -= 0.1 * delta;
                 setTimeout(function() {
@@ -192,7 +206,7 @@
 
                 }, 30000);
 
-            }
+            }*/
 
             function startgame() {
                 start.visible = false;

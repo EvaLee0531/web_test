@@ -14,10 +14,6 @@
     }
 
 </style>
-alpha:<span id="alpha"></span><br />
-beta:<span id="beta"></span><br />
-gamma:<span id="gamma"></span><br />
-turn:<span id="turn"></span><br />
 
 <body>
     <iframe src="play_background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
@@ -75,16 +71,10 @@ turn:<span id="turn"></span><br />
 
         //陀螺儀控制
         if (window.DeviceOrientationEvent) {
-            window.addEventListener('devicemotion', function(event) {
-                    var a = document.getElementById('alpha');
-                    var b = document.getElementById('beta');
-                    var g = document.getElementById('gamma');
+            window.addEventListener('devicemotion', function(event) { 
                     alpha = Math.round(event.acceleration.x);
                     beta = Math.round(event.acceleration.y);
                     gamma = Math.round(event.acceleration.z);
-                    a.innerHTML = alpha;
-                    b.innerHTML = beta;
-                    g.innerHTML = gamma;
                 },
                 false);
         } else {
@@ -102,17 +92,10 @@ turn:<span id="turn"></span><br />
                 app.ticker.add((delta) => {
                     animatedGirl.position.x -= 1 * delta;
                     if (alpha > 0 || beta > 0 || gamma > 0) {
-                        var m = document.getElementById('turn');
-                        m.innerHTML = "yes";
                         animatedGirl.position.x += 4 * delta;
                     }
-                    else if(alpha==0&&beta==0&&gamma==0){
-                        var x=document.getElementById('turn');
-                        x.innerHTML="no";
-                       // animatedGirl.position.x -= 1 * delta;
-                    }
                     setTimeout(function() {
-                        animatedGirl.position.x -= 2 * delta;
+                        animatedGirl.position.x -= 3 * delta;
                     }, 4000);
 
 
