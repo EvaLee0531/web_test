@@ -110,6 +110,20 @@
         backgroundimg.height = ratio_min;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
+        
+         //保持全螢幕
+        window.addEventListener('resize', resize);
+
+        function resize() {
+             const parent=app.view.parentNode;
+            app.renderer.resize(parent.clientWidth,parent.clientHeight);
+            backgroundimg.position.set(app.screen.width/2,app.screen.height/2);
+            //app.renderer.resize(window.innerWidth, window.innerHeight);
+            //container.x = app.screen.width / 2;
+            //container.y = app.screen.height / 2;
+            //container.anchor = 0.5;
+
+        }
         //控制背景音樂
         /*判斷手機系統是Android還是IOS*/
         if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
@@ -211,6 +225,7 @@
 
         //控制動畫
         app.ticker.add((delta) => {
+            resize();
             start.on('pointertap', startgame);
             function startgame() {
                 start.visible = false;
@@ -247,7 +262,7 @@
 
 
 
-        //保持全螢幕
+      /*  //保持全螢幕
         window.addEventListener('resize', resize);
 
         function resize() {
@@ -260,7 +275,7 @@
             //container.anchor = 0.5;
 
         }
-        resize();
+        resize();*/
 
     </script>
 

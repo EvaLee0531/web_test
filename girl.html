@@ -114,22 +114,20 @@
         backgroundimg.height = ratio_min;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
+        
+         //保持全螢幕
+        window.addEventListener('resize', resize);
 
+        function resize() {
+            const parent=app.view.parentNode;
+            app.renderer.resize(parent.clientWidth,parent.clientHeight);
+            backgroundimg.position.set(app.screen.width/2,app.screen.height/2);
+           /* app.renderer.resize(window.innerWidth, window.innerHeight);
+            container.x = app.screen.width / 2;
+            container.y = app.screen.height / 2;
+            container.anchor = 0.5;*/
+        }
 
-        /* //判斷手機方向：
-
-         window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
-             if (window.orientation === 180 || window.orientation === 0) {
-                 //alert('目前您的螢幕為縱向！');
-                 backgroundimg.width = ratio_min;
-                 backgroundimg.height = ratio_min;
-             }
-             if (window.orientation === 90 || window.orientation === -90) {
-                 //alert('目前您的螢幕為橫向！');
-                 backgroundimg.width = ratio_max;
-                 backgroundimg.height = ratio_max;
-             }
-         }, false);*/
 
         //開始按鈕
         var start = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
@@ -236,6 +234,7 @@
 
         //控制動畫
         app.ticker.add((delta) => {
+            resize();
             start.on('pointertap', startgame);
 
             function startgame() {
@@ -276,7 +275,7 @@
 
 
 
-        //保持全螢幕
+      /*  //保持全螢幕
         window.addEventListener('resize', resize);
 
         function resize() {
@@ -286,9 +285,9 @@
            /* app.renderer.resize(window.innerWidth, window.innerHeight);
             container.x = app.screen.width / 2;
             container.y = app.screen.height / 2;
-            container.anchor = 0.5;*/
+            container.anchor = 0.5;
         }
-        resize();
+        resize();*/
 
     </script>
 
