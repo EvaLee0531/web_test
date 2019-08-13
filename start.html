@@ -4,6 +4,7 @@
     <script src="pixi.min.js"></script>
     <script src="pixi.js"></script>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
 </head>
 <style>
@@ -13,18 +14,17 @@
         overflow: hidden;
     }
 
-
 </style>
 
 <body>
 
-   <iframe src="background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
-</iframe> 
+    <iframe src="background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+    </iframe>
     <audio src="background.mp3" id="background"></audio>
     <script>
         var app = new PIXI.Application({
-            width:1920,
-            height:1080,
+            width: 1920,
+            height: 1080,
             antialias: true,
             forceCanvas: false
         }); //設定圖層
@@ -33,28 +33,29 @@
         var container = new PIXI.Container();
         app.stage.addChild(container);
 
-         //遊戲背景
-        var ratio = Math.min(window.innerWidth , window.innerHeight);
-        var backgroundimg=PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = ratio;
-        backgroundimg.height = ratio;
+        //遊戲背景
+         var ratio_min = Math.min(window.innerWidth, window.innerHeight);
+        var ratio_max = Math.max(window.innerWidth, window.innerHeight);
+        var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
+        backgroundimg.width = (ratio_max)*0.8;
+        backgroundimg.height = ratio_min;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
 
-        var logo=new PIXI.Sprite.from("牛郎織女2/遊戲背景/LOGO.png");
+        var logo = new PIXI.Sprite.from("牛郎織女2/遊戲背景/LOGO.png");
         logo.anchor.set(0.5);
-        logo.position.set(0,-100);
-        logo.scale.set(0.8,0.8);
+        logo.position.set(0, -100);
+        logo.scale.set(0.8, 0.8);
         backgroundimg.addChild(logo);
 
         //開始按鈕
         var circle = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
         circle.anchor.set(0.5);
-        circle.scale.set(0.5,0.5);
-        circle.position.set(0,250);
-       backgroundimg.addChild(circle);
-        
-       
+        circle.scale.set(0.6, 0.6);
+        circle.position.set(0, 250);
+        backgroundimg.addChild(circle);
+
+
         // Opt-in to interactivity
         circle.interactive = true;
         // Shows hand cursor
@@ -68,7 +69,7 @@
             this.alpha = 1;
         }
 
-        container.addChild(circle);
+        backgroundimg.addChild(circle);
 
 
         function onClick() {
@@ -76,9 +77,9 @@
             location.href = "video.html";
         }
 
-         //控制背景音樂
+        //控制背景音樂
         /*判斷手機系統是Android還是IOS*/
-     if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
+        if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
             var music_btn = new PIXI.Sprite.from("play.png");
             music_btn.anchor.set(0.5);
             music_btn.position.set(-650, -450);
@@ -94,10 +95,11 @@
             }
 
             music_btn.on("pointerdown", playmusic);
-        } 
+        }
+
         function playmusic() {
             background.play();
-            music_btn.visible=false;
+            music_btn.visible = false;
         }
 
 
@@ -106,11 +108,13 @@
         window.addEventListener('resize', resize);
 
         function resize() {
-            app.renderer.resize(window.innerWidth, window.innerHeight);
+            const parent = app.view.parentNode;
+            app.renderer.resize(parent.clientWidth, parent.clientHeight);
+            backgroundimg.position.set(app.screen.width / 2, app.screen.height / 2);
+            /*app.renderer.resize(window.innerWidth, window.innerHeight);
             container.x = app.screen.width / 2;
             container.y = app.screen.height / 2;
-            container.anchor=0.5;
-          
+            container.anchor = 0.5;*/
         }
         resize();
 

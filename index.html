@@ -34,29 +34,11 @@
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
         
-        /* //判斷手機方向：
-
-        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
-            if (window.orientation === 180 || window.orientation === 0) {
-                alert('目前您的螢幕為縱向！');
-                backgroundimg.width = ratio_min;
-                backgroundimg.height = ratio_min;
-            }
-            if (window.orientation === 90 || window.orientation === -90) {
-                alert('目前您的螢幕為橫向！');
-                backgroundimg.width = ratio_max;
-                backgroundimg.height = ratio_max;
-            }
-        }, false);*/
-
-        
-        
-        
         //logo
         var logo = new PIXI.Sprite.from("牛郎織女2/遊戲背景/LOGO.png");
         logo.anchor.set(0.5);
         logo.position.set(0, -100);
-        logo.scale.set(0.7, 0.7);
+        logo.scale.set(0.8, 0.8);
         logo.visible = false;
         backgroundimg.addChild(logo);
 
@@ -89,8 +71,8 @@
         //開始按鈕
         var circle = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
         circle.anchor.set(0.5);
-        circle.scale.set(0.5, 0.5);
-        circle.position.set(0,200);
+        circle.scale.set(0.6, 0.6);
+        circle.position.set(0,250);
         circle.visible = false;
         backgroundimg.addChild(circle);
         // Opt-in to interactivity
