@@ -13,6 +13,27 @@
         margin: 0 auto;
         overflow: hidden;
     }
+    @media screen and(max-width:720px)
+    {
+        pic1.scale.set(0.1,0.1);
+        pic2.scale.set(0.1,0.1);
+        pic3.scale.set(0.1,0.1);
+        pic4.scale.set(0.1,0.1);
+    }
+    @media screen and(max-width:1024px)
+    {
+       pic1.scale.set(0.2,0.2);
+        pic2.scale.set(0.2,0.2);
+        pic3.scale.set(0.2,0.2);
+        pic4.scale.set(0.2,0.2);
+    }
+    @media screen and(min-width:1024px)
+    {
+         pic1.scale.set(0.5,0.5);
+        pic2.scale.set(0.5,0.5);
+        pic3.scale.set(0.5,0.5);
+        pic4.scale.set(0.5,0.5);
+    }
 
 </style>
 
@@ -60,21 +81,21 @@
         const pic4 = PIXI.Sprite.from('牛郎織女2/遊戲背景/四格漫畫四、牛郎織女被迫分開.png');
 
         pic1.anchor.set(0.5);
-        pic1.scale.set(0.2, 0.2);
+        pic1.scale.set(0.15, 0.15);
         pic1.position.set(-400, 0);
         container.addChild(pic1);
         pic2.anchor.set(0.5);
-        pic2.scale.set(0.2, 0.2);
+        pic2.scale.set(0.15, 0.15);
         pic2.position.set(-400, 0);
         pic2.visible = false;
         container.addChild(pic2);
         pic3.anchor.set(0.5);
-        pic3.scale.set(0.2, 0.2);
+        pic3.scale.set(0.15, 0.15);
         pic3.position.set(-400, 0);
         pic3.visible = false;
         container.addChild(pic3);
         pic4.anchor.set(0.5);
-        pic4.scale.set(0.2, 0.2);
+        pic4.scale.set(0.15, 0.15);
         pic4.position.set(-400, 0);
         pic4.visible = false;
         container.addChild(pic4);
