@@ -14,8 +14,6 @@
     <audio src="background.mp3" id="background"></audio>
     <script>
         var app = new PIXI.Application({
-            width: 1920,
-            height: 1080,
             antialias: false,
             forceCanvas: false
         }); //設定圖層
@@ -60,22 +58,7 @@
             }
 
             music_btn.on("pointerdown", playmusic);
-        } else if (navigator.userAgent.match(/android/i)) {
-            //保持遊戲全螢幕
-            window.addEventListener('resize', resize);
-
-            function resize() {
-                /*const parent=app.view.parentNode;
-                app.renderer.resize(parent.clientWidth,parent.clientHeight);
-                backgroundimg.position.set(app.screen.width/2,app.screen.height/2);*/
-                app.renderer.resize(window.innerWidth, window.innerHeight);
-                container.x = app.screen.width / 2;
-                container.y = app.screen.height / 2;
-                container.anchor = 0.5;
-            }
-            resize();
-        }
-
+        } 
         function playmusic() {
             background.play();
             music_btn.visible = false;
