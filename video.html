@@ -40,8 +40,8 @@
          var ratio_min = Math.min(window.innerWidth, window.innerHeight);
         var ratio_max = Math.max(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/漫畫背景.png");
-        backgroundimg.width = (ratio_max)*0.9;
-        backgroundimg.height = (ratio_min)*0.9;
+        backgroundimg.width = (ratio_max)*0.8;
+        backgroundimg.height = (ratio_min)*0.8;
         backgroundimg.anchor.set(0.5);
         backgroundimg.alpha = 0;
         backgroundimg.visible = false;
@@ -72,22 +72,22 @@
         const pic4 = PIXI.Sprite.from('牛郎織女2/遊戲背景/四格漫畫四、牛郎織女被迫分開.png');
 
         pic1.anchor.set(0.5);
-        pic1.scale.set(0.15, 0.15);
+        pic1.scale.set(0.2, 0.2);
         pic1.position.set(-400, 0);
         container.addChild(pic1);
         pic2.anchor.set(0.5);
-        pic2.scale.set(0.15, 0.15);
-        pic2.position.set(-400, 0);
+        pic2.scale.set(0.2, 0.2);
+        pic2.position.set(400, 0);
         pic2.visible = false;
         container.addChild(pic2);
         pic3.anchor.set(0.5);
-        pic3.scale.set(0.15, 0.15);
+        pic3.scale.set(0.2, 0.2);
         pic3.position.set(-400, 0);
         pic3.visible = false;
         container.addChild(pic3);
         pic4.anchor.set(0.5);
-        pic4.scale.set(0.15, 0.15);
-        pic4.position.set(-400, 0);
+        pic4.scale.set(0.2, 0.2);
+        pic4.position.set(400, 0);
         pic4.visible = false;
         container.addChild(pic4);
 
@@ -121,22 +121,22 @@
         app.ticker.add(function(delta) {
             resize();
             pic1.position.x += 5 * delta;
-            pic1.position.y -= 2 * delta;
-            if (pic1.position.x >= -50) {
-                pic1.position.x = -50;
-                pic1.position.y = -200;
+            //pic1.position.y -= 2 * delta;
+            if (pic1.position.x >= 0) {
+                pic1.position.x = 0;
+                pic1.position.y = 0;
                 pic1.alpha -= 0.005 * delta;
                 if (pic1.alpha == 0) {
                     pic1.visible = false;
                 }
                 setTimeout(function() {
                     pic2.visible = true;
-                    pic2.position.x += 7 * delta;
-                    pic2.position.y -= 2.5 * delta;
+                    pic2.position.x -= 5 * delta;
+                    //pic2.position.y -= 2.5 * delta;
                 }, 3000);
-                if (pic2.position.x >= 50) {
-                    pic2.position.x =50;
-                    pic2.position.y = -200;
+                if (pic2.position.x <= 0) {
+                    pic2.position.x =0;
+                    pic2.position.y = 0;
                     pic2.alpha -= 0.005 * delta;
                     if (pic2.alpha == 0) {
                         pic2.visible = false;
@@ -144,23 +144,23 @@
                     setTimeout(function() {
                         pic3.visible = true;
                         pic3.position.x += 5 * delta;
-                        pic3.position.y += 2 * delta;
+                       // pic3.position.y += 2 * delta;
                     }, 3000);
-                    if (pic3.position.x >= -50) {
-                        pic3.position.x = -50;
-                        pic3.position.y = 50;
+                    if (pic3.position.x >=0) {
+                        pic3.position.x = 0;
+                        pic3.position.y = 0;
                         pic3.alpha -= 0.005 * delta;
                         if (pic3.alpha == 0) {
                             pic3.visible = false;
                         }
                         setTimeout(function() {
                             pic4.visible = true;
-                            pic4.position.x += 7 * delta;
-                            pic4.position.y += 1 * delta;
+                            pic4.position.x -= 5 * delta;
+                            //pic4.position.y += 1 * delta;
                         }, 3000);
-                        if (pic4.position.x >= 50) {
-                            pic4.position.x = 50;
-                            pic4.position.y = 50;
+                        if (pic4.position.x <= 0) {
+                            pic4.position.x =0;
+                            pic4.position.y = 0;
                             pic4.alpha -= 0.005 * delta;
                             if (pic4.alpha == 0) {
                                 pic4.visible = false;
