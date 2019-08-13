@@ -4,6 +4,7 @@
     <script src="pixi.min.js"></script>
     <script src="pixi.js"></script>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
 </head>
 <style>
@@ -21,10 +22,11 @@
     <audio src="video_background.mp3" id="background"></audio>
     <script>
         var app = new PIXI.Application({
-
+            width:1920,
+            height:1080,
             antialias: true,
             forceCanvas: false,
-            resizeTo: window,
+         
 
         }); //設定圖層
         document.body.appendChild(app.view); //顯示
@@ -35,10 +37,11 @@
 
 
         //遊戲背景
-        var ratio = Math.min(window.innerWidth, window.innerHeight);
+         var ratio_min = Math.min(window.innerWidth, window.innerHeight);
+        var ratio_max = Math.max(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/漫畫背景.png");
-        backgroundimg.width = ratio;
-        backgroundimg.height = ratio;
+        backgroundimg.width = ratio_max;
+        backgroundimg.height = ratio_min;
         backgroundimg.anchor.set(0.5);
         backgroundimg.alpha = 0;
         backgroundimg.visible = false;
@@ -58,21 +61,21 @@
 
         pic1.anchor.set(0.5);
         pic1.scale.set(0.2, 0.2);
-        pic1.position.set(-400, 0);
+        pic1.position.set(0, 0);
         container.addChild(pic1);
         pic2.anchor.set(0.5);
         pic2.scale.set(0.2, 0.2);
-        pic2.position.set(-400, 0);
+        pic2.position.set(0, 0);
         pic2.visible = false;
         container.addChild(pic2);
         pic3.anchor.set(0.5);
         pic3.scale.set(0.2, 0.2);
-        pic3.position.set(-400, 0);
+        pic3.position.set(0, 0);
         pic3.visible = false;
         container.addChild(pic3);
         pic4.anchor.set(0.5);
         pic4.scale.set(0.2, 0.2);
-        pic4.position.set(-400, 0);
+        pic4.position.set(0, 0);
         pic4.visible = false;
         container.addChild(pic4);
 
@@ -106,22 +109,22 @@
         app.ticker.add(function(delta) {
 
             pic1.position.x += 5 * delta;
-            pic1.position.y -= 3 * delta;
-            if (pic1.position.x >= -100) {
-                pic1.position.x = -100;
-                pic1.position.y = -150;
+            pic1.position.y += 3 * delta;
+            if (pic1.position.x >= 500) {
+                pic1.position.x = 500;
+                pic1.position.y = 300;
                 pic1.alpha -= 0.005 * delta;
                 if (pic1.alpha == 0) {
                     pic1.visible = false;
                 }
                 setTimeout(function() {
                     pic2.visible = true;
-                    pic2.position.x += 5 * delta;
-                    pic2.position.y -= 1 * delta;
+                    pic2.position.x += 7 * delta;
+                    pic2.position.y += 2.5 * delta;
                 }, 3000);
-                if (pic2.position.x >= 200) {
-                    pic2.position.x = 200;
-                    pic2.position.y = -150;
+                if (pic2.position.x >= 900) {
+                    pic2.position.x = 900;
+                    pic2.position.y = 300;
                     pic2.alpha -= 0.005 * delta;
                     if (pic2.alpha == 0) {
                         pic2.visible = false;
@@ -129,23 +132,23 @@
                     setTimeout(function() {
                         pic3.visible = true;
                         pic3.position.x += 5 * delta;
-                        pic3.position.y += 3 * delta;
+                        pic3.position.y += 5 * delta;
                     }, 3000);
-                    if (pic3.position.x >= -200) {
-                        pic3.position.x = -200;
-                        pic3.position.y = 100;
+                    if (pic3.position.x >= 500) {
+                        pic3.position.x = 500;
+                        pic3.position.y = 500;
                         pic3.alpha -= 0.005 * delta;
                         if (pic3.alpha == 0) {
                             pic3.visible = false;
                         }
                         setTimeout(function() {
                             pic4.visible = true;
-                            pic4.position.x += 5 * delta;
-                            pic4.position.y += 1 * delta;
+                            pic4.position.x += 7 * delta;
+                            pic4.position.y += 4 * delta;
                         }, 3000);
-                        if (pic4.position.x >= 200) {
-                            pic4.position.x = 200;
-                            pic4.position.y = 100;
+                        if (pic4.position.x >= 900) {
+                            pic4.position.x = 900;
+                            pic4.position.y = 500;
                             pic4.alpha -= 0.005 * delta;
                             if (pic4.alpha == 0) {
                                 pic4.visible = false;
@@ -170,11 +173,13 @@
         window.addEventListener('resize', resize);
 
         function resize() {
-            app.renderer.resize(window.innerWidth, window.innerHeight);
+             const parent=app.view.parentNode;
+            app.renderer.resize(parent.clientWidth,parent.clientHeight);
+            backgroundimg.position.set(app.screen.width/2,app.screen.height/2);
+            /*app.renderer.resize(window.innerWidth, window.innerHeight);
             container.x = app.screen.width / 2;
             container.y = app.screen.height / 2;
-
-            container.anchor = 0.5;
+            container.anchor = 0.5;*/
         }
         resize();
 
