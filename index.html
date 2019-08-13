@@ -29,8 +29,8 @@
         var ratio_min = Math.min(window.innerWidth, window.innerHeight);
         var ratio_max = Math.max(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = 1920;
-        backgroundimg.height = 1080;
+        backgroundimg.width = ratio_max;
+        backgroundimg.height = ratio_min;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
         
@@ -56,7 +56,7 @@
         var logo = new PIXI.Sprite.from("牛郎織女2/遊戲背景/LOGO.png");
         logo.anchor.set(0.5);
         logo.position.set(0, -100);
-        logo.scale.set(0.8, 0.8);
+        logo.scale.set(0.7, 0.7);
         logo.visible = false;
         backgroundimg.addChild(logo);
 
@@ -90,7 +90,7 @@
         var circle = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
         circle.anchor.set(0.5);
         circle.scale.set(0.5, 0.5);
-        circle.position.set(0, 250);
+        circle.position.set(0,200);
         circle.visible = false;
         backgroundimg.addChild(circle);
         // Opt-in to interactivity
@@ -106,7 +106,7 @@
             this.alpha = 1;
         }
 
-        container.addChild(circle);
+        backgroundimg.addChild(circle);
 
 
         function onClick() {
