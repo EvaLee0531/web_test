@@ -18,7 +18,7 @@
 <body>
     <iframe src="background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
     </iframe>
-    <audio src="background.mp3" id="background"></audio>
+    <audio src="background.mp3" id="background" ></audio>
     <script>
         var app = new PIXI.Application({
             width: 1920,
@@ -30,6 +30,16 @@
 
         var container = new PIXI.Container();
         app.stage.addChild(container);
+             //保持遊戲全螢幕
+        window.addEventListener('resize', resize);
+
+        function resize() {
+            app.renderer.resize(window.innerWidth, window.innerHeight);
+            container.x = app.screen.width / 2;
+            container.y = app.screen.height / 2;
+            container.anchor = 0.5;
+        }
+        resize();
 
         //遊戲背景
         var ratio_min = Math.min(window.innerWidth, window.innerHeight);
@@ -90,6 +100,7 @@
             background.play();
             music_btn.visible = false;
         }
+       
 
         //開始按鈕
         var circle = new PIXI.Sprite.from("牛郎織女2/遊戲背景/開始遊戲.png");
@@ -144,16 +155,7 @@
 
         }
 
-        //保持遊戲全螢幕
-        window.addEventListener('resize', resize);
-
-        function resize() {
-            app.renderer.resize(window.innerWidth, window.innerHeight);
-            container.x = app.screen.width / 2;
-            container.y = app.screen.height / 2;
-            container.anchor = 0.5;
-        }
-        resize();
+   
 
     </script>
 </body>

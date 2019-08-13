@@ -126,7 +126,27 @@
             }
 
             music_btn.on("pointerdown", playmusic);
-        };
+        }else if (navigator.userAgent.match(/Windows/i)) {
+            
+            app.ticker.add(function(delta) {
+                animatedFly.on('pointertap', onClick);
+                function onClick() {
+                    buttonclick.play();
+                    animatedBoy.position.x -= 0.1 * delta;
+                    setTimeout(function() {
+
+                        app.ticker.stop();
+                        replay.visible = true;
+                        animatedFly.visible = false;
+                        animatedBoy.visible = false;
+                        lose_img.visible = true;
+
+                    }, 30000);
+
+                }
+            });
+
+        }
 
         function playmusic() {
             background.play();
@@ -189,25 +209,7 @@
 
         //控制動畫
         app.ticker.add((delta) => {
-           // animatedFly.on('pointertap', onClick);
             start.on('pointertap', startgame);
-
-
-            /*function onClick() {
-                buttonclick.play();
-                animatedBoy.position.x -= 0.1 * delta;
-                setTimeout(function() {
-                    button
-                    app.ticker.stop();
-                    replay.visible = true;
-                    animatedFly.visible = false;
-                    animatedBoy.visible = false;
-                    lose_img.visible = true;
-
-                }, 30000);
-
-            }*/
-
             function startgame() {
                 start.visible = false;
                 loading.visible = true;
@@ -215,8 +217,6 @@
             }
             //輸的條件
             if (animatedBoy.position.x >= 290) {
-
-
                 app.ticker.stop();
                 replay.visible = true;
                 lose_img.visible = true;

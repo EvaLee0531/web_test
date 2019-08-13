@@ -71,7 +71,7 @@
 
         //陀螺儀控制
         if (window.DeviceOrientationEvent) {
-            window.addEventListener('devicemotion', function(event) { 
+            window.addEventListener('devicemotion', function(event) {
                     alpha = Math.round(event.acceleration.x);
                     beta = Math.round(event.acceleration.y);
                     gamma = Math.round(event.acceleration.z);
@@ -143,7 +143,7 @@
             this.alpha = 1;
         }
         //控制背景音樂
-        /*判斷手機系統是Android還是IOS*/
+        /*判斷手機系統是Android還是IOS或電腦*/
         if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
             var music_btn = new PIXI.Sprite.from("play.png");
             music_btn.anchor.set(0.5);
@@ -160,13 +160,33 @@
             }
 
             music_btn.on("pointerdown", playmusic);
+        } else if (navigator.userAgent.match(/Windows/i)) {
+            
+            app.ticker.add(function(delta) {
+                animatedFly.on('pointertap', onClick);
+                function onClick() {
+                    buttonclick.play();
+                    animatedGirl.position.x += 0.1 * delta;
+                    setTimeout(function() {
+
+                        app.ticker.stop();
+                        replay.visible = true;
+                        animatedFly.visible = false;
+                        animatedGirl.visible = false;
+                        lose_img.visible = true;
+
+                    }, 30000);
+
+                }
+            });
+
         }
+
 
         function playmusic() {
             background.play();
             music_btn.visible = false;
         }
-
 
 
         //loading
@@ -213,7 +233,6 @@
 
         //控制動畫
         app.ticker.add((delta) => {
-            // animatedFly.on('pointertap', onClick);
             start.on('pointertap', startgame);
 
             function startgame() {
@@ -221,22 +240,6 @@
                 loading.visible = true;
 
             }
-
-            /* function onClick() {
-                 buttonclick.play();
-                 animatedGirl.position.x += 0.1 * delta;
-                 setTimeout(function() {
-
-                     app.ticker.stop();
-                     replay.visible = true;
-                     animatedFly.visible = false;
-                     animatedGirl.visible = false;
-                     lose_img.visible = true;
-
-                 }, 30000);
-
-             }*/
-
 
             //贏的條件
             if (animatedGirl.position.x >= 110) {
