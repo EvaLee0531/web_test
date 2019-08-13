@@ -47,7 +47,7 @@
         function setup() {
 
             animatedGirl.scale.set(0.2);
-            animatedGirl.position.set(-400, -200);
+            animatedGirl.position.set(-550, -200);
             animatedGirl.animationSpeed = 0.8;
             animatedGirl.play();
             backgroundimg.addChild(animatedGirl);
@@ -245,7 +245,9 @@
 
             //贏的條件
             if (animatedGirl.position.x >= 300) {
-                app.ticker.stop();
+                animatedBoy.stop();
+                animatedGirl.stop();
+                animatedGirl.position.x=320;
                 animatedFly.visible = false;
                 win_img.visible = true;
                 replay.visible = true;
@@ -258,7 +260,9 @@
             }
             //輸的條件
             if (animatedGirl.position.x < -650) {
-                app.ticker.stop();
+                animatedBoy.stop();
+                animatedGirl.stop();
+                animatedGirl.position.x=-650;
                 replay.visible = true;
                 animatedFly.visible = false;
                 lose_img.visible = true;

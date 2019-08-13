@@ -40,8 +40,8 @@
          var ratio_min = Math.min(window.innerWidth, window.innerHeight);
         var ratio_max = Math.max(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/漫畫背景.png");
-        backgroundimg.width = (ratio_max)*0.8;
-        backgroundimg.height = ratio_min;
+        backgroundimg.width = (ratio_max)*0.9;
+        backgroundimg.height = (ratio_min)*0.9;
         backgroundimg.anchor.set(0.5);
         backgroundimg.alpha = 0;
         backgroundimg.visible = false;
@@ -124,7 +124,7 @@
             pic1.position.y -= 2 * delta;
             if (pic1.position.x >= -50) {
                 pic1.position.x = -50;
-                pic1.position.y = -150;
+                pic1.position.y = -200;
                 pic1.alpha -= 0.005 * delta;
                 if (pic1.alpha == 0) {
                     pic1.visible = false;
@@ -136,7 +136,7 @@
                 }, 3000);
                 if (pic2.position.x >= 50) {
                     pic2.position.x =50;
-                    pic2.position.y = -150;
+                    pic2.position.y = -200;
                     pic2.alpha -= 0.005 * delta;
                     if (pic2.alpha == 0) {
                         pic2.visible = false;
@@ -148,7 +148,7 @@
                     }, 3000);
                     if (pic3.position.x >= -50) {
                         pic3.position.x = -50;
-                        pic3.position.y = 100;
+                        pic3.position.y = 50;
                         pic3.alpha -= 0.005 * delta;
                         if (pic3.alpha == 0) {
                             pic3.visible = false;
@@ -160,7 +160,7 @@
                         }, 3000);
                         if (pic4.position.x >= 50) {
                             pic4.position.x = 50;
-                            pic4.position.y = 100;
+                            pic4.position.y = 50;
                             pic4.alpha -= 0.005 * delta;
                             if (pic4.alpha == 0) {
                                 pic4.visible = false;

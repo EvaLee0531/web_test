@@ -234,7 +234,9 @@
             }
             //輸的條件
             if (animatedBoy.position.x >= 350) {
-                app.ticker.stop();
+                animatedBoy.position.x=350;
+                animatedBoy.stop();
+                animatedGirl.stop();
                 replay.visible = true;
                 lose_img.visible = true;
                 animatedFly.visible = false;
@@ -246,7 +248,10 @@
             }
             //贏的條件
             if (animatedBoy.position.x < -600) {
-                app.ticker.stop();
+                
+                animatedBoy.stop();
+                animatedGirl.stop();
+                animatedBoy.position.x=-620;
                 win_img.visible = true;
                 replay.visible = true;
                 animatedFly.visible = false;
