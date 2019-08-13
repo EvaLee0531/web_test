@@ -31,10 +31,11 @@
         app.stage.addChild(container);
 
         //遊戲背景
-        var ratio = Math.min(window.innerWidth, window.innerHeight);
+        var ratio_min = Math.min(window.innerWidth, window.innerHeight);
+        var ratio_max = Math.max(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = ratio;
-        backgroundimg.height = ratio;
+        backgroundimg.width = (ratio_max)*0.8;
+        backgroundimg.height = ratio_min;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
 
@@ -145,10 +146,13 @@
         window.addEventListener('resize', resize);
 
         function resize() {
-            app.renderer.resize(window.innerWidth, window.innerHeight);
+            const parent=app.view.parentNode;
+            app.renderer.resize(parent.clientWidth,parent.clientHeight);
+            backgroundimg.position.set(app.screen.width/2,app.screen.height/2);
+           /* app.renderer.resize(window.innerWidth, window.innerHeight);
             container.x = app.screen.width / 2;
             container.y = app.screen.height / 2;
-            container.anchor = 0.5;
+            container.anchor = 0.5;*/
         }
         resize();
 
