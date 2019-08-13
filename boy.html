@@ -23,8 +23,8 @@
     <audio src="jump02.mp3" id="buttonclick"></audio>
     <script>
         var app = new PIXI.Application({
-           width:Math.max(window.innerWidth, window.innerHeight),
-            height:Math.min(window.innerWidth, window.innerHeight),
+           width:1920,
+            height:1080,
             antialias: true,
             forceCanvas: false
         }); //設定圖層
@@ -254,10 +254,10 @@
              const parent=app.view.parentNode;
             app.renderer.resize(parent.clientWidth,parent.clientHeight);
             backgroundimg.position.set(app.screen.width/2,app.screen.height/2);
-            /*app.renderer.resize(window.innerWidth, window.innerHeight);
-            container.x = app.screen.width / 2;
-            container.y = app.screen.height / 2;
-            container.anchor = 0.5;*/
+            //app.renderer.resize(window.innerWidth, window.innerHeight);
+            //container.x = app.screen.width / 2;
+            //container.y = app.screen.height / 2;
+            //container.anchor = 0.5;
 
         }
         resize();
