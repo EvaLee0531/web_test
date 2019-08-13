@@ -4,16 +4,9 @@
     <script src="pixi.min.js"></script>
     <script src="pixi.js"></script>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
 </head>
-<style>
-    body {
-        position: absolute;
-        margin: 0 auto;
-        overflow: hidden;
-    }
-
-</style>
 
 <body>
     <iframe src="background.mp3" allow="autoplay" style="display:none" id="iframeAudio">
@@ -30,23 +23,14 @@
 
         var container = new PIXI.Container();
         app.stage.addChild(container);
-             //保持遊戲全螢幕
-        window.addEventListener('resize', resize);
 
-        function resize() {
-            app.renderer.resize(window.innerWidth, window.innerHeight);
-            container.x = app.screen.width / 2;
-            container.y = app.screen.height / 2;
-            container.anchor = 0.5;
-        }
-        resize();
 
         //遊戲背景
         var ratio_min = Math.min(window.innerWidth, window.innerHeight);
         var ratio_max = Math.max(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = ratio_min;
-        backgroundimg.height = ratio_min;
+        backgroundimg.width = 1920;
+        backgroundimg.height = 1080;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
         
@@ -154,6 +138,19 @@
             mention_img.visible = false;
 
         }
+                     //保持遊戲全螢幕
+        window.addEventListener('resize', resize);
+
+        function resize() {
+            const parent=app.view.parentNode;
+            app.renderer.resize(parent.clientWidth,parent.clientHeight);
+            backgroundimg.position.set(app.screen.width/2,app.screen.height/2);
+            /*app.renderer.resize(window.innerWidth, window.innerHeight);
+            container.x = app.screen.width / 2;
+            container.y = app.screen.height / 2;
+            container.anchor = 0.5;*/
+        }
+        resize();
 
    
 
