@@ -4,7 +4,7 @@
     <script src="pixi.js"></script>
     <script src="pixi.min.js"></script>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
 </head>
 <style>
@@ -23,11 +23,11 @@
     <audio src="jump02.mp3" id="buttonclick"></audio>
     <script>
         var app = new PIXI.Application({
-            width:window.innerWidth,
-            height:window.innerHeight,
+            width: window.innerWidth,
+            height: window.innerHeight,
             antialias: true,
             forceCanvas: false,
-            roundPixels	:true
+            roundPixels: true
         }); //設定圖層
         document.body.appendChild(app.view); //顯示
         var container = new PIXI.Container();
@@ -67,7 +67,7 @@
             animatedGirl.position.set(-800, -200);
             animatedGirl.animationSpeed = 0.6;
             animatedGirl.play();
-           backgroundimg.addChild(animatedGirl);
+            backgroundimg.addChild(animatedGirl);
 
         }
         //陀螺儀控制
@@ -93,32 +93,41 @@
                 app.ticker.add((delta) => {
                     animatedBoy.position.x += 1 * delta;
                     if (alpha > 0 || beta > 0 || gamma > 0) {
-                        animatedBoy.position.x -= 4 * delta;
+                        animatedBoy.position.x -= 5 * delta;
                     }
                     setTimeout(function() {
                         animatedBoy.position.x += 2 * delta;
                     }, 4000);
+                    setTimeout(function() {
+                        animatedBoy.position.set(250, -200);
+                        animatedBoy.stop();
+                        animatedGirl.stop();
+                        replay.visible = true;
+                        animatedFly.visible = false;
+                        lose_img.visible = true;
+
+                    },26000);
                 });
             };
         }
 
 
         //遊戲背景
-         var ratio_min = Math.min(window.innerWidth, window.innerHeight);
+        var ratio_min = Math.min(window.innerWidth, window.innerHeight);
         var ratio_max = Math.max(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = (ratio_max)*0.8;
+        backgroundimg.width = (ratio_max) * 0.8;
         backgroundimg.height = ratio_min;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
-        
-         //保持全螢幕
+
+        //保持全螢幕
         window.addEventListener('resize', resize);
 
         function resize() {
-             const parent=app.view.parentNode;
-            app.renderer.resize(parent.clientWidth,parent.clientHeight);
-            backgroundimg.position.set(app.screen.width/2,app.screen.height/2);
+            const parent = app.view.parentNode;
+            app.renderer.resize(parent.clientWidth, parent.clientHeight);
+            backgroundimg.position.set(app.screen.width / 2, app.screen.height / 2);
             //app.renderer.resize(window.innerWidth, window.innerHeight);
             //container.x = app.screen.width / 2;
             //container.y = app.screen.height / 2;
@@ -143,10 +152,11 @@
             }
 
             music_btn.on("pointerdown", playmusic);
-        }else if (navigator.userAgent.match(/Windows/i)) {
-            
+        } else if (navigator.userAgent.match(/Windows/i)) {
+
             app.ticker.add(function(delta) {
                 animatedFly.on('pointertap', onClick);
+
                 function onClick() {
                     buttonclick.play();
                     animatedBoy.position.x -= 0.1 * delta;
@@ -228,6 +238,7 @@
         app.ticker.add((delta) => {
             resize();
             start.on('pointertap', startgame);
+
             function startgame() {
                 start.visible = false;
                 loading.visible = true;
@@ -235,7 +246,7 @@
             }
             //輸的條件
             if (animatedBoy.position.x >= 350) {
-                animatedBoy.position.x=350;
+                animatedBoy.position.x = 350;
                 animatedBoy.stop();
                 animatedGirl.stop();
                 replay.visible = true;
@@ -249,10 +260,10 @@
             }
             //贏的條件
             if (animatedBoy.position.x <= -600) {
-                
+
                 animatedBoy.stop();
                 animatedGirl.stop();
-                animatedBoy.position.x=-620;
+                animatedBoy.position.x = -620;
                 win_img.visible = true;
                 replay.visible = true;
                 animatedFly.visible = false;
@@ -268,20 +279,20 @@
 
 
 
-      /*  //保持全螢幕
-        window.addEventListener('resize', resize);
+        /*  //保持全螢幕
+          window.addEventListener('resize', resize);
 
-        function resize() {
-             const parent=app.view.parentNode;
-            app.renderer.resize(parent.clientWidth,parent.clientHeight);
-            backgroundimg.position.set(app.screen.width/2,app.screen.height/2);
-            //app.renderer.resize(window.innerWidth, window.innerHeight);
-            //container.x = app.screen.width / 2;
-            //container.y = app.screen.height / 2;
-            //container.anchor = 0.5;
+          function resize() {
+               const parent=app.view.parentNode;
+              app.renderer.resize(parent.clientWidth,parent.clientHeight);
+              backgroundimg.position.set(app.screen.width/2,app.screen.height/2);
+              //app.renderer.resize(window.innerWidth, window.innerHeight);
+              //container.x = app.screen.width / 2;
+              //container.y = app.screen.height / 2;
+              //container.anchor = 0.5;
 
-        }
-        resize();*/
+          }
+          resize();*/
 
     </script>
 

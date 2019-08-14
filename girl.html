@@ -96,11 +96,20 @@
                 app.ticker.add((delta) => {
                     animatedGirl.position.x -= 1 * delta;
                     if (alpha > 0 || beta > 0 || gamma > 0) {
-                        animatedGirl.position.x += 4 * delta;
+                        animatedGirl.position.x += 5 * delta;
                     }
                     setTimeout(function() {
                         animatedGirl.position.x -= 2 * delta;
                     }, 4000);
+                    setTimeout(function()
+                              {
+                       animatedGirl.position.set(-550, -200);
+                        animatedGirl.stop();
+                        animatedBoy.stop();
+                        replay.visible = true;
+                        animatedFly.visible = false;
+                        lose_img.visible = true;
+                    },26000)
 
 
                 });
