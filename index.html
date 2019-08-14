@@ -18,13 +18,13 @@
             height:window.innerHeight,
             antialias: true,
             forceCanvas: false,
-            roundPixels	:true
+            roundPixels	:true,
+            
         }); //設定圖層
         document.body.appendChild(app.view); //顯示
 
         var container = new PIXI.Container();
         app.stage.addChild(container);
-
 
         //遊戲背景
         var ratio_min = Math.min(window.innerWidth, window.innerHeight);

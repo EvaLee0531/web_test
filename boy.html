@@ -93,7 +93,7 @@
                 app.ticker.add((delta) => {
                     animatedBoy.position.x += 1 * delta;
                     if (alpha > 0 || beta > 0 || gamma > 0) {
-                        animatedBoy.position.x -= 5 * delta;
+                        animatedBoy.position.x -= 6 * delta;
                     }
                     setTimeout(function() {
                         animatedBoy.position.x += 2 * delta;
@@ -104,9 +104,10 @@
                         animatedGirl.stop();
                         replay.visible = true;
                         animatedFly.visible = false;
+                        win_img.visible=false;
                         lose_img.visible = true;
 
-                    },26000);
+                    },30000);
                 });
             };
         }
