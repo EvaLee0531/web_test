@@ -23,8 +23,9 @@
     <audio src="background.mp3" id="background"></audio>
     <script>
         var app = new PIXI.Application({
-            antialias: false,
-            forceCanvas: false
+            antialias: true,
+            forceCanvas: false,
+            roundPixels	:true
         }); //設定圖層
         document.body.appendChild(app.view); //顯示
 

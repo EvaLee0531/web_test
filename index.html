@@ -14,8 +14,11 @@
     <audio src="background.mp3" id="background"></audio>
     <script>
         var app = new PIXI.Application({
-            antialias: false,
-            forceCanvas: false
+            width:1920,
+            height:1080,
+            antialias: true,
+            forceCanvas: false,
+            roundPixels	:true
         }); //設定圖層
         document.body.appendChild(app.view); //顯示
 
@@ -58,7 +61,8 @@
             }
 
             music_btn.on("pointerdown", playmusic);
-        } 
+        }
+
         function playmusic() {
             background.play();
             music_btn.visible = false;
@@ -117,19 +121,33 @@
 
         }
         //保持遊戲全螢幕
-        window.addEventListener('resize', resize);
 
-        function resize() {
-            const parent = app.view.parentNode;
-            app.renderer.resize(parent.clientWidth, parent.clientHeight);
-            backgroundimg.position.set(app.screen.width / 2, app.screen.height / 2);
-            /*app.renderer.resize(window.innerWidth, window.innerHeight);
-            container.x = app.screen.width / 2;
-            container.y = app.screen.height / 2;
-            container.anchor = 0.5;*/
-        }
-        resize();
+       
+            window.addEventListener('resize', resize);
 
+            function resize() {
+                
+                var w=window.innerWidth;
+                var h=window.innerHeight;
+                var scale=Math.min(w/1920,h/1080);
+                app.view.style.left=(w-scale*1920)/2+"px";
+                app.view.style.top=(h-scale*1080)/2+"px";
+                app.view.style.width=scale*1920+"px";
+                app.view.style.height=scale*1080+"px";
+                container.x=app.screen.width/2;
+                container.y=app.screen.height/2;
+                container.anchor=0.5;
+               /* const parent = app.view.parentNode;
+                app.renderer.resize(parent.clientWidth, parent.clientHeight);
+                backgroundimg.position.set(app.screen.width / 2, app.screen.height / 2);
+                /*app.renderer.resize(window.innerWidth, window.innerHeight);
+                container.x = app.screen.width / 2;
+                container.y = app.screen.height / 2;
+                container.anchor = 0.5;*/
+            }
+            this.resize();
+        window.onresize=this.resize();
+         
     </script>
 </body>
 

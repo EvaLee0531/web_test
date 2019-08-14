@@ -4,11 +4,11 @@
     <script src="pixi.min.js"></script>
     <script src="pixi.js"></script>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
 </head>
 <style>
-   /* body {
+    /* body {
         position: absolute;
         margin: 0 auto;
         overflow: hidden;
@@ -25,7 +25,7 @@
 
             antialias: true,
             forceCanvas: false,
-         
+            roundPixels: true
 
         }); //設定圖層
         document.body.appendChild(app.view); //顯示
@@ -36,11 +36,11 @@
 
 
         //遊戲背景
-         var ratio_min = Math.min(window.innerWidth, window.innerHeight);
+        var ratio_min = Math.min(window.innerWidth, window.innerHeight);
         var ratio_max = Math.max(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/漫畫背景.png");
-        backgroundimg.width = (ratio_max)*0.8;
-        backgroundimg.height = (ratio_min)*0.8;
+        backgroundimg.width = (ratio_max) * 0.8;
+        backgroundimg.height = (ratio_min) * 0.8;
         backgroundimg.anchor.set(0.5);
         backgroundimg.alpha = 0;
         backgroundimg.visible = false;
@@ -134,7 +134,7 @@
                     //pic2.position.y -= 2.5 * delta;
                 }, 3000);
                 if (pic2.position.x <= 0) {
-                    pic2.position.x =0;
+                    pic2.position.x = 0;
                     pic2.position.y = 0;
                     pic2.alpha -= 0.005 * delta;
                     if (pic2.alpha == 0) {
@@ -143,9 +143,9 @@
                     setTimeout(function() {
                         pic3.visible = true;
                         pic3.position.x += 5 * delta;
-                       // pic3.position.y += 2 * delta;
+                        // pic3.position.y += 2 * delta;
                     }, 3000);
-                    if (pic3.position.x >=0) {
+                    if (pic3.position.x >= 0) {
                         pic3.position.x = 0;
                         pic3.position.y = 0;
                         pic3.alpha -= 0.005 * delta;
@@ -158,7 +158,7 @@
                             //pic4.position.y += 1 * delta;
                         }, 3000);
                         if (pic4.position.x <= 0) {
-                            pic4.position.x =0;
+                            pic4.position.x = 0;
                             pic4.position.y = 0;
                             pic4.alpha -= 0.005 * delta;
                             if (pic4.alpha == 0) {
@@ -180,19 +180,19 @@
 
         });
 
-       /* //保持遊戲全螢幕
-        window.addEventListener('resize', resize);
+        /* //保持遊戲全螢幕
+         window.addEventListener('resize', resize);
 
-        function resize() {
-            /* const parent=app.view.parentNode;
-            app.renderer.resize(parent.clientWidth,parent.clientHeight);
-            backgroundimg.position.set(app.screen.width/2,app.screen.height/2);
-            app.renderer.resize(window.innerWidth, window.innerHeight);
-            container.x = app.screen.width / 2;
-            container.y = app.screen.height / 2;
-            container.anchor = 0.5;
-        }*/
-       // resize();
+         function resize() {
+             /* const parent=app.view.parentNode;
+             app.renderer.resize(parent.clientWidth,parent.clientHeight);
+             backgroundimg.position.set(app.screen.width/2,app.screen.height/2);
+             app.renderer.resize(window.innerWidth, window.innerHeight);
+             container.x = app.screen.width / 2;
+             container.y = app.screen.height / 2;
+             container.anchor = 0.5;
+         }*/
+        // resize();
 
     </script>
 </body>
