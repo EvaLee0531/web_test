@@ -14,8 +14,8 @@
     <audio src="background.mp3" id="background"></audio>
     <script>
         var app = new PIXI.Application({
-            width:1920,
-            height:1080,
+            width:window.innerWidth,
+            height:window.innerHeight,
             antialias: true,
             forceCanvas: false,
             roundPixels	:true
@@ -30,7 +30,7 @@
         var ratio_min = Math.min(window.innerWidth, window.innerHeight);
         var ratio_max = Math.max(window.innerWidth, window.innerHeight);
         var backgroundimg = PIXI.Sprite.from("牛郎織女2/遊戲背景/遊戲主畫面背景.png");
-        backgroundimg.width = ratio_max ;
+        backgroundimg.width = (ratio_max)*0.8 ;
         backgroundimg.height = ratio_min;
         backgroundimg.anchor.set(0.5);
         container.addChild(backgroundimg);
@@ -128,7 +128,7 @@
             function resize() {
                 
 
-                var w=window.innerWidth;
+                /*var w=window.innerWidth;
                 var h=window.innerHeight;
                 var scale=Math.min(w/1920,h/1080);
                 app.view.style.left=(w-scale*1920)/2+"px";
@@ -138,8 +138,8 @@
                 app.view.style.position="absolute";
                 container.x=app.screen.width/2;
                 container.y=app.screen.height/2;
-                container.anchor=0.5;
-               /* const parent = app.view.parentNode;
+                container.anchor=0.5;*/
+                const parent = app.view.parentNode;
                 app.renderer.resize(parent.clientWidth, parent.clientHeight);
                 backgroundimg.position.set(app.screen.width / 2, app.screen.height / 2);
                 /*app.renderer.resize(window.innerWidth, window.innerHeight);
