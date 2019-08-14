@@ -23,6 +23,8 @@
     <audio src="jump02.mp3" id="buttonclick"></audio>
     <script>
         var app = new PIXI.Application({
+            width:window.innerWidth,
+            height:window.innerWidth,
             antialias: true,
             forceCanvas: false,
             roundPixels	:true
@@ -201,6 +203,7 @@
         //遊戲重新開始按鈕
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
         replay.anchor.set(0.5);
+        replay.scale.set(0.5,0.5);
         replay.position.set(0, 200);
         replay.visible = false;
         replay.interactive = true;
