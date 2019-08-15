@@ -95,7 +95,6 @@
 
         function setup() {
             //resources可以初始化背景圖片
-            let resources = PIXI.loader.resources;
             animatedBoy = PIXI.extras.AnimatedSprite.fromFrames(boyFrames);
             animatedBoy.animationSpeed = 0.5;
             animatedBoy.scale.set(0.3, 0.3);
@@ -154,7 +153,6 @@
         let loading_bg = PIXI.Sprite.fromImage('loading_pic.jpg');
         loading_bg.anchor.set(0.5);
         loading_bg.x=-300;
-        //loading_bg.visible=false;
         backgroundimg.addChild(loading_bg);
         let now = 0;
         let loading_mask = new PIXI.Graphics();
@@ -162,7 +160,6 @@
         loading_mask.drawRoundedRect(-200, 0, 400, 50, 30);
         loading_mask.endFill();
         backgroundimg.addChild(loading_mask);
-        //loading_mask.visible=false;
         loading_bg.mask = loading_mask;
 
 
