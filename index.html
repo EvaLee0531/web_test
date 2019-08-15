@@ -19,7 +19,7 @@
             antialias: true,
             forceCanvas: false,
             roundPixels	:true,
-            
+            SCALE_MODE:PIXI.SCALE_MODES.NEAREST,
         }); //設定圖層
         document.body.appendChild(app.view); //顯示
         
@@ -39,7 +39,7 @@
         var logo = new PIXI.Sprite.from("牛郎織女2/遊戲背景/LOGO.png");
         logo.anchor.set(0.5);
         logo.position.set(0, -100);
-        logo.scale.set(0.8, 0.8,PIXI.SCALE_MODES.NEAREST);
+        logo.scale.set(0.8, 0.8);
         logo.visible = false;
         backgroundimg.addChild(logo);
 
