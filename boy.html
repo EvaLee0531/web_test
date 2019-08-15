@@ -149,6 +149,7 @@
         //控制背景音樂
         /*判斷手機系統是Android還是IOS*/
         if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
+            animatedFly.visible = false;
             var music_btn = new PIXI.Sprite.from("play.png");
             music_btn.anchor.set(0.5);
             music_btn.position.set(-650, -450);
@@ -162,7 +163,6 @@
             music_btn.mouseout = function(mouseData) {
                 this.alpha = 1;
             }
-            animatedFly.visible=false;
             music_btn.on("pointerdown", playmusic);
         } else if (navigator.userAgent.match(/Windows/i)) {
 
