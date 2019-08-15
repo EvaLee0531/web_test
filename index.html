@@ -22,9 +22,10 @@
             
         }); //設定圖層
         document.body.appendChild(app.view); //顯示
-
+        
         var container = new PIXI.Container();
         app.stage.addChild(container);
+        PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
 
         //遊戲背景
         var ratio_min = Math.min(window.innerWidth, window.innerHeight);
