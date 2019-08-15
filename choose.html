@@ -148,15 +148,38 @@
         var loading = new PIXI.Text("Loading...");
         loading.anchor.set(0.5);
         loading.scale.set(2, 2);
-        loading.position.set(0, 0);
+        loading.position.set(0, -50);
         backgroundimg.addChild(loading);
+         //loading圖示
+        let loading_bg = PIXI.Sprite.fromImage('loading_pic.jpg');
+        loading_bg.anchor.set(0.5);
+        loading_bg.x=-200;
+        //loading_bg.visible=false;
+        backgroundimg.addChild(loading_bg);
+        let now = 0;
+        let loading_mask = new PIXI.Graphics();
+        loading_mask.beginFill(0xFFffff);
+        loading_mask.drawRoundedRect(-200, 0, 400, 50, 30);
+        loading_mask.endFill();
+        backgroundimg.addChild(loading_mask);
+        //loading_mask.visible=false;
+        loading_bg.mask = loading_mask;
 
 
         function loadProgressHandler(loader, resource) {
              resize();
+             let loadingWidth = 400;
+                let once = loadingWidth / 100;
+                let limit = loader.progress / 100 * loadingWidth;
+                if (loading_bg.x < limit) {
+                    loading_bg.x += once;
+                    now < limit ? now++ : limit;
+                }
             loading.text="Loading:"+(loader.progress|0)+"%";
             if (loader.progress >= 99) {
                 loading.visible = false;
+                loading_bg.visible=false;
+                loading_mask.visible=false;
             }
         };
 

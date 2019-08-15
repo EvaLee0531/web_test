@@ -88,7 +88,7 @@
         }
 
         function loadProgressHandler(loader, resource) {
-            loading.text = "Loading:" + (loader.progress | 0) + "%";
+            
                 let loadingWidth = 400;
                 let once = loadingWidth / 100;
                 let limit = loader.progress / 100 * loadingWidth;
@@ -96,10 +96,12 @@
                     loading_bg.x += once;
                     now < limit ? now++ : limit;
                 }
-            
+            loading.text = "Loading:" + (loader.progress | 0) + "%";
             
             if (loader.progress >= 99) {
                 loading.visible = false;
+                loading_bg.visible=false;
+                loading_mask.visible=false;
                 start.visible = false;
                 animatedFly.visible = true;
                 animatedGirl.visible = true;
@@ -217,21 +219,23 @@
         //loading
         var loading = new PIXI.Text("Loading...");
         loading.anchor.set(0.5);
-        loading.position.set(0, 0);
+        loading.position.set(0, -50);
         loading.scale.set(2, 2);
         loading.visible = false;
         backgroundimg.addChild(loading);
-        //loading遮罩
+        //loading圖示
         let loading_bg = PIXI.Sprite.fromImage('loading_pic.jpg');
         loading_bg.anchor.set(0.5);
-        loading_bg.x=-500;
+        loading_bg.x=-200;
+        loading_bg.visible=false;
         backgroundimg.addChild(loading_bg);
         let now = 0;
         let loading_mask = new PIXI.Graphics();
         loading_mask.beginFill(0xFFffff);
-        loading_mask.drawRoundedRect(-250, 0, 150, 50, 30);
+        loading_mask.drawRoundedRect(-200, 0, 400, 50, 30);
         loading_mask.endFill();
         backgroundimg.addChild(loading_mask);
+        loading_mask.visible=false;
         loading_bg.mask = loading_mask;
         //遊戲重新開始按鈕
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
@@ -274,6 +278,8 @@
             function startgame() {
                 start.visible = false;
                 loading.visible = true;
+                loading_bg.visible=true;
+                loading_mask.visible=true;
 
             }
 
