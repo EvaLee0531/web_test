@@ -106,10 +106,10 @@
                         animatedGirl.stop();
                         replay.visible = true;
                         animatedFly.visible = false;
-                        win_img.visible=false;
+                        win_img.visible = false;
                         lose_img.visible = true;
 
-                    },30000);
+                    }, 30000);
                 });
             };
         }
@@ -176,6 +176,8 @@
                 }
             });
 
+        } else if (navigator.userAgent.match(/android/i)) {
+            animatedFly.visible = false;
         }
 
         function playmusic() {
