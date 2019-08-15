@@ -226,7 +226,7 @@
         //loading圖示
         let loading_bg = PIXI.Sprite.fromImage('loading_pic.jpg');
         loading_bg.anchor.set(0.5);
-        loading_bg.x=-250;
+        loading_bg.x=-300;
         loading_bg.visible=false;
         backgroundimg.addChild(loading_bg);
         let now = 0;
@@ -236,7 +236,7 @@
         loading_mask.endFill();
         backgroundimg.addChild(loading_mask);
         loading_mask.visible=false;
-        loading_bg.mask = loading_mask;
+        //loading_bg.mask = loading_mask;
         //遊戲重新開始按鈕
         var replay = new PIXI.Sprite.from("牛郎織女2/遊戲背景/重新開始.png");
         replay.anchor.set(0.5);
