@@ -25,7 +25,6 @@
         
         var container = new PIXI.Container();
         app.stage.addChild(container);
-        PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
 
         //遊戲背景
         var ratio_min = Math.min(window.innerWidth, window.innerHeight);
@@ -40,7 +39,7 @@
         var logo = new PIXI.Sprite.from("牛郎織女2/遊戲背景/LOGO.png");
         logo.anchor.set(0.5);
         logo.position.set(0, -100);
-        logo.scale.set(0.8, 0.8);
+        logo.scale.set(0.8, 0.8,PIXI.SCALE_MODES.NEAREST);
         logo.visible = false;
         backgroundimg.addChild(logo);
 
