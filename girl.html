@@ -103,7 +103,6 @@
                 loading_bg.visible=false;
                 loading_mask.visible=false;
                 start.visible = false;
-                animatedFly.visible = true;
                 animatedGirl.visible = true;
                 animatedBoy.visible = true;
                 app.ticker.add((delta) => {
@@ -126,6 +125,7 @@
 
 
                 });
+              
             };
         }
 
@@ -186,7 +186,7 @@
             music_btn.on("pointerdown", playmusic);
             
         } else if (navigator.userAgent.match(/Windows/i)) {
-
+          // animatedFly.visible=false;
             app.ticker.add(function(delta) {
                 animatedFly.on('pointertap', onClick);
 
