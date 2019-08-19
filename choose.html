@@ -56,6 +56,7 @@
             container.y = app.screen.height / 2;
             container.anchor = 0.5;*/
         }
+        resize();
 
         var title = PIXI.Sprite.fromImage("帥奴隸做的字/22_工作區域 1.png");
         title.anchor.set(0.5);
@@ -164,7 +165,6 @@
 
 
         function loadProgressHandler(loader, resource) {
-             resize();
              let loadingWidth = 400;
                 let once = loadingWidth / 100;
                 let limit = loader.progress / 100 * loadingWidth;

@@ -1,22 +1,32 @@
 <html>
+
 <head>
-     <script src="pixi.min.js"></script>
+    <script src="pixi.min.js"></script>
     <script src="pixi.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
 </head>
-    
-    
+
+
 <body>
-    
+
+    <video id="video" width="640" height="480" autoplay></video>
     <script>
-    
-    
-    
-    
+        const video = document.getElementById('video');
+
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // Not adding `{ audio: true }` since we only want video now
+            navigator.mediaDevices.getUserMedia({
+                video: true
+            }).then(function(stream) {
+                video.srcObject=stream;
+                video.play();
+            });
+        }
+
     </script>
-    
+
 </body>
 
 
