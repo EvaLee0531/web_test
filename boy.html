@@ -164,10 +164,8 @@
             }
             music_btn.on("pointerdown", playmusic);
         } else if (navigator.userAgent.match(/Windows/i)) {
-
             app.ticker.add(function(delta) {
                 animatedFly.on('pointertap', onClick);
-
                 function onClick() {
                     buttonclick.play();
                     animatedBoy.position.x -= 0.1 * delta;
@@ -183,7 +181,6 @@
 
                 }
             });
-
         } else if (navigator.userAgent.match(/android/i)) {
             animatedFly.visible = false;
         }
