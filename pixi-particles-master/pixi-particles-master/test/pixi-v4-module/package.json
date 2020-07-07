@@ -12,7 +12,7 @@
     "pixi.js": "^4.0.0",
     "override-require": "^1.1.1",
     "pixi-particles": "*",
-    "electron": "^4.0.0",
+    "electron": "^7.2.4",
     "typescript": "^3.3.0"
   },
   "workspaces": {
