@@ -41,7 +41,7 @@
     "@types/pixi.js": "^4.0.0",
     "browserify-derequire": "^0.9.4",
     "dts-bundle-generator": "^2.1.0",
-    "electron": "^4.0.6",
+    "electron": "^11.5.0",
     "eslint": "^3.10.2",
     "gh-pages": "^2.0.0",
     "http-server": "*",
